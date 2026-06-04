@@ -1,0 +1,42 @@
+.DesktopGrid {
+    display: grid;
+    gap: 20px;
+}
+
+.DesktopGrid--four {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.DtSection--Border{
+    border-top: 1px solid #e0e0e0;
+    margin-top: 30px;
+}
+
+.DtSection-Title{
+    margin:30px 0;
+    padding: 0;
+}
+
+.DtSectionGrid {
+    display: grid;
+    gap: 15px;
+}
+
+@media (min-width: 769px) {
+    .DtSectionGrid--Frour {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.DtDistrictLink {
+    margin: 0;
+    line-height: 1.5;
+    font-size: 14px;
+    color: #1b1b1b;
+    padding: 10px 0;
+}
+
+.DtDistrictLink:hover {
+    color: #009aab;
+    font-weight: bold;
+}

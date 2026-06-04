@@ -1,0 +1,37 @@
+#breadcrumbs span a{
+    color: #4e4e4e;
+}
+
+#breadcrumbs span a:hover{
+    color: #00a1b2;
+}
+
+#breadcrumbs span span+span::before{
+    padding: 0 10px;
+    content: "\f105";
+    font-family: 'FontAwesome';
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+}
+
+#header #masthead ul.header-nav>li.menu-item>.sub-menu{
+    padding: 30px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+}
+
+#header #masthead ul.header-nav>li.menu-item>.sub-menu>li>a{
+    margin: 0;
+    line-height: 1.5;
+    font-size: 14px;
+    color: #1b1b1b;
+    padding: 10px 0;
+    text-transform: none;
+}
+
+#header #masthead ul.header-nav>li.menu-item>.sub-menu>li>a:hover{
+    color: #009aab;
+    font-weight: bold;
+}

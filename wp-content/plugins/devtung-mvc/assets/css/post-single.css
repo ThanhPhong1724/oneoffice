@@ -1,0 +1,29 @@
+/* Format tất cả danh sách trong .blog-single */
+.blog-single ul,
+.blog-single ol,
+.blog-single dl {
+    margin: 0;                    /* loại bỏ margin mặc định */
+    list-style-position: inside;  /* marker nằm trong vùng padding */
+}
+
+/* Kiểu marker riêng */
+.blog-single ul {
+    list-style-type: disc;        /* gạch đầu dòng tròn */
+}
+
+.blog-single ol {
+    list-style-type: decimal;     /* số thứ tự */
+}
+
+.blog-single dl {
+    list-style: none;             /* dl không có marker */
+}
+
+/* Line-height và khoảng cách các item */
+.blog-single ul li,
+.blog-single ol li,
+.blog-single dl dt,
+.blog-single dl dd {
+    line-height: 1.5;
+    margin-bottom: 0.5em;
+}

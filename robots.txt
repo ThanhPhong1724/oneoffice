@@ -1,0 +1,21 @@
+# robots.txt — OneOffice (Wonderland Việt Nam)
+# https://oneoffice.vn/
+
+User-agent: *
+Allow: /
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+Disallow: /wp-includes/
+Disallow: /wp-content/plugins/
+Disallow: /wp-json/
+Disallow: /?s=
+Disallow: /search/
+Disallow: /cart/
+Disallow: /gio-hang/
+Disallow: /thanh-toan/
+Disallow: /tai-khoan/
+Disallow: /quan-tam/
+Disallow: /quantri.php
+
+# Sitemap
+Sitemap: http://localhost/oneoffice/sitemap_index.xml

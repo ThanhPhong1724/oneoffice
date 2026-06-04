@@ -1,0 +1,36 @@
+# ============================================================
+#  OneOffice (Wonderland Việt Nam) — .gitignore
+#  CHỈ commit CODE TÙY BIẾN. Loại trừ: WP core, theme/plugin
+#  bên thứ 3, uploads, wp-config (secret), database, backup, rác.
+# ============================================================
+
+# 1) Mặc định bỏ qua TẤT CẢ ở root
+/*
+
+# 2) Cho phép lại những thứ cần commit
+!.gitignore
+!README.md
+!robots.txt
+!wp-content/
+
+# 3) Trong wp-content: chỉ giữ child theme + plugin tùy biến
+wp-content/*
+!wp-content/themes/
+!wp-content/plugins/
+
+wp-content/themes/*
+!wp-content/themes/flatsome-child/
+
+wp-content/plugins/*
+!wp-content/plugins/devtung-mvc/
+
+# 4) Loại trừ rác/secret kể cả trong thư mục đã cho phép
+*.sql
+*.zip
+*.log
+*.bak
+**/*.oo-bak
+**/node_modules/
+**/.DS_Store
+**/Thumbs.db
+.playwright-mcp/
