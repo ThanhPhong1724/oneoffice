@@ -203,48 +203,108 @@ get_header(); ?>
         <div class="hv2-container">
             <div class="hv2-quickform__card">
                 <div class="hv2-quickform__head">
-                    <h2>Tìm văn phòng phù hợp chỉ trong 30 giây</h2>
+                    <h2>Tìm văn phòng phù hợp chỉ trong 30&nbsp;giây</h2>
                     <p>Chia sẻ nhu cầu — chuyên viên tư vấn sẽ gửi báo giá &amp; danh sách tòa nhà phù hợp ngay.</p>
                 </div>
-                <form class="hv2-quickform__form" action="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" method="get" novalidate>
-                    <label class="hv2-field">
-                        <span>Khu vực</span>
-                        <select name="khu_vuc" required>
-                            <option value="">Chọn quận</option>
-                            <?php foreach ( $oo_districts as $d ) : ?>
-                                <option value="<?php echo esc_attr( $d['name'] ); ?>"><?php echo esc_html( $d['name'] ); ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </label>
-                    <label class="hv2-field">
-                        <span>Hạng tòa nhà</span>
-                        <select name="hang">
-                            <option value="">Tất cả</option>
-                            <option value="A">Hạng A</option>
-                            <option value="B">Hạng B</option>
-                            <option value="C">Hạng C</option>
-                        </select>
-                    </label>
-                    <label class="hv2-field">
-                        <span>Diện tích (m²)</span>
-                        <select name="dien_tich">
-                            <option value="">Tất cả</option>
-                            <option value="0-100">Dưới 100</option>
-                            <option value="100-300">100 — 300</option>
-                            <option value="300-500">300 — 500</option>
-                            <option value="500-1000">500 — 1.000</option>
-                            <option value="1000+">Trên 1.000</option>
-                        </select>
-                    </label>
-                    <label class="hv2-field">
-                        <span>Số điện thoại</span>
-                        <input type="tel" name="phone" placeholder="VD: 0912 345 678" pattern="[0-9 \-\+]{8,15}">
-                    </label>
-                    <button type="submit" class="hv2-btn hv2-btn--primary hv2-quickform__submit">
-                        Nhận tư vấn miễn phí
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-                    </button>
-                </form>
+                <?php
+                if ( function_exists( 'wpcf7_contact_form' ) ) {
+                    $home_form = get_page_by_path( 'tu-van-nhanh-trang-chu', OBJECT, 'wpcf7_contact_form' );
+                    if ( ! $home_form ) {
+                        $home_form = get_page_by_title( 'Tư vấn nhanh - Trang chủ', OBJECT, 'wpcf7_contact_form' );
+                    }
+                    if ( $home_form ) {
+                        add_filter( 'wpcf7_autop_or_not', '__return_false' );
+                        echo do_shortcode( '[contact-form-7 id="' . $home_form->ID . '" title="' . esc_attr( $home_form->post_title ) . '"]' );
+                        remove_filter( 'wpcf7_autop_or_not', '__return_false' );
+                    } else {
+                        // Fallback static form
+                        ?>
+                        <form class="hv2-quickform__form" action="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" method="get" novalidate>
+                            <label class="hv2-field">
+                                <span>Khu vực</span>
+                                <select name="khu_vuc" required>
+                                    <option value="">Chọn quận</option>
+                                    <?php foreach ( $oo_districts as $d ) : ?>
+                                        <option value="<?php echo esc_attr( $d['name'] ); ?>"><?php echo esc_html( $d['name'] ); ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </label>
+                            <label class="hv2-field">
+                                <span>Hạng tòa nhà</span>
+                                <select name="hang">
+                                    <option value="">Tất cả</option>
+                                    <option value="A">Hạng A</option>
+                                    <option value="B">Hạng B</option>
+                                    <option value="C">Hạng C</option>
+                                </select>
+                            </label>
+                            <label class="hv2-field">
+                                <span>Diện tích (m²)</span>
+                                <select name="dien_tich">
+                                    <option value="">Tất cả</option>
+                                    <option value="0-100">Dưới 100</option>
+                                    <option value="100-300">100 — 300</option>
+                                    <option value="300-500">300 — 500</option>
+                                    <option value="500-1000">500 — 1.000</option>
+                                    <option value="1000+">Trên 1.000</option>
+                                </select>
+                            </label>
+                            <label class="hv2-field">
+                                <span>Số điện thoại</span>
+                                <input type="tel" name="phone" placeholder="VD: 0912 345 678" pattern="[0-9 \-\+]{8,15}">
+                            </label>
+                            <button type="submit" class="hv2-btn hv2-btn--primary hv2-quickform__submit">
+                                Nhận tư vấn miễn phí
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                            </button>
+                        </form>
+                        <?php
+                    }
+                } else {
+                    // Fallback static form
+                    ?>
+                    <form class="hv2-quickform__form" action="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" method="get" novalidate>
+                        <label class="hv2-field">
+                            <span>Khu vực</span>
+                            <select name="khu_vuc" required>
+                                <option value="">Chọn quận</option>
+                                <?php foreach ( $oo_districts as $d ) : ?>
+                                    <option value="<?php echo esc_attr( $d['name'] ); ?>"><?php echo esc_html( $d['name'] ); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </label>
+                        <label class="hv2-field">
+                            <span>Hạng tòa nhà</span>
+                            <select name="hang">
+                                <option value="">Tất cả</option>
+                                <option value="A">Hạng A</option>
+                                <option value="B">Hạng B</option>
+                                <option value="C">Hạng C</option>
+                            </select>
+                        </label>
+                        <label class="hv2-field">
+                            <span>Diện tích (m²)</span>
+                            <select name="dien_tich">
+                                <option value="">Tất cả</option>
+                                <option value="0-100">Dưới 100</option>
+                                <option value="100-300">100 — 300</option>
+                                <option value="300-500">300 — 500</option>
+                                <option value="500-1000">500 — 1.000</option>
+                                <option value="1000+">Trên 1.000</option>
+                            </select>
+                        </label>
+                        <label class="hv2-field">
+                            <span>Số điện thoại</span>
+                            <input type="tel" name="phone" placeholder="VD: 0912 345 678" pattern="[0-9 \-\+]{8,15}">
+                        </label>
+                        <button type="submit" class="hv2-btn hv2-btn--primary hv2-quickform__submit">
+                            Nhận tư vấn miễn phí
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                        </button>
+                    </form>
+                    <?php
+                }
+                ?>
                 <p class="hv2-quickform__note">
                     <!-- [NEEDS CLIENT CONTENT] Backend form chuyên dụng cho homepage chưa có — tạm thời chuyển sang /lien-he/. Cần khách cấu hình form xử lý + thông báo Telegram/Email. -->
                     Hoặc gọi trực tiếp <a href="tel:0966681616"><strong>0966 68 1616</strong></a> — phục vụ 8h–18h hàng ngày.
@@ -260,7 +320,7 @@ get_header(); ?>
         <div class="hv2-container">
             <header class="hv2-secthead hv2-secthead--center">
                 <span class="hv2-eyebrow">Bao phủ toàn Hà Nội</span>
-                <h2>Tòa nhà văn phòng cho thuê tại Hà Nội</h2>
+                <h2>Tòa nhà văn phòng cho thuê tại Hà&nbsp;Nội</h2>
                 <p>Đầy đủ thông tin các tòa nhà tại 8 quận trung tâm và Tây Hà Nội.</p>
             </header>
 
@@ -296,7 +356,7 @@ get_header(); ?>
         <div class="hv2-container">
             <header class="hv2-secthead hv2-secthead--center">
                 <span class="hv2-eyebrow">Vì sao là Wonderland</span>
-                <h2>Lý do hơn 6.000 khách thuê lựa chọn Wonderland Việt Nam</h2>
+                <h2>Lý do hơn 6.000 khách thuê lựa chọn Wonderland Việt&nbsp;Nam</h2>
             </header>
 
             <div class="hv2-reasons__grid">
@@ -325,7 +385,7 @@ get_header(); ?>
         <div class="hv2-container">
             <header class="hv2-secthead hv2-secthead--center">
                 <span class="hv2-eyebrow">Quy trình 6 bước</span>
-                <h2>Quy trình dịch vụ &amp; lợi ích của khách hàng</h2>
+                <h2>Quy trình dịch vụ &amp; lợi ích của khách&nbsp;hàng</h2>
                 <p>Một quy trình đã được chuẩn hoá để đảm bảo bạn nhận được giá và điều khoản tốt nhất.</p>
             </header>
 
@@ -358,7 +418,7 @@ get_header(); ?>
         <div class="hv2-container">
             <header class="hv2-secthead hv2-secthead--center">
                 <span class="hv2-eyebrow">Đề xuất từ Wonderland</span>
-                <h2>Tòa nhà văn phòng nổi bật</h2>
+                <h2>Tòa nhà văn phòng nổi&nbsp;bật</h2>
                 <p>Một số tòa nhà có vị trí đẹp, giá thuê và tiện ích nổi trội đang được tư vấn nhiều nhất.</p>
             </header>
 
@@ -414,7 +474,7 @@ get_header(); ?>
         <div class="hv2-container">
             <header class="hv2-secthead hv2-secthead--center">
                 <span class="hv2-eyebrow">Khách hàng nói gì</span>
-                <h2>Phản hồi của khách hàng</h2>
+                <h2>Phản hồi của khách&nbsp;hàng</h2>
             </header>
 
             <div class="hv2-testi__track" role="region" aria-live="polite">
@@ -454,7 +514,7 @@ get_header(); ?>
         <div class="hv2-container">
             <header class="hv2-secthead hv2-secthead--center">
                 <span class="hv2-eyebrow">Đội ngũ chuyên gia</span>
-                <h2>Đội ngũ tư vấn chuyên nghiệp &amp; giàu kinh nghiệm</h2>
+                <h2>Đội ngũ tư vấn chuyên nghiệp &amp; giàu kinh&nbsp;nghiệm</h2>
             </header>
 
             <div class="hv2-team__grid">
@@ -482,7 +542,7 @@ get_header(); ?>
         <div class="hv2-container">
             <header class="hv2-secthead hv2-secthead--center">
                 <span class="hv2-eyebrow">Khách hàng tiêu biểu</span>
-                <h2>Khách hàng tiêu biểu của Wonderland tại Việt Nam</h2>
+                <h2>Khách hàng tiêu biểu của Wonderland tại Việt&nbsp;Nam</h2>
             </header>
 
             <?php
@@ -506,7 +566,7 @@ get_header(); ?>
         <div class="hv2-container">
             <header class="hv2-secthead hv2-secthead--center hv2-secthead--light">
                 <span class="hv2-eyebrow">Bắt đầu ngay</span>
-                <h2>Bắt đầu ngay quá trình tìm thuê văn phòng</h2>
+                <h2>Bắt đầu ngay quá trình tìm thuê văn&nbsp;phòng</h2>
             </header>
 
             <div class="hv2-final__grid">

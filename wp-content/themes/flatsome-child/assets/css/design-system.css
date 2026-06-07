@@ -730,6 +730,7 @@ body.single-product .sp2-sidebar-btn--quote:hover {
 }
 .oo-tk95__actions {
     display: flex; gap: 14px; flex-wrap: wrap;
+    max-width: 520px;
 }
 .oo-tk95__btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 10px;
@@ -740,6 +741,8 @@ body.single-product .sp2-sidebar-btn--quote:hover {
     border: none; cursor: pointer; font-family: inherit;
     white-space: nowrap;
     transition: transform var(--fast), box-shadow var(--fast), background var(--fast), color var(--fast);
+    flex: 1;
+    min-width: 200px;
 }
 .oo-tk95__btn svg { flex-shrink: 0; }
 .oo-tk95__btn--primary {

@@ -51,14 +51,14 @@ class DevTungMVC {
         $css_files = glob(__DIR__ . '/assets/css/*.css');
         foreach ($css_files as $file) {
             $handle = 'dt-' . basename($file, '.css');
-            wp_enqueue_style($handle, $plugin_url . 'assets/css/' . basename($file), [], $version);
+            wp_enqueue_style($handle, $plugin_url . 'assets/css/' . basename($file), [], filemtime($file));
         }
 
         // --- Load tất cả JS ---
         $js_files = glob(__DIR__ . '/assets/js/*.js');
         foreach ($js_files as $file) {
             $handle = 'dt-' . basename($file, '.js');
-            wp_enqueue_script($handle, $plugin_url . 'assets/js/' . basename($file), ['jquery'], $version, true);
+            wp_enqueue_script($handle, $plugin_url . 'assets/js/' . basename($file), ['jquery'], filemtime($file), true);
         }
     }    
 

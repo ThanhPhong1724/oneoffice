@@ -444,11 +444,68 @@
     margin: 0;
 }
 
-.hv2-quickform__form {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr) auto;
-    gap: 14px;
-    align-items: end;
+.hv2-quickform__form,
+.hv2-quickform .wpcf7-form {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) auto !important;
+    gap: 14px !important;
+    align-items: end !important;
+    max-width: none !important;
+    margin: 0 0 20px 0 !important;
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+.hv2-quickform .wpcf7-form label.hv2-field {
+    display: flex !important;
+    flex-direction: column !important;
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    color: inherit !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    margin-bottom: 0 !important;
+}
+
+.hv2-field .wpcf7-form-control-wrap {
+    display: block !important;
+    width: 100% !important;
+}
+.hv2-field .wpcf7-form-control {
+    width: 100% !important;
+}
+.hv2-field .wpcf7-not-valid {
+    border-color: #ff3860 !important;
+}
+.hv2-quickform .wpcf7-not-valid-tip {
+    color: #ff3860;
+    font-size: 12px;
+    margin-top: 4px;
+    font-weight: 500;
+}
+.hv2-quickform .wpcf7-response-output {
+    grid-column: 1 / -1;
+    margin: 16px 0 0;
+    padding: 12px 16px;
+    border: 1.5px solid transparent;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+}
+.hv2-quickform .wpcf7-form.sent .wpcf7-response-output {
+    background: rgba(18, 156, 148, 0.1);
+    border-color: #129c94;
+    color: #129c94;
+}
+.hv2-quickform .wpcf7-form.invalid .wpcf7-response-output,
+.hv2-quickform .wpcf7-form.unaccepted .wpcf7-response-output {
+    background: rgba(255, 56, 96, 0.1);
+    border-color: #ff3860;
+    color: #ff3860;
+}
+.hv2-quickform .ajax-loader {
+    display: none !important;
 }
 
 .hv2-field {
@@ -467,24 +524,24 @@
 
 .hv2-field select,
 .hv2-field input {
-    height: 48px;
-    padding: 0 14px;
-    border: 1.5px solid var(--hv2-border);
-    border-radius: 10px;
-    font-size: 14.5px;
-    font-family: inherit;
-    color: var(--hv2-text);
-    background: var(--hv2-white);
+    height: 48px !important;
+    padding: 0 14px !important;
+    border: 1.5px solid var(--hv2-border) !important;
+    border-radius: 10px !important;
+    font-size: 14.5px !important;
+    font-family: inherit !important;
+    color: var(--hv2-text) !important;
+    background: var(--hv2-white) !important;
     transition: border-color var(--hv2-fast), box-shadow var(--hv2-fast);
-    appearance: none;
-    -webkit-appearance: none;
+    appearance: none !important;
+    -webkit-appearance: none !important;
 }
 
 .hv2-field select {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1L6 6L11 1' stroke='%235B6C76' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-    padding-right: 38px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1L6 6L11 1' stroke='%235B6C76' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 14px center !important;
+    padding-right: 38px !important;
 }
 
 .hv2-field select:focus,
@@ -495,7 +552,7 @@
 }
 
 .hv2-quickform__submit {
-    height: 48px;
+    height: 48px !important;
     padding: 0 22px;
     justify-content: center;
 }
@@ -1303,8 +1360,9 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .hv2-quickform__form {
-        grid-template-columns: repeat(2, 1fr);
+    .hv2-quickform__form,
+    .hv2-quickform .wpcf7-form {
+        grid-template-columns: repeat(2, 1fr) !important;
     }
 
     .hv2-quickform__submit {
@@ -1380,9 +1438,10 @@
         font-size: 20px;
     }
 
-    .hv2-quickform__form {
-        grid-template-columns: 1fr;
-        gap: 12px;
+    .hv2-quickform__form,
+    .hv2-quickform .wpcf7-form {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
     }
 
     .hv2-secthead {

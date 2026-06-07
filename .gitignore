@@ -1,36 +1,39 @@
 # ============================================================
 #  OneOffice (Wonderland Việt Nam) — .gitignore
-#  CHỈ commit CODE TÙY BIẾN. Loại trừ: WP core, theme/plugin
-#  bên thứ 3, uploads, wp-config (secret), database, backup, rác.
+#  Bản backup toàn bộ website (WP Core, Plugins, Themes, Uploads, DB)
 # ============================================================
 
-# 1) Mặc định bỏ qua TẤT CẢ ở root
-/*
-
-# 2) Cho phép lại những thứ cần commit
-!.gitignore
-!README.md
-!robots.txt
-!wp-content/
-
-# 3) Trong wp-content: chỉ giữ child theme + plugin tùy biến
-wp-content/*
-!wp-content/themes/
-!wp-content/plugins/
-
-wp-content/themes/*
-!wp-content/themes/flatsome-child/
-
-wp-content/plugins/*
-!wp-content/plugins/devtung-mvc/
-
-# 4) Loại trừ rác/secret kể cả trong thư mục đã cho phép
-*.sql
-*.zip
+# 1) Loại trừ log và log của các plugin
 *.log
-*.bak
-**/*.oo-bak
-**/node_modules/
-**/.DS_Store
-**/Thumbs.db
+error_log
+wp-content/debug.log
+wp-content/wc-logs/
+wp-content/wflogs/
+
+# 2) Loại trừ cache và các thư mục nâng cấp tạm thời
+wp-content/cache/
+wp-content/upgrade/
+
+# 3) Loại trừ các file nén dung lượng lớn (các gói backup cũ)
+*.zip
+*.daf
+*.tar.gz
+*.rar
+*.7z
+wp-content/ew-backup/
+wp-snapshots/
+
+# 4) Loại trừ file cấu hình IDE và các file tạm của lập trình viên
+.idea/
+.vscode/
 .playwright-mcp/
+.gemini/
+_inventory_*.txt
+*.bak
+*.oo-bak
+*_backup/
+*_backups/
+
+# 5) Cho phép và lưu trữ Database backup
+!database/
+!database/db_backup.sql

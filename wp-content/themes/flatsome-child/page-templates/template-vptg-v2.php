@@ -166,53 +166,118 @@ get_header(); ?>
         <div class="vp2-container">
             <div class="vp2-quickform__card">
                 <div class="vp2-quickform__head">
-                    <h2>Nhận tư vấn không gian phù hợp trong 30 giây</h2>
+                    <h2>Nhận tư vấn không gian phù hợp trong 30&nbsp;giây</h2>
                     <p>Chia sẻ nhu cầu — chuyên viên Wonderland sẽ gửi gợi ý địa điểm &amp; báo giá phù hợp.</p>
                 </div>
-                <form class="vp2-quickform__form" action="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" method="get" novalidate>
-                    <label class="vp2-field">
-                        <span>Loại không gian</span>
-                        <select name="loai" required>
-                            <option value="">Chọn loại</option>
-                            <option value="van-phong-tron-goi">Văn phòng trọn gói</option>
-                            <option value="van-phong-ao">Văn phòng ảo</option>
-                            <option value="coworking">Coworking Space</option>
-                        </select>
-                    </label>
-                    <label class="vp2-field">
-                        <span>Khu vực</span>
-                        <select name="khu_vuc">
-                            <option value="">Tất cả Hà Nội</option>
-                            <option value="hoan-kiem">Hoàn Kiếm</option>
-                            <option value="hai-ba-trung">Hai Bà Trưng</option>
-                            <option value="ba-dinh">Ba Đình</option>
-                            <option value="dong-da">Đống Đa</option>
-                            <option value="cau-giay">Cầu Giấy</option>
-                            <option value="nam-tu-liem">Nam Từ Liêm</option>
-                            <option value="thanh-xuan">Thanh Xuân</option>
-                            <option value="tay-ho">Tây Hồ</option>
-                        </select>
-                    </label>
-                    <label class="vp2-field">
-                        <span>Số chỗ ngồi</span>
-                        <select name="so_cho">
-                            <option value="">Tùy chọn</option>
-                            <option value="1-5">1 — 5</option>
-                            <option value="5-10">5 — 10</option>
-                            <option value="10-20">10 — 20</option>
-                            <option value="20-50">20 — 50</option>
-                            <option value="50+">Trên 50</option>
-                        </select>
-                    </label>
-                    <label class="vp2-field">
-                        <span>Số điện thoại</span>
-                        <input type="tel" name="phone" placeholder="VD: 0912 345 678" pattern="[0-9 \-\+]{8,15}">
-                    </label>
-                    <button type="submit" class="vp2-btn vp2-btn--primary vp2-quickform__submit">
-                        Nhận tư vấn ngay
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-                    </button>
-                </form>
+                <?php
+                if ( function_exists( 'wpcf7_contact_form' ) ) {
+                    $vptg_form = get_page_by_path( 'tu-van-nhanh-van-phong-tron-goi', OBJECT, 'wpcf7_contact_form' );
+                    if ( ! $vptg_form ) {
+                        $vptg_form = get_page_by_title( 'Tư vấn nhanh - Văn phòng trọn gói', OBJECT, 'wpcf7_contact_form' );
+                    }
+                    if ( $vptg_form ) {
+                        add_filter( 'wpcf7_autop_or_not', '__return_false' );
+                        echo do_shortcode( '[contact-form-7 id="' . $vptg_form->ID . '" title="' . esc_attr( $vptg_form->post_title ) . '"]' );
+                        remove_filter( 'wpcf7_autop_or_not', '__return_false' );
+                    } else {
+                        // Fallback static form
+                        ?>
+                        <form class="vp2-quickform__form" action="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" method="get" novalidate>
+                            <label class="vp2-field">
+                                <span>Loại không gian</span>
+                                <select name="loai" required>
+                                    <option value="">Chọn loại</option>
+                                    <option value="van-phong-tron-goi">Văn phòng trọn gói</option>
+                                    <option value="van-phong-ao">Văn phòng ảo</option>
+                                    <option value="coworking">Coworking Space</option>
+                                </select>
+                            </label>
+                            <label class="vp2-field">
+                                <span>Khu vực</span>
+                                <select name="khu_vuc">
+                                    <option value="">Tất cả Hà Nội</option>
+                                    <option value="hoan-kiem">Hoàn Kiếm</option>
+                                    <option value="hai-ba-trung">Hai Bà Trưng</option>
+                                    <option value="ba-dinh">Ba Đình</option>
+                                    <option value="dong-da">Đống Đa</option>
+                                    <option value="cau-giay">Cầu Giấy</option>
+                                    <option value="nam-tu-liem">Nam Từ Liêm</option>
+                                    <option value="thanh-xuan">Thanh Xuân</option>
+                                    <option value="tay-ho">Tây Hồ</option>
+                                </select>
+                            </label>
+                            <label class="vp2-field">
+                                <span>Số chỗ ngồi</span>
+                                <select name="so_cho">
+                                    <option value="">Tùy chọn</option>
+                                    <option value="1-5">1 — 5</option>
+                                    <option value="5-10">5 — 10</option>
+                                    <option value="10-20">10 — 20</option>
+                                    <option value="20-50">20 — 50</option>
+                                    <option value="50+">Trên 50</option>
+                                </select>
+                            </label>
+                            <label class="vp2-field">
+                                <span>Số điện thoại</span>
+                                <input type="tel" name="phone" placeholder="VD: 0912 345 678" pattern="[0-9 \-\+]{8,15}">
+                            </label>
+                            <button type="submit" class="vp2-btn vp2-btn--primary vp2-quickform__submit">
+                                Nhận tư vấn ngay
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                            </button>
+                        </form>
+                        <?php
+                    }
+                } else {
+                    // Fallback static form
+                    ?>
+                    <form class="vp2-quickform__form" action="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" method="get" novalidate>
+                        <label class="vp2-field">
+                            <span>Loại không gian</span>
+                            <select name="loai" required>
+                                <option value="">Chọn loại</option>
+                                <option value="van-phong-tron-goi">Văn phòng trọn gói</option>
+                                <option value="van-phong-ao">Văn phòng ảo</option>
+                                <option value="coworking">Coworking Space</option>
+                            </select>
+                        </label>
+                        <label class="vp2-field">
+                            <span>Khu vực</span>
+                            <select name="khu_vuc">
+                                <option value="">Tất cả Hà Nội</option>
+                                <option value="hoan-kiem">Hoàn Kiếm</option>
+                                <option value="hai-ba-trung">Hai Bà Trưng</option>
+                                <option value="ba-dinh">Ba Đình</option>
+                                <option value="dong-da">Đống Đa</option>
+                                <option value="cau-giay">Cầu Giấy</option>
+                                <option value="nam-tu-liem">Nam Từ Liêm</option>
+                                <option value="thanh-xuan">Thanh Xuân</option>
+                                <option value="tay-ho">Tây Hồ</option>
+                            </select>
+                        </label>
+                        <label class="vp2-field">
+                            <span>Số chỗ ngồi</span>
+                            <select name="so_cho">
+                                <option value="">Tùy chọn</option>
+                                <option value="1-5">1 — 5</option>
+                                <option value="5-10">5 — 10</option>
+                                <option value="10-20">10 — 20</option>
+                                <option value="20-50">20 — 50</option>
+                                <option value="50+">Trên 50</option>
+                            </select>
+                        </label>
+                        <label class="vp2-field">
+                            <span>Số điện thoại</span>
+                            <input type="tel" name="phone" placeholder="VD: 0912 345 678" pattern="[0-9 \-\+]{8,15}">
+                        </label>
+                        <button type="submit" class="vp2-btn vp2-btn--primary vp2-quickform__submit">
+                            Nhận tư vấn ngay
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                        </button>
+                    </form>
+                    <?php
+                }
+                ?>
                 <p class="vp2-quickform__note">
                     <!-- [NEEDS CLIENT CONTENT] Form gốc page 751 dùng [contact-form-7 id="601"] + ux_sidebar — cần map backend khi triển khai. Tạm thời chuyển /lien-he/. -->
                     Hoặc gọi trực tiếp <a href="tel:0966681616"><strong>0966 68 1616</strong></a> — phục vụ 8h–18h hàng ngày.
@@ -228,7 +293,7 @@ get_header(); ?>
         <div class="vp2-container">
             <header class="vp2-secthead vp2-secthead--center">
                 <span class="vp2-eyebrow">Giải pháp đa dạng</span>
-                <h2>Lựa chọn không gian làm việc phù hợp với bạn</h2>
+                <h2>Lựa chọn không gian làm việc phù hợp với&nbsp;bạn</h2>
                 <p>Wonderland Vietnam là đối tác của 50+ thương hiệu Coworking trên toàn quốc — bao phủ 5 phân khúc, hơn 100 địa điểm.</p>
             </header>
 
@@ -273,7 +338,7 @@ get_header(); ?>
             <div class="vp2-intro__grid">
                 <div class="vp2-intro__copy">
                     <span class="vp2-eyebrow">100 địa điểm · 50 thương hiệu · 5 phân khúc</span>
-                    <h2>Văn phòng trọn gói tại Hà Nội</h2>
+                    <h2>Văn phòng trọn gói tại Hà&nbsp;Nội</h2>
                     <p>Một không gian làm việc chuyên nghiệp &amp; đầy cảm hứng sẽ truyền năng lượng và tăng hiệu suất công việc của bạn.</p>
                     <p>Cùng khám phá những lợi ích, sự tiện lợi bất ngờ mà loại hình văn phòng trọn gói &amp; văn phòng chia sẻ đem lại — đặc biệt phù hợp với Startup hay những cá nhân tìm kiếm cảm hứng mới trong công việc.</p>
                     <div class="vp2-intro__cta">
@@ -299,7 +364,7 @@ get_header(); ?>
         <div class="vp2-container">
             <header class="vp2-secthead vp2-secthead--center vp2-secthead--light">
                 <span class="vp2-eyebrow">Vì sao là Wonderland Vietnam</span>
-                <h2>Lý do khách hàng chọn chúng tôi</h2>
+                <h2>Lý do khách hàng chọn chúng&nbsp;tôi</h2>
             </header>
 
             <div class="vp2-reasons__grid">
@@ -325,7 +390,7 @@ get_header(); ?>
         <div class="vp2-container">
             <header class="vp2-secthead vp2-secthead--center">
                 <span class="vp2-eyebrow">Quy trình 6 bước</span>
-                <h2>Quy trình dịch vụ &amp; lợi ích của khách hàng</h2>
+                <h2>Quy trình dịch vụ &amp; lợi ích của khách&nbsp;hàng</h2>
                 <p>Quy trình chuẩn hoá — đảm bảo khách hàng nhận được giá &amp; điều khoản tốt nhất.</p>
             </header>
 
@@ -350,7 +415,7 @@ get_header(); ?>
         <div class="vp2-container">
             <header class="vp2-secthead vp2-secthead--center">
                 <span class="vp2-eyebrow">Câu hỏi thường gặp</span>
-                <h2>Mọi thứ bạn cần biết về văn phòng trọn gói</h2>
+                <h2>Mọi thứ bạn cần biết về văn phòng trọn&nbsp;gói</h2>
             </header>
 
             <div class="vp2-faq__list">
@@ -379,7 +444,7 @@ get_header(); ?>
             <div class="vp2-final__inner">
                 <div class="vp2-final__copy">
                     <span class="vp2-eyebrow">Sẵn sàng bắt đầu</span>
-                    <h2>Liên hệ Wonderland để tìm không gian phù hợp với bạn</h2>
+                    <h2>Liên hệ Wonderland để tìm không gian phù hợp với&nbsp;bạn</h2>
                     <p>Tư vấn hoàn toàn miễn phí — gọi điện hoặc nhắn Zalo, đội ngũ chuyên viên sẽ phản hồi trong ít phút.</p>
                 </div>
                 <div class="vp2-final__actions">
