@@ -6,10 +6,8 @@
  * Cấu hình vị trí widget, lời chào, giờ làm việc… trong dashboard:
  *   https://dashboard.tawk.to/ → Administration → Chat Widget
  *
- * Lưu ý vị trí:
- *   - Cụm nút Gọi/Zalo/Messenger floating đang ở góc TRÁI dưới (.oo-desktop-cta).
- *   - Tawk.to mặc định góc PHẢI dưới → KHÔNG đè cụm nút floating.
- *   - Trên mobile có sticky CTA bar đáy → CSS dưới đẩy Tawk lên 70px tránh đè.
+ * Cấu hình vị trí widget (desktop/mobile, offset, hide on mobile…) đã được
+ * set trên dashboard Tawk.to — KHÔNG override trong code này nữa.
  *
  * File vẫn giữ tên 'uchat-widget.php' để khỏi sửa nhiều nơi require.
  * Để tắt: xoá dòng require_once trong functions.php.
@@ -26,14 +24,6 @@ function oo_tawk_widget() {
 <!-- Tawk.to live-chat widget -->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-/* Push widget up 70px on mobile to avoid sticky CTA bar at bottom.
-   Desktop giữ mặc định (bottom-right) — không đè cụm nút floating bên TRÁI. */
-Tawk_API.customStyle = {
-    visibility: {
-        desktop: { position: 'br', xOffset: 15, yOffset: 30 },
-        mobile:  { position: 'br', xOffset: 10, yOffset: 75 }
-    }
-};
 (function(){
 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
 s1.async=true;
