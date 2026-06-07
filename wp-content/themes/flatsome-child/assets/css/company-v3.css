@@ -1,0 +1,472 @@
+/* =============================================================================
+ * COMPANY V3 — Thông tin công ty / Hồ sơ / Đội ngũ / Quy trình / Khách hàng /
+ *              Liên hệ / Ký gửi   (7 trang, 1 hệ thiết kế)
+ * Nguồn token: design-system.css (--primary, --grad-brand, --dark, …)
+ * Prefix: .cv3-* — không đụng .hv2-*/
+ /* .vp2-*/
+ /* .sp2-*. */ */
+ /* * ========================================================================== */ */
+
+/* — Reset scoped — */
+.cv3 { color: var(--text-body); line-height: var(--lh-body); font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+.cv3 *, .cv3 *::before, .cv3 *::after { box-sizing: border-box; }
+.cv3 h1, .cv3 h2, .cv3 h3, .cv3 h4 { color: var(--text-main); font-weight: 700; line-height: var(--lh-heading); margin: 0; }
+.cv3 p { margin: 0; }
+.cv3 a { transition: color var(--fast); }
+.cv3 img { max-width: 100%; height: auto; display: block; }
+
+.cv3-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.cv3-section    { padding: clamp(56px, 8vw, 96px) 0; }
+.cv3-section--light { background: var(--surface); }
+.cv3-section--soft  { background: var(--surface-alt); }
+.cv3-section--tint  { background: var(--primary-l); }
+
+.cv3-eyebrow {
+    display: inline-block;
+    background-image: var(--grad-brand);
+    color: #fff;
+    font-size: 12.5px; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase;
+    padding: 6px 16px; border-radius: 999px;
+    margin-bottom: 14px;
+}
+
+.cv3-secthead { max-width: 800px; margin: 0 auto 50px; text-align: center; }
+.cv3-secthead h2 { font-size: clamp(24px, 3vw, 34px); margin-bottom: 12px; }
+.cv3-secthead p  { color: var(--text-muted); font-size: 16px; }
+.cv3-secthead--left { text-align: left; margin-left: 0; }
+
+/* =============================================================
+ * 1. HERO  (bg ảnh + gradient overlay 3 chặng → premium)
+ * ============================================================= */
+.cv3-hero {
+    position: relative;
+    min-height: 420px;
+    padding: 130px 0 80px;
+    background-size: cover;
+    background-position: center 40%;
+    background-repeat: no-repeat;
+    color: #fff;
+    overflow: hidden;
+    animation: cv3-kenburns 28s ease-in-out infinite alternate;
+}
+@keyframes cv3-kenburns {
+    from { background-position: center 35%; }
+    to   { background-position: center 45%; }
+}
+.cv3-hero::before {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 80% 20%, rgba(18,156,148,.18), transparent 60%);
+    pointer-events: none;
+}
+.cv3-hero__inner { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; text-align: center; padding: 0 20px; }
+.cv3 .cv3-hero .cv3-eyebrow { background: rgba(255,255,255,.18); backdrop-filter: blur(8px); }
+.cv3 .cv3-hero__title {
+    font-size: clamp(30px, 5vw, 52px);
+    color: #fff; margin: 0 0 18px;
+    line-height: 1.15;
+    text-shadow: 0 4px 24px rgba(0,0,0,.40), 0 1px 0 rgba(0,0,0,.20);
+}
+.cv3 .cv3-hero__subtitle { color: rgba(255,255,255,.92); font-size: clamp(15px, 1.6vw, 18px); max-width: 720px; margin: 0 auto; line-height: 1.6; }
+.cv3-hero__actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 32px; }
+
+.cv3-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 14px 26px;
+    border-radius: 10px;
+    font-size: 15px; font-weight: 600; line-height: 1;
+    text-decoration: none; white-space: nowrap;
+    border: none; cursor: pointer; font-family: inherit;
+    transition: background-position .55s ease, transform var(--fast), box-shadow var(--fast);
+    background-size: 200% 100%; background-position: 0% 50%;
+}
+.cv3-btn--primary {
+    background-image: var(--grad-flow);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(18,156,148,.30);
+}
+.cv3-btn--primary:hover { transform: translateY(-2px); color: #fff; animation: oo-grad-flow 2.4s linear infinite; }
+.cv3-btn--ghost {
+    background: rgba(255,255,255,.10);
+    color: #fff;
+    border: 1.5px solid rgba(255,255,255,.5);
+    backdrop-filter: blur(6px);
+}
+.cv3-btn--ghost:hover { background: #fff; color: var(--dark); border-color: #fff; transform: translateY(-2px); }
+.cv3-btn--lg { padding: 16px 32px; font-size: 16px; }
+
+/* =============================================================
+ * 2. SECTION COMMON  (intro lead text)
+ * ============================================================= */
+.cv3-lead { max-width: 760px; margin: 0 auto 40px; text-align: center; color: var(--text-muted); font-size: 17px; line-height: 1.7; }
+
+/* =============================================================
+ * 3. STATS (3-4 con số nổi bật + icon)
+ * ============================================================= */
+.cv3-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.cv3-stats--4 { grid-template-columns: repeat(4, 1fr); }
+.cv3-stat {
+    background: var(--surface);
+    padding: 36px 24px;
+    border-radius: 14px;
+    box-shadow: 0 1px 2px rgba(6,52,67,.04), 0 6px 18px rgba(6,52,67,.06);
+    text-align: center;
+    transition: transform var(--base), box-shadow var(--base);
+}
+.cv3-stat:hover { transform: translateY(-6px); box-shadow: 0 8px 24px rgba(6,52,67,.10), 0 28px 64px rgba(6,52,67,.15); }
+.cv3-stat__icon {
+    width: 64px; height: 64px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(18,156,148,.10) 0%, rgba(21,113,181,.10) 100%);
+    color: var(--primary);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    box-shadow: inset 0 0 0 1px rgba(18,156,148,.18);
+    transition: background var(--base), transform var(--base), box-shadow var(--base);
+}
+.cv3-stat__icon svg { width: 28px; height: 28px; }
+.cv3-stat:hover .cv3-stat__icon {
+    background: var(--grad-brand);
+    color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 8px 18px rgba(18,156,148,.30), inset 0 0 0 1px transparent;
+}
+.cv3-stat__num {
+    font-size: 36px; font-weight: 800; line-height: 1;
+    background: var(--grad-brand);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+.cv3-stat__label { font-weight: 700; color: var(--text-main); margin-bottom: 8px; font-size: 16px; }
+.cv3-stat__desc  { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+
+/* =============================================================
+ * 4. CARD GRID  (services, features, benefits)
+ * ============================================================= */
+.cv3-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.cv3-cards--2 { grid-template-columns: repeat(2, 1fr); }
+.cv3-cards--4 { grid-template-columns: repeat(4, 1fr); }
+.cv3-card {
+    background: var(--surface);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(6,52,67,.04), 0 6px 18px rgba(6,52,67,.06);
+    transition: transform var(--base), box-shadow var(--base);
+    display: flex; flex-direction: column;
+}
+.cv3-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(6,52,67,.12); }
+.cv3-card__media { aspect-ratio: 16 / 10; overflow: hidden; background: var(--surface-alt); }
+.cv3-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+.cv3-card:hover .cv3-card__media img { transform: scale(1.05); }
+.cv3-card__body { padding: 24px; flex: 1; }
+.cv3-card__title { font-size: 18px; margin-bottom: 10px; }
+.cv3-card__desc  { color: var(--text-muted); font-size: 14.5px; line-height: 1.65; }
+.cv3-card__icon  {
+    width: 56px; height: 56px; border-radius: 14px;
+    background: linear-gradient(135deg, rgba(18,156,148,.10) 0%, rgba(21,113,181,.10) 100%);
+    color: var(--primary);
+    display: flex; align-items: center; justify-content: center; font-size: 24px;
+    margin: 24px 24px 0;
+    box-shadow: inset 0 0 0 1px rgba(18,156,148,.18);
+    transition: background var(--base), color var(--base), transform var(--base), box-shadow var(--base);
+}
+.cv3-card__icon svg { width: 26px; height: 26px; }
+.cv3-card:hover .cv3-card__icon {
+    background: var(--grad-brand);
+    color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 8px 18px rgba(18,156,148,.30), inset 0 0 0 1px transparent;
+}
+
+/* =============================================================
+ * 5. CONTENT 2-COL  (text + image side by side)
+ * ============================================================= */
+.cv3-split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.cv3-split--reverse .cv3-split__media { order: 2; }
+.cv3-split__copy h2 { font-size: clamp(24px, 3vw, 32px); margin-bottom: 16px; }
+.cv3-split__copy p  { color: var(--text-muted); font-size: 16px; line-height: 1.75; margin-bottom: 16px; }
+.cv3-split__copy p strong { color: var(--text-main); }
+.cv3-split__media img {
+    width: 100%; height: auto;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(6,52,67,.16);
+}
+.cv3-split__copy .cv3-bullets { list-style: none; padding: 0; margin: 16px 0 0; }
+.cv3-split__copy .cv3-bullets li {
+    padding: 8px 0 8px 32px; position: relative;
+    color: var(--text-body); font-size: 15.5px;
+}
+.cv3-split__copy .cv3-bullets li::before {
+    content: ""; position: absolute; left: 0; top: 14px;
+    width: 22px; height: 22px;
+    background: var(--grad-brand);
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/></svg>") no-repeat center / contain;
+            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/></svg>") no-repeat center / contain;
+}
+
+/* =============================================================
+ * 6. PROCESS  (6 bước có số gradient)
+ * ============================================================= */
+.cv3-process { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.cv3-step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    transition: transform var(--base), box-shadow var(--base), border-color var(--base);
+    position: relative;
+}
+.cv3-step:hover { transform: translateY(-6px); border-color: rgba(18,156,148,.4); box-shadow: 0 12px 32px rgba(6,52,67,.10); }
+.cv3-step__num {
+    font-size: 36px; font-weight: 800; line-height: 1;
+    background: var(--grad-brand);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+}
+.cv3-step__title { font-size: 18px; margin-bottom: 10px; }
+.cv3-step__desc  { color: var(--text-muted); font-size: 14.5px; line-height: 1.65; }
+
+/* =============================================================
+ * 7. TEAM VALUES (4 thẻ giá trị cốt lõi)
+ * ============================================================= */
+.cv3-values { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.cv3-value {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 28px 22px;
+    text-align: center;
+    box-shadow: 0 1px 2px rgba(6,52,67,.04), 0 6px 18px rgba(6,52,67,.06);
+    transition: transform var(--base);
+}
+.cv3-value:hover { transform: translateY(-4px); }
+.cv3-value__icon {
+    width: 56px; height: 56px;
+    margin: 0 auto 14px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(18,156,148,.10) 0%, rgba(21,113,181,.10) 100%);
+    color: var(--primary);
+    display: flex; align-items: center; justify-content: center; font-size: 24px;
+    box-shadow: inset 0 0 0 1px rgba(18,156,148,.18);
+    transition: background var(--base), color var(--base), transform var(--base), box-shadow var(--base);
+}
+.cv3-value__icon svg { width: 26px; height: 26px; }
+.cv3-value:hover .cv3-value__icon {
+    background: var(--grad-brand);
+    color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 8px 18px rgba(18,156,148,.30), inset 0 0 0 1px transparent;
+}
+.cv3-value__title { font-size: 16px; margin-bottom: 6px; }
+.cv3-value__desc  { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+
+/* =============================================================
+ * 8. LOGOS GALLERY  (mix-blend-mode để bỏ nền trắng cooked-in)
+ * ============================================================= */
+.cv3-logos { display: grid; grid-template-columns: repeat(7, 1fr); gap: 14px; margin: 0; padding: 0; list-style: none; }
+.cv3-logos li {
+    aspect-ratio: 2 / 1;
+    display: flex; align-items: center; justify-content: center;
+    padding: 10px 16px;
+    transition: transform var(--fast);
+}
+.cv3-logos li:hover { transform: translateY(-2px); }
+.cv3-logos img { max-width: 100%; max-height: 100%; object-fit: contain; mix-blend-mode: multiply; transition: transform var(--fast); }
+.cv3-logos li:hover img { transform: scale(1.04); }
+
+/* =============================================================
+ * 9. TESTIMONIALS  (gạt qua lại, cards có quote)
+ * ============================================================= */
+.cv3-testi { background: var(--dark); color: #fff; position: relative; overflow: hidden; }
+.cv3-testi::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(600px 320px at 10% 90%, rgba(18,156,148,.20), transparent 60%),
+      radial-gradient(600px 320px at 90% 10%, rgba(21,113,181,.16), transparent 60%);
+    pointer-events: none;
+}
+.cv3-testi .cv3-secthead h2 { color: #fff; }
+.cv3-testi__track {
+    position: relative; z-index: 1;
+    max-width: 820px; margin: 0 auto;
+    min-height: 280px;
+    cursor: grab; touch-action: pan-y;
+}
+.cv3-testi__track:active { cursor: grabbing; }
+.cv3-testi__card {
+    position: absolute; inset: 0;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 20px;
+    padding: 40px 44px;
+    backdrop-filter: blur(8px);
+    opacity: 0; visibility: hidden;
+    transform: translateY(12px);
+    transition: opacity .35s ease, transform .35s ease, visibility 0s linear .35s;
+}
+.cv3-testi__card.is-active { opacity: 1; visibility: visible; transform: translateY(0); transition: opacity .35s ease, transform .35s ease; }
+.cv3-testi__quote { font-size: clamp(16px, 1.6vw, 19px); line-height: 1.65; color: rgba(255,255,255,.92); margin: 0 0 24px; font-weight: 400; }
+.cv3-testi__quote::before { content: "“"; font-size: 64px; line-height: .3; color: var(--accent); margin-right: 6px; vertical-align: -16px; font-family: Georgia, serif; }
+.cv3-testi__person { display: flex; align-items: center; gap: 14px; }
+.cv3-testi__person img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,.3); flex-shrink: 0; }
+.cv3-testi__name { display: block; color: #fff; font-size: 15px; font-weight: 700; }
+.cv3-testi__role { display: block; color: rgba(255,255,255,.68); font-size: 13px; margin-top: 2px; }
+.cv3-testi__nav {
+    position: relative; z-index: 1;
+    display: flex; justify-content: center; align-items: center; gap: 8px;
+    margin-top: 32px;
+}
+.cv3-testi__dot {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    box-sizing: border-box !important;
+    display: inline-block !important;
+    width: 10px !important;
+    height: 10px !important;
+    min-width: 10px !important;
+    min-height: 0 !important;
+    max-height: 10px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+    background: rgba(255, 255, 255, .30) !important;
+    cursor: pointer !important;
+    border-radius: 50% !important;
+    flex-shrink: 0 !important;
+    transition: width var(--fast), background var(--fast), border-radius var(--fast) !important;
+    box-shadow: none !important;
+}
+.cv3-testi__dot:hover {
+    background: rgba(255, 255, 255, .55) !important;
+}
+.cv3-testi__dot.is-active {
+    width: 28px !important;
+    min-width: 28px !important;
+    background: var(--primary) !important;
+    border-radius: 6px !important;
+}
+.cv3-testi__dot.is-active:hover {
+    background: var(--primary) !important;
+}
+
+/* =============================================================
+ * 10. CONTACT (Liên hệ — info card + form)
+ * ============================================================= */
+.cv3-contact { display: grid; grid-template-columns: 1fr 1.1fr; gap: 36px; }
+.cv3-contact__info, .cv3-contact__form {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 36px;
+    box-shadow: 0 1px 2px rgba(6,52,67,.04), 0 8px 24px rgba(6,52,67,.06);
+}
+.cv3-contact__info h3, .cv3-contact__form h3 { font-size: 22px; margin-bottom: 10px; }
+.cv3-contact__intro { color: var(--text-muted); font-size: 14.5px; line-height: 1.65; margin-bottom: 24px !important; }
+.cv3-info-item { display: flex; gap: 14px; padding: 16px; background: var(--surface-alt); border-radius: 12px; margin-bottom: 12px; transition: transform var(--fast); }
+.cv3-info-item:hover { transform: translateX(4px); }
+.cv3-info-item__icon {
+    flex-shrink: 0;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, rgba(18,156,148,.10) 0%, rgba(21,113,181,.10) 100%);
+    color: var(--primary);
+    display: flex; align-items: center; justify-content: center; font-size: 18px;
+    box-shadow: inset 0 0 0 1px rgba(18,156,148,.18);
+    transition: background var(--base), color var(--base), box-shadow var(--base);
+}
+.cv3-info-item__icon svg { width: 20px; height: 20px; }
+.cv3-info-item:hover .cv3-info-item__icon {
+    background: var(--grad-brand);
+    color: #fff;
+    box-shadow: 0 6px 14px rgba(18,156,148,.30), inset 0 0 0 1px transparent;
+}
+.cv3-info-item__label { font-size: 12px; font-weight: 700; color: var(--text-muted); letter-spacing: .04em; text-transform: uppercase; margin-bottom: 2px; }
+.cv3-info-item__value { font-size: 15.5px; font-weight: 600; color: var(--text-main); }
+.cv3-info-item__value a { color: inherit; text-decoration: none; }
+.cv3-info-item__value a:hover { color: var(--primary); }
+.cv3-contact__form .wpcf7 .wpcf7-form p { margin-bottom: 14px; }
+.cv3-contact__form label { display: block; font-size: 13px; font-weight: 700; color: var(--text-main); margin-bottom: 6px; letter-spacing: .02em; }
+
+/* =============================================================
+ * 11. KÝ GỬI form section
+ * ============================================================= */
+.cv3-kygui-form { max-width: 820px; margin: 0 auto; background: var(--surface); border-radius: 20px; padding: 40px; box-shadow: 0 8px 28px rgba(6,52,67,.10); }
+
+/* =============================================================
+ * 12. FINAL CTA (gradient navy)
+ * ============================================================= */
+.cv3-final { background-image: var(--grad-dark); color: #fff; padding: 80px 0; text-align: center; position: relative; overflow: hidden; }
+.cv3-final::after {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(800px 400px at 70% 30%, rgba(18,156,148,.20), transparent 60%);
+    pointer-events: none;
+}
+.cv3-final__inner { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 0 20px; }
+.cv3-final h2 { color: #fff; font-size: clamp(26px, 3vw, 36px); margin-bottom: 14px; }
+.cv3-final p  { color: rgba(255,255,255,.85); font-size: 16px; line-height: 1.6; margin-bottom: 28px; }
+.cv3-final__actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+
+/* =============================================================
+ * 13. REVEAL ON SCROLL
+ * ============================================================= */
+.cv3 .cv3-prereveal { opacity: 0; transform: translateY(36px); }
+.cv3 .cv3-prereveal.is-in { opacity: 1; transform: none; transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+
+/* =============================================================
+ * 14. SEO BOTTOM (related links block)
+ * ============================================================= */
+.cv3-seobottom { background: var(--surface-alt); padding: 50px 0; text-align: center; }
+.cv3-seobottom h2 { font-size: 22px; color: var(--text-main); margin-bottom: 16px; max-width: 760px; margin-left: auto; margin-right: auto; }
+.cv3-seobottom p { color: var(--text-muted); font-size: 14.5px; line-height: 1.7; max-width: 760px; margin: 0 auto 14px; }
+.cv3-seobottom__links { margin-top: 20px; display: flex; justify-content: center; gap: 8px 18px; flex-wrap: wrap; }
+.cv3-seobottom__links a { color: var(--primary); font-size: 14px; font-weight: 600; text-decoration: none; }
+.cv3-seobottom__links a:hover { color: var(--primary-d); text-decoration: underline; }
+
+/* =============================================================
+ * RESPONSIVE
+ * ============================================================= */
+@media (max-width: 1024px) {
+    .cv3-stats--4, .cv3-cards--4, .cv3-values { grid-template-columns: repeat(2, 1fr); }
+    .cv3-logos { grid-template-columns: repeat(5, 1fr); }
+}
+@media (max-width: 768px) {
+    .cv3-section { padding: 56px 0; }
+    .cv3-hero { padding: 100px 0 60px; min-height: 380px; }
+    .cv3-stats, .cv3-stats--4,
+    .cv3-cards, .cv3-cards--2, .cv3-cards--4,
+    .cv3-process, .cv3-values { grid-template-columns: 1fr; gap: 16px; }
+    .cv3-split { grid-template-columns: 1fr; gap: 32px; }
+    .cv3-split--reverse .cv3-split__media { order: 0; }
+    .cv3-contact { grid-template-columns: 1fr; gap: 20px; }
+    .cv3-contact__info, .cv3-contact__form, .cv3-kygui-form { padding: 24px; }
+    .cv3-logos { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .cv3-testi__card { padding: 28px 22px; }
+    .cv3-testi__track { min-height: 360px; }
+    .cv3-secthead { margin-bottom: 32px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cv3-hero { animation: none; }
+    .cv3-prereveal { opacity: 1 !important; transform: none !important; }
+    .cv3-card, .cv3-stat, .cv3-step, .cv3-value, .cv3-info-item { transition: none; }
+}
+
+/* Custom styling for the file upload input "dinhkem" */
+.cv3-kygui-form input[name="dinhkem"] {
+    width: 100% !important;
+    padding-bottom: 38px !important;
+}
+
+.cv3-form-file-hint {
+    font-size: 13px !important;
+    color: var(--text-muted) !important;
+    margin-top: 6px !important;
+    margin-bottom: 0 !important;
+    display: block !important;
+    text-align: left !important;
+}
+
+

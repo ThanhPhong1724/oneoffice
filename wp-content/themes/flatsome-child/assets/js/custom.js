@@ -13,12 +13,17 @@
 
 			$('.btn-trang').click(function (event) {
 				var form = $(this).next().find('form');
+				if (form.length === 0) {
+					form = $('.csncngbg').closest('form');
+				}
 
-				if (form.attr('method') == 'post') {
+				if (form.length > 0 && form.attr('method') == 'post') {
 					$('html').addClass('csncngbg_openq');
 					form.find('.csncngbg').addClass('openq');
 					form.closest('.section').addClass('section_zindex');
-					form.closest('.section').addClass('section_zindex');
+				} else {
+					var contactUrl = (typeof ooSite !== 'undefined' && ooSite.homeUrl) ? ooSite.homeUrl + 'lien-he/' : '/oneoffice/lien-he/';
+					window.location.href = contactUrl;
 				}
 			});
 

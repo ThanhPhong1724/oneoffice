@@ -213,7 +213,7 @@
   <div class="col large-3 pl-0 sp2-sidebar-col">
     <aside class="sp2-sticky-sidebar">
       <div class="sp2-price-box">
-        <span class="sp2-price-box__label">Giá thuê hiển thị</span>
+        <span class="sp2-price-box__label">Giá thuê</span>
         <h2 class="sp2-price-box__value">
           <?php echo esc_html( get_post_meta( get_the_ID(), '_gia_hien_thi', true ) ); ?>
         </h2>

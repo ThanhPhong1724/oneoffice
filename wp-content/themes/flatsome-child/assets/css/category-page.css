@@ -191,7 +191,7 @@
 
 .selected-item {
     display: inline-block;
-    background: #00a1b2;
+    background: #129C94;
     color: white;
     padding: 5px 10px;
     margin: 2px;
@@ -218,7 +218,7 @@
 }
 
 .dropdown-option:hover {
-    background-color: rgba(0, 161, 178, 0.1);
+    background-color: rgba(18, 156, 148, 0.1);
 }
 
 /* Hide checkbox in quận dropdown */
@@ -271,7 +271,7 @@
 }
 
 .price-input:focus {
-    border-color: #00a1b2;
+    border-color: #129C94;
     outline: none;
 }
 
@@ -287,12 +287,12 @@
 
 /* Slider colors */
 .ui-slider .ui-slider-range {
-    background: #00a1b2 !important;
+    background: #129C94 !important;
 }
 
 .ui-slider .ui-slider-handle {
-    background: #00a1b2 !important;
-    border: 2px solid #00a1b2 !important;
+    background: #129C94 !important;
+    border: 2px solid #129C94 !important;
 }
 
 .price-buttons {
@@ -321,16 +321,16 @@
 }
 
 .btn-price-apply {
-    background: #00a1b2;
+    background: #129C94;
     color: white;
 }
 
 .btn-price-apply:hover {
-    background: #008a9a;
+    background: #0C7B73;
 }
 
 .btn-search {
-    background: linear-gradient(135deg, #00a1b2 0%, #008a9a 100%);
+    background: linear-gradient(135deg, #129C94 0%, #0C7B73 100%);
     color: white;
     border: none;
     height: 45px;
@@ -346,9 +346,9 @@
 }
 
 .btn-search:hover {
-    background: linear-gradient(135deg, #008a9a 0%, #00a1b2 100%);
+    background: linear-gradient(135deg, #0C7B73 0%, #129C94 100%);
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 161, 178, 0.3);
+    box-shadow: 0 4px 15px rgba(18, 156, 148, 0.3);
 }
 
 .search-input-wrapper,
@@ -582,14 +582,14 @@
 
 .woocommerce-pagination .page-numbers button:hover {
     background: #f8f9fa;
-    border-color: #00a1b2;
-    color: #00a1b2;
+    border-color: #129C94;
+    color: #129C94;
 }
 
 .woocommerce-pagination .page-numbers .current {
-    background: #00a1b2;
+    background: #129C94;
     color: white;
-    border-color: #00a1b2;
+    border-color: #129C94;
 }
 
 .display_type_none .term-description::before {
@@ -621,7 +621,7 @@
 @media (max-width: 768px) {
     /* Touch feedback cho dropdown */
     .dropdown-option:active {
-        background-color: rgba(0, 161, 178, 0.2) !important;
+        background-color: rgba(18, 156, 148, 0.2) !important;
         transform: scale(0.98);
     }
 
@@ -639,9 +639,9 @@
     .woocommerce-pagination .page-numbers button:active,
     .woocommerce-pagination .page-numbers a:active {
         transform: scale(0.95);
-        background: #00a1b2 !important;
+        background: #129C94 !important;
         color: white !important;
-        border-color: #00a1b2 !important;
+        border-color: #129C94 !important;
     }
 
     /* Increase touch targets */
@@ -672,7 +672,7 @@
     width: 20px !important;
     height: 20px !important;
     border-radius: 50% !important;
-    border: 2px solid #00a1b2 !important;
+    border: 2px solid #129C94 !important;
     background: #fff !important;
     cursor: pointer !important;
     outline: none !important;
@@ -687,7 +687,7 @@
 }
 
 .noUi-connect {
-    background: #00a1b2 !important;
+    background: #129C94 !important;
 }
 
 .noUi-horizontal .noUi-handle {
@@ -698,10 +698,10 @@
 /* Active state */
 .noUi-handle:active,
 .noUi-handle.noUi-active {
-    border-color: #008a9a !important;
+    border-color: #0C7B73 !important;
     background: #f0f9ff !important;
     transform: scale(1.1) !important;
-    box-shadow: 0 0 0 4px rgba(0, 161, 178, 0.2) !important;
+    box-shadow: 0 0 0 4px rgba(18, 156, 148, 0.2) !important;
 }
 
 /* Mobile optimizations */
@@ -783,7 +783,7 @@
 .range-slider .slider-track {
   position: absolute;
   height: 6px;
-  background: #00a1b2;
+  background: #129C94;
   top: 50%;
   left: 0;
   right: 0;
@@ -815,7 +815,7 @@
   height: 18px;
   border-radius: 50%;
   background: #fff;
-  border: 2px solid #00a1b2;
+  border: 2px solid #129C94;
   cursor: pointer;
   margin-top: 0;
 }
@@ -825,7 +825,7 @@
   height: 18px;
   border-radius: 50%;
   background: #fff;
-  border: 2px solid #00a1b2;
+  border: 2px solid #129C94;
   cursor: pointer;
 }
 
@@ -851,7 +851,7 @@
   padding: 2px 12px;
   border: none;
   border-radius: 4px;
-  background: #00a1b2;
+  background: #129C94;
   color: #fff;
   cursor: pointer;
 }
@@ -863,7 +863,7 @@
 /* ============================================================
  * PREMIUM OVERHAUL FOR CATEGORY & DISTRICT ARCHIVE PAGES
  * Scope: .category-page-row (Cho thuê văn phòng Hà Nội)
- * Brand Colors: Primary #00A1B2, Dark teal #063443, Muted gray #5B6C76
+ * Brand Colors: Primary #129C94, Dark teal #063443, Muted gray #5B6C76
  * ============================================================ */
 
 /* 1. Global Reset & Typography */
@@ -889,7 +889,7 @@
     transition: color 0.2s ease !important;
 }
 #breadcrumbs a:hover {
-    color: #00A1B2 !important;
+    color: #129C94 !important;
 }
 
 /* 2. Premium Search Filter Bar Overhaul */
@@ -916,7 +916,7 @@
 
 /* Icons & Placeholder overrides */
 .category-page-row .search-icon svg path {
-    stroke: #00A1B2 !important;
+    stroke: #129C94 !important;
 }
 .category-page-row .input-with-icon .form-control {
     font-size: 15px !important;
@@ -942,7 +942,7 @@
     padding-bottom: 6px !important;
 }
 .category-page-row .dropdown-display:hover {
-    border-bottom-color: #00A1B2 !important;
+    border-bottom-color: #129C94 !important;
 }
 .category-page-row .selected-count,
 .category-page-row .price-range-text,
@@ -952,7 +952,7 @@
     font-size: 15px !important;
 }
 .category-page-row .dropdown-arrow {
-    color: #00A1B2 !important;
+    color: #129C94 !important;
     font-size: 11px !important;
 }
 
@@ -978,8 +978,8 @@
     color: #172B35 !important;
 }
 .category-page-row .dropdown-option:hover {
-    background-color: rgba(0, 161, 178, 0.06) !important;
-    color: #00A1B2 !important;
+    background-color: rgba(18, 156, 148, 0.06) !important;
+    color: #129C94 !important;
 }
 
 /* Custom Price Slider styling */
@@ -1013,28 +1013,28 @@
     color: #5B6C76 !important;
 }
 .category-page-row .btn-price-apply {
-    background: #00A1B2 !important;
+    background: #129C94 !important;
     color: #ffffff !important;
 }
 .category-page-row .btn-price-apply:hover {
-    background: #008a9a !important;
+    background: #0C7B73 !important;
 }
 
 /* Form Submit Button */
 .category-page-row .btn-search {
-    background: #00A1B2 !important;
+    background: #129C94 !important;
     color: #ffffff !important;
     border-radius: 12px !important;
     height: 46px !important;
     font-size: 15px !important;
     font-weight: 700 !important;
-    box-shadow: 0 4px 14px rgba(0, 161, 178, 0.25) !important;
+    box-shadow: 0 4px 14px rgba(18, 156, 148, 0.25) !important;
     transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
 }
 .category-page-row .btn-search:hover {
-    background: #008a9a !important;
+    background: #0C7B73 !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 6px 20px rgba(0, 161, 178, 0.35) !important;
+    box-shadow: 0 6px 20px rgba(18, 156, 148, 0.35) !important;
 }
 
 /* 3. District Navigation Tag List Overhaul */
@@ -1045,9 +1045,9 @@
     gap: 10px !important;
 }
 .category-page-row .SectionBuildingTag {
-    background: rgba(0, 161, 178, 0.05) !important;
-    color: #00A1B2 !important;
-    border: 1px solid rgba(0, 161, 178, 0.12) !important;
+    background: rgba(18, 156, 148, 0.05) !important;
+    color: #129C94 !important;
+    border: 1px solid rgba(18, 156, 148, 0.12) !important;
     padding: 8px 18px !important;
     border-radius: 30px !important;
     font-size: 13.5px !important;
@@ -1056,11 +1056,11 @@
     transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
 }
 .category-page-row .SectionBuildingTag:hover {
-    background: #00A1B2 !important;
+    background: #129C94 !important;
     color: #ffffff !important;
-    border-color: #00A1B2 !important;
+    border-color: #129C94 !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 4px 12px rgba(0, 161, 178, 0.2) !important;
+    box-shadow: 0 4px 12px rgba(18, 156, 148, 0.2) !important;
 }
 
 /* 4. Page Headers & Inner Structure */
@@ -1098,7 +1098,7 @@
     margin: 0 !important;
 }
 .category-page-row .BuildingQuanLink {
-    color: #00A1B2 !important;
+    color: #129C94 !important;
     font-size: 13.5px !important;
     font-weight: 700 !important;
     text-transform: uppercase !important;
@@ -1107,13 +1107,13 @@
     transition: color 0.2s ease !important;
 }
 .category-page-row .BuildingQuanLink:hover {
-    color: #008a9a !important;
+    color: #0C7B73 !important;
 }
 
 /* 5. Modern Building Cards */
 .category-page-row .building-item {
     background: #ffffff !important;
-    border-radius: 16px !important;
+    border-radius: 14px !important;
     border: 1px solid #E1E8EC !important;
     box-shadow: 0 4px 20px rgba(6, 52, 67, 0.025) !important;
     margin-bottom: 30px !important;
@@ -1123,14 +1123,14 @@
 .category-page-row .building-item:hover {
     transform: translateY(-6px) !important;
     box-shadow: 0 12px 30px rgba(6, 52, 67, 0.07) !important;
-    border-color: rgba(0, 161, 178, 0.18) !important;
+    border-color: rgba(18, 156, 148, 0.18) !important;
 }
 
 /* Image zoom transition */
 .category-page-row .building-item .thumb {
     height: 190px !important;
     overflow: hidden !important;
-    border-radius: 16px 16px 0 0 !important;
+    border-radius: 14px 14px 0 0 !important;
     position: relative !important;
 }
 .category-page-row .building-item .thumb img {
@@ -1162,7 +1162,7 @@
     transition: color 0.2s ease !important;
 }
 .category-page-row .BuildingItemName:hover {
-    color: #00A1B2 !important;
+    color: #129C94 !important;
 }
 .category-page-row .BuildingItemLocation {
     font-size: 13px !important;
@@ -1187,7 +1187,7 @@
 .category-page-row .building-item .meta .price {
     font-size: 15px !important;
     font-weight: 800 !important;
-    color: #00A1B2 !important;
+    color: #129C94 !important;
     width: auto !important;
 }
 
@@ -1196,8 +1196,8 @@
     display: inline-flex !important;
     align-items: center !important;
     gap: 6px !important;
-    background-color: rgba(0, 161, 178, 0.05) !important;
-    color: #00A1B2 !important;
+    background-color: rgba(18, 156, 148, 0.05) !important;
+    color: #129C94 !important;
     font-size: 11px !important;
     font-weight: 700 !important;
     padding: 6px 12px !important;
@@ -1210,13 +1210,13 @@
     transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
 }
 .category-page-row .BuildingItemContent .BuildingItemCare:hover {
-    background-color: #00A1B2 !important;
+    background-color: #129C94 !important;
     color: #ffffff !important;
 }
 .category-page-row .BuildingItemContent .BuildingItemCare.active {
-    background-color: #00A1B2 !important;
+    background-color: #129C94 !important;
     color: #ffffff !important;
-    box-shadow: 0 2px 8px rgba(0, 161, 178, 0.2) !important;
+    box-shadow: 0 2px 8px rgba(18, 156, 148, 0.2) !important;
 }
 .category-page-row .BuildingItemContent .BuildingItemCare i {
     margin-right: 0 !important;

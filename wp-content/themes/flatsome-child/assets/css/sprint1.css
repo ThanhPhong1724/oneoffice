@@ -9,9 +9,9 @@
  * 1. CSS CUSTOM PROPERTIES (màu nhấn, spacing)
  * ============================================================ */
 :root {
-    --oo-primary:   #00a1b2;
-    --oo-primary-d: #007d8c;
-    --oo-accent:    #ef6594;
+    --oo-primary:   #129C94;
+    --oo-primary-d: #0C7B73;
+    --oo-accent:    #129C94;
     --oo-text:      #212b36;
     --oo-muted:     #637381;
     --oo-bg:        #f4f6f8;
@@ -78,7 +78,7 @@
     top: 50%;
     height: 32px;
     border-radius: 16px; /* Pill shape */
-    background: rgba(0, 161, 178, 0);
+    background: rgba(18, 156, 148, 0);
     transform: translateY(-50%) scale(0.92);
     transition: background var(--oo-transition), transform var(--oo-transition);
     z-index: -1;
@@ -88,7 +88,7 @@
 /* Hover state */
 #masthead .header-nav > li:hover > a::after,
 #masthead .header-nav > li:hover > .nav-top-link::after {
-    background: rgba(0, 161, 178, 0.07);
+    background: rgba(18, 156, 148, 0.07);
     transform: translateY(-50%) scale(1);
 }
 #masthead .header-nav > li:hover > a,
@@ -103,7 +103,7 @@
 #masthead .header-nav > li.current-menu-parent > .nav-top-link::after,
 #masthead .header-nav > li.current-menu-ancestor > a::after,
 #masthead .header-nav > li.current-menu-ancestor > .nav-top-link::after {
-    background: rgba(0, 161, 178, 0.12);
+    background: rgba(18, 156, 148, 0.12);
     transform: translateY(-50%) scale(1);
 }
 #masthead .header-nav > li.current-menu-item > a,
@@ -159,7 +159,7 @@
 #masthead ul.header-nav > li.menu-item > .sub-menu > li:hover > a,
 #masthead ul.header-nav > li.menu-item > .sub-menu > li > a:hover,
 #masthead ul.header-nav > li.menu-item > .sub-menu > li > a:focus {
-    color: #00a1b2 !important;
+    color: #129C94 !important;
     background: #f0fafb !important;
     padding-left: 24px !important;
 }
@@ -229,7 +229,7 @@ a.btn-phone {
 .btn-phone:hover,
 a.btn-phone:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,161,178,.40);
+    box-shadow: 0 6px 20px rgba(18, 156, 148,.40);
     opacity: .92;
 }
 
@@ -264,7 +264,7 @@ a.btn-phone:hover {
 
 /* Brand colors */
 .oo-desktop-cta__item--phone {
-    background-color: var(--cnb-theme-color, #00a1b2) !important;
+    background-color: var(--cnb-theme-color, #129C94) !important;
     animation: oo-phone-pulse 2s infinite;
 }
 .oo-desktop-cta__item--zalo {
@@ -332,13 +332,13 @@ a.btn-phone:hover {
 /* Pulse animation for phone */
 @keyframes oo-phone-pulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(0, 161, 178, 0.6);
+        box-shadow: 0 0 0 0 rgba(18, 156, 148, 0.6);
     }
     70% {
-        box-shadow: 0 0 0 10px rgba(0, 161, 178, 0);
+        box-shadow: 0 0 0 10px rgba(18, 156, 148, 0);
     }
     100% {
-        box-shadow: 0 0 0 0 rgba(0, 161, 178, 0);
+        box-shadow: 0 0 0 0 rgba(18, 156, 148, 0);
     }
 }
 
@@ -727,7 +727,7 @@ body.off-canvas #main-menu,
 }
 #main-menu .nav-sidebar > li > a:hover,
 #main-menu .nav-sidebar > li > .nav-top-link:hover {
-    color: #00a1b2 !important;
+    color: #129C94 !important;
     background: #f0fafb !important;
 }
 
@@ -740,7 +740,7 @@ body.off-canvas #main-menu,
 #main-menu .nav-sidebar .sub-menu.nav-sidebar-ul,
 #main-menu .nav-sidebar .sub-menu.children {
     background: #f7f8fa !important;
-    border-left: 3px solid #00a1b2 !important;
+    border-left: 3px solid #129C94 !important;
     margin: 0 !important;
     padding: 0 !important;
 }
@@ -758,7 +758,7 @@ body.off-canvas #main-menu,
     border-bottom: none !important;
 }
 #main-menu .nav-sidebar .sub-menu li a:hover {
-    color: #00a1b2 !important;
+    color: #129C94 !important;
     background: #e8f7f9 !important;
 }
 
@@ -822,7 +822,7 @@ section.dark:not(.logo_footer) a.btn-phone:hover {
     color: var(--oo-white) !important;
     border-color: var(--oo-primary) !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 8px 24px rgba(0, 161, 178, 0.35) !important;
+    box-shadow: 0 8px 24px rgba(18, 156, 148, 0.35) !important;
 }
 
 /* Button 2: Gửi yêu cầu (Transparent background, white outline & text) */
@@ -961,7 +961,7 @@ section.logo_footer img {
     border-radius: 4px !important; /* Standard button corner shape */
     border: none !important;
     background: linear-gradient(135deg, var(--oo-primary) 0%, #147abf 100%) !important;
-    box-shadow: 0 2px 8px rgba(0, 161, 178, 0.2) !important;
+    box-shadow: 0 2px 8px rgba(18, 156, 148, 0.2) !important;
     transition: all 0.2s ease !important;
     text-transform: none !important;
     letter-spacing: normal !important;
@@ -970,12 +970,295 @@ section.logo_footer img {
 
 .care-container .care-info .care-page-link:hover {
     background: linear-gradient(135deg, #147abf 0%, var(--oo-primary) 100%) !important;
-    box-shadow: 0 4px 12px rgba(0, 161, 178, 0.3) !important;
+    box-shadow: 0 4px 12px rgba(18, 156, 148, 0.3) !important;
     color: var(--oo-white) !important;
     text-decoration: none !important;
 }
 
 .care-container .care-info .care-page-link:active {
-    box-shadow: 0 2px 4px rgba(0, 161, 178, 0.15) !important;
+    box-shadow: 0 2px 4px rgba(18, 156, 148, 0.15) !important;
 }
+
+/* ============================================================
+ * 21. MOBILE HEADER CARE ICON & COUNT BADGE
+ * ============================================================ */
+@media (max-width: 767px) {
+    .mobile-nav li.html_topbar_left {
+        display: block !important;
+    }
+    #masthead .btn-list-care {
+        padding: 0 10px !important;
+        height: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+    #masthead .btn-list-care .icon-mobile-care {
+        display: inline-block !important;
+        font-size: 20px !important;
+        color: var(--oo-primary) !important;
+        line-height: 1 !important;
+        position: relative !important;
+    }
+    #masthead .btn-list-care .icon-mobile-care .count-care {
+        background-color: var(--oo-accent, #129C94) !important;
+        color: #ffffff !important;
+        font-size: 9px !important;
+        width: 15px !important;
+        height: 15px !important;
+        line-height: 15px !important;
+        border-radius: 50% !important;
+        position: absolute !important;
+        top: -6px !important;
+        right: -8px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-weight: 700 !important;
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        border: 1px solid #ffffff !important;
+    }
+}
+
+/* ============================================================
+ * 22. PREMIUM FOOTER OVERRIDES
+ * ============================================================ */
+.footer-wrapper {
+    background-color: #063443 !important; /* Premium Dark Navy */
+}
+.footer-wrapper .widget-title {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    color: #ffffff !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.05em !important;
+    margin-bottom: 20px !important;
+    position: relative !important;
+    padding-bottom: 8px !important;
+    text-transform: uppercase !important;
+}
+.footer-wrapper .widget-title::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 30px !important;
+    height: 2px !important;
+    background-color: var(--oo-primary, #129C94) !important;
+    border-radius: 1px !important;
+}
+.footer-wrapper ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.footer-wrapper ul li {
+    padding: 6px 0 !important;
+    border: none !important;
+    background: transparent !important;
+}
+.footer-wrapper ul li a {
+    color: #a0aec0 !important; /* Elegant muted color */
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+    transition: color 0.2s ease, transform 0.2s ease !important;
+    display: inline-block !important;
+    text-decoration: none !important;
+}
+.footer-wrapper ul li a:hover {
+    color: var(--oo-primary, #129C94) !important;
+    transform: translateX(4px) !important;
+}
+.footer-wrapper p {
+    color: #a0aec0 !important;
+    font-size: 13.5px !important;
+    line-height: 1.6 !important;
+}
+.footer-wrapper p strong {
+    color: #ffffff !important;
+}
+.footer-wrapper .follow-icons a {
+    background-color: rgba(255,255,255,0.06) !important;
+    color: #ffffff !important;
+    border-radius: 50% !important;
+    width: 36px !important;
+    height: 36px !important;
+    line-height: 36px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-right: 8px !important;
+    transition: background-color 0.2s ease, transform 0.2s ease !important;
+}
+.footer-wrapper .follow-icons a:hover {
+    background-color: var(--oo-primary, #129C94) !important;
+    transform: translateY(-3px) !important;
+}
+
+/* ============================================================
+ * 19. GLOBAL PREMIUM CTA SECTION (tiet-kiem-95 block)
+ * ============================================================ */
+.sp2-premium-cta {
+    background: linear-gradient(135deg, #052129 0%, #0c3844 50%, #154c5c 100%) !important;
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+    position: relative;
+    overflow: hidden;
+}
+.sp2-premium-cta .section-bg-overlay {
+    background-color: transparent !important;
+    background-image: radial-gradient(circle at 80% 20%, rgba(18, 156, 148, 0.12) 0%, transparent 60%) !important;
+    opacity: 1 !important;
+}
+.sp2-premium-cta::before {
+    content: '';
+    position: absolute;
+    top: -150px;
+    right: -100px;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(18, 156, 148, 0.15), transparent 70%);
+    pointer-events: none;
+}
+.sp2-premium-cta .cta-heading {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 32px !important;
+    line-height: 1.35 !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    margin-bottom: 16px !important;
+    letter-spacing: -0.025em !important;
+    text-transform: none !important;
+}
+.sp2-premium-cta .cta-subheading {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 15.5px !important;
+    line-height: 1.65 !important;
+    font-weight: 400 !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+    margin-bottom: 30px !important;
+}
+.sp2-premium-cta .cta-features-grid {
+    margin-bottom: 25px !important;
+}
+.sp2-premium-cta .cta-feature-col {
+    margin-bottom: 18px !important;
+}
+.sp2-premium-cta .cta-feature-item {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+}
+.sp2-premium-cta .cta-feature-item::before {
+    content: "\f00c" !important;
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important;
+    color: #129C94 !important;
+    font-size: 13px !important;
+    background: rgba(18, 156, 148, 0.16) !important;
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 50% !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    margin-top: -1px !important;
+}
+.sp2-premium-cta .feature-text {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 14.5px !important;
+    line-height: 1.5 !important;
+    font-weight: 500 !important;
+    color: #ffffff !important;
+}
+.sp2-premium-cta .cta-buttons-col {
+    margin-top: 20px !important;
+}
+.sp2-premium-cta .cta-buttons-wrapper {
+    display: flex !important;
+    gap: 16px !important;
+    flex-wrap: wrap !important;
+}
+.sp2-premium-cta .cta-buttons-wrapper a.button {
+    flex: 1 1 200px !important;
+    height: 50px !important;
+    border-radius: 30px !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
+    border: 2px solid transparent !important;
+    margin: 0 !important;
+}
+.sp2-premium-cta .cta-buttons-wrapper a.btn-phone {
+    background: #ffffff !important;
+    color: var(--oo-primary) !important;
+}
+.sp2-premium-cta .cta-buttons-wrapper a.btn-phone::before {
+    content: "\f095" !important;
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important;
+    margin-right: 8px !important;
+    font-size: 14px !important;
+}
+.sp2-premium-cta .cta-buttons-wrapper a.btn-phone:hover {
+    background: var(--oo-primary) !important;
+    color: #ffffff !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(18, 156, 148, 0.35) !important;
+}
+.sp2-premium-cta .cta-buttons-wrapper a.btn-trang {
+    background: transparent !important;
+    color: #ffffff !important;
+    border: 2px solid #ffffff !important;
+}
+.sp2-premium-cta .cta-buttons-wrapper a.btn-trang::before {
+    content: "\f0e0" !important;
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important;
+    margin-right: 8px !important;
+    font-size: 14px !important;
+}
+.sp2-premium-cta .cta-buttons-wrapper a.btn-trang:hover {
+    background: #ffffff !important;
+    color: var(--oo-primary) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25) !important;
+}
+.sp2-premium-cta .cta-image-col {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.sp2-premium-cta .cta-premium-img {
+    border-radius: 16px !important;
+    box-shadow: 0 16px 48px rgba(6, 52, 67, 0.16) !important;
+    max-width: 100% !important;
+    height: auto !important;
+    border: 4px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+@media (max-width: 767px) {
+    .sp2-premium-cta {
+        padding-top: 50px !important;
+        padding-bottom: 50px !important;
+    }
+    .sp2-premium-cta .cta-heading {
+        font-size: 24px !important;
+    }
+    .sp2-premium-cta .cta-buttons-wrapper {
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+    .sp2-premium-cta .cta-buttons-wrapper a.button {
+        width: 100% !important;
+        flex: 1 1 auto !important;
+    }
+}
+
 

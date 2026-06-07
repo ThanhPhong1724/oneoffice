@@ -152,7 +152,7 @@ get_header(); ?>
      * 1) HERO
      * ========================================================= */ ?>
     <section class="hv2-hero" aria-label="Cho thuê văn phòng Hà Nội"
-             style="background-image: linear-gradient(135deg, rgba(6,52,67,.78) 0%, rgba(0,161,178,.55) 100%), url('<?php echo esc_url( $oo_hero_bg_url ); ?>');">
+             style="background-image: linear-gradient(135deg, rgba(6,52,67,.80) 0%, rgba(21,113,181,.42) 60%, rgba(18,156,148,.50) 100%), url('<?php echo esc_url( $oo_hero_bg_url ); ?>');">
         <div class="hv2-container">
             <div class="hv2-hero__inner">
                 <span class="hv2-hero__eyebrow">Wonderland Việt Nam · 10+ năm kinh nghiệm</span>
@@ -258,7 +258,7 @@ get_header(); ?>
      * ========================================================= */ ?>
     <section class="hv2-areas" aria-label="Khu vực cho thuê văn phòng Hà Nội">
         <div class="hv2-container">
-            <header class="hv2-secthead">
+            <header class="hv2-secthead hv2-secthead--center">
                 <span class="hv2-eyebrow">Bao phủ toàn Hà Nội</span>
                 <h2>Tòa nhà văn phòng cho thuê tại Hà Nội</h2>
                 <p>Đầy đủ thông tin các tòa nhà tại 8 quận trung tâm và Tây Hà Nội.</p>
@@ -356,7 +356,7 @@ get_header(); ?>
     <?php if ( ! empty( $oo_buildings ) ) : ?>
     <section class="hv2-buildings" aria-label="Tòa nhà nổi bật">
         <div class="hv2-container">
-            <header class="hv2-secthead">
+            <header class="hv2-secthead hv2-secthead--center">
                 <span class="hv2-eyebrow">Đề xuất từ Wonderland</span>
                 <h2>Tòa nhà văn phòng nổi bật</h2>
                 <p>Một số tòa nhà có vị trí đẹp, giá thuê và tiện ích nổi trội đang được tư vấn nhiều nhất.</p>

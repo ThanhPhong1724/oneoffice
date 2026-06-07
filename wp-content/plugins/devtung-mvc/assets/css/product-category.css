@@ -196,7 +196,7 @@
 
 .selected-item {
     display: inline-block;
-    background: #00a1b2;
+    background: #129C94;
     color: white;
     padding: 5px 10px;
     margin: 2px;
@@ -223,7 +223,7 @@
 }
 
 .dropdown-option:hover {
-    background-color: rgba(0, 161, 178, 0.1);
+    background-color: rgba(18, 156, 148, 0.1);
 }
 
 /* Hide checkbox in quận dropdown */
@@ -276,7 +276,7 @@
 }
 
 .price-input:focus {
-    border-color: #00a1b2;
+    border-color: #129C94;
     outline: none;
 }
 
@@ -292,12 +292,12 @@
 
 /* Slider colors */
 .ui-slider .ui-slider-range {
-    background: #00a1b2 !important;
+    background: #129C94 !important;
 }
 
 .ui-slider .ui-slider-handle {
-    background: #00a1b2 !important;
-    border: 2px solid #00a1b2 !important;
+    background: #129C94 !important;
+    border: 2px solid #129C94 !important;
 }
 
 .price-buttons {
@@ -326,16 +326,16 @@
 }
 
 .btn-price-apply {
-    background: #00a1b2;
+    background: #129C94;
     color: white;
 }
 
 .btn-price-apply:hover {
-    background: #008a9a;
+    background: #0C7B73;
 }
 
 .btn-search {
-    background: linear-gradient(135deg, #00a1b2 0%, #008a9a 100%);
+    background: linear-gradient(135deg, #129C94 0%, #0C7B73 100%);
     color: white;
     border: none;
     height: 45px;
@@ -351,9 +351,9 @@
 }
 
 .btn-search:hover {
-    background: linear-gradient(135deg, #008a9a 0%, #00a1b2 100%);
+    background: linear-gradient(135deg, #0C7B73 0%, #129C94 100%);
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 161, 178, 0.3);
+    box-shadow: 0 4px 15px rgba(18, 156, 148, 0.3);
 }
 
 .search-input-wrapper,
@@ -587,14 +587,14 @@
 
 .woocommerce-pagination .page-numbers button:hover {
     background: #f8f9fa;
-    border-color: #00a1b2;
-    color: #00a1b2;
+    border-color: #129C94;
+    color: #129C94;
 }
 
 .woocommerce-pagination .page-numbers .current {
-    background: #00a1b2;
+    background: #129C94;
     color: white;
-    border-color: #00a1b2;
+    border-color: #129C94;
 }
 
 .display_type_none .term-description::before {
@@ -626,7 +626,7 @@
 @media (max-width: 768px) {
     /* Touch feedback cho dropdown */
     .dropdown-option:active {
-        background-color: rgba(0, 161, 178, 0.2) !important;
+        background-color: rgba(18, 156, 148, 0.2) !important;
         transform: scale(0.98);
     }
 
@@ -644,9 +644,9 @@
     .woocommerce-pagination .page-numbers button:active,
     .woocommerce-pagination .page-numbers a:active {
         transform: scale(0.95);
-        background: #00a1b2 !important;
+        background: #129C94 !important;
         color: white !important;
-        border-color: #00a1b2 !important;
+        border-color: #129C94 !important;
     }
 
     /* Increase touch targets */
@@ -677,7 +677,7 @@
     width: 20px !important;
     height: 20px !important;
     border-radius: 50% !important;
-    border: 2px solid #00a1b2 !important;
+    border: 2px solid #129C94 !important;
     background: #fff !important;
     cursor: pointer !important;
     outline: none !important;
@@ -692,7 +692,7 @@
 }
 
 .noUi-connect {
-    background: #00a1b2 !important;
+    background: #129C94 !important;
 }
 
 .noUi-horizontal .noUi-handle {
@@ -703,10 +703,10 @@
 /* Active state */
 .noUi-handle:active,
 .noUi-handle.noUi-active {
-    border-color: #008a9a !important;
+    border-color: #0C7B73 !important;
     background: #f0f9ff !important;
     transform: scale(1.1) !important;
-    box-shadow: 0 0 0 4px rgba(0, 161, 178, 0.2) !important;
+    box-shadow: 0 0 0 4px rgba(18, 156, 148, 0.2) !important;
 }
 
 /* Mobile optimizations */
@@ -788,7 +788,7 @@
 .range-slider .slider-track {
   position: absolute;
   height: 6px;
-  background: #00a1b2;
+  background: #129C94;
   top: 50%;
   left: 0;
   right: 0;
@@ -820,7 +820,7 @@
   height: 18px;
   border-radius: 50%;
   background: #fff;
-  border: 2px solid #00a1b2;
+  border: 2px solid #129C94;
   cursor: pointer;
   margin-top: 0;
 }
@@ -830,7 +830,7 @@
   height: 18px;
   border-radius: 50%;
   background: #fff;
-  border: 2px solid #00a1b2;
+  border: 2px solid #129C94;
   cursor: pointer;
 }
 
@@ -856,7 +856,7 @@
   padding: 2px 12px;
   border: none;
   border-radius: 4px;
-  background: #00a1b2;
+  background: #129C94;
   color: #fff;
   cursor: pointer;
 }

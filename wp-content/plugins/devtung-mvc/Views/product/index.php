@@ -209,7 +209,8 @@
             </div>
 
             <div class="row list-building">
-              <?php foreach ($district['products'] as $product): ?>
+              <?php /* Chỉ hiện tối đa 4 toà mỗi quận cho gọn — bấm "Xem thêm" để xem hết */ ?>
+              <?php foreach (array_slice($district['products'], 0, 4) as $product): ?>
                 <div class="col large-3 small-12 pb-0">
                   <div class="building-item">
 

@@ -124,7 +124,7 @@ get_header(); ?>
      * 1) HERO
      * ========================================================= */ ?>
     <section class="vp2-hero" aria-label="Văn phòng trọn gói — Wonderland"
-             style="background-image: linear-gradient(135deg, rgba(6,52,67,.84) 0%, rgba(0,161,178,.62) 100%), url('<?php echo esc_url( $oo_vptg_hero_bg ); ?>');">
+             style="background-image: linear-gradient(135deg, rgba(6,52,67,.85) 0%, rgba(21,113,181,.48) 60%, rgba(18,156,148,.56) 100%), url('<?php echo esc_url( $oo_vptg_hero_bg ); ?>');">
         <div class="vp2-container">
             <div class="vp2-hero__inner">
                 <span class="vp2-hero__eyebrow">Văn phòng trọn gói · Văn phòng ảo · Coworking</span>

@@ -33,11 +33,21 @@
         }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
         revealEls.forEach(function (el) { io.observe(el); });
 
-        // Failsafe — ensure nothing stays hidden if IO is delayed
-        // (e.g. headless screenshot, slow tab) for more than 2s.
-        setTimeout(function () {
-            revealEls.forEach(function (el) { el.classList.add('is-in'); });
-        }, 2000);
+        // BẢO HIỂM (không phá hiệu ứng): chỉ hiện phần ĐANG TRONG/QUA màn hình,
+        // KHÔNG hiện sạch below-fold. → card dưới vẫn "trôi vào" khi cuộn tới, dù chờ bao lâu.
+        // Đồng thời đảm bảo nội dung không bao giờ ẩn vĩnh viễn (kể cả nếu IO trục trặc).
+        var revealInView = function () {
+            var vh = window.innerHeight;
+            revealEls.forEach(function (el) {
+                if (!el.classList.contains('is-in') && el.getBoundingClientRect().top < vh * 0.9) {
+                    el.classList.add('is-in');
+                }
+            });
+        };
+        window.addEventListener('load', revealInView);
+        window.addEventListener('scroll', revealInView, { passive: true });
+        window.addEventListener('resize', revealInView);
+        setTimeout(revealInView, 1500);
     }
 
     /* -------------------------------------------------
@@ -104,9 +114,30 @@
         function start() { stop(); timer = setInterval(function () { if (!paused) next(); }, 6000); }
         function stop()  { if (timer) clearInterval(timer); }
 
+        function prev() { go(current - 1); }
+
         dots.forEach(function (dot, i) {
             dot.addEventListener('click', function () { go(i); start(); });
         });
+
+        /* Kéo/vuốt (chuột + cảm ứng) để gạt qua lại testimonial */
+        var track = root.querySelector('.hv2-testi__track');
+        if (track) {
+            var startX = null, dragging = false;
+            var down = function (x) { startX = x; dragging = true; paused = true; track.style.cursor = 'grabbing'; };
+            var up   = function (x) {
+                if (!dragging || startX === null) return;
+                var dx = x - startX;
+                if (Math.abs(dx) > 45) { (dx < 0 ? next : prev)(); start(); }
+                dragging = false; startX = null; paused = false; track.style.cursor = 'grab';
+            };
+            track.style.cursor = 'grab';
+            track.style.touchAction = 'pan-y';
+            track.addEventListener('mousedown', function (e) { e.preventDefault(); down(e.clientX); });
+            window.addEventListener('mouseup', function (e) { if (dragging) up(e.clientX); });
+            track.addEventListener('touchstart', function (e) { down(e.touches[0].clientX); }, { passive: true });
+            track.addEventListener('touchend', function (e) { up((e.changedTouches[0] || {}).clientX != null ? e.changedTouches[0].clientX : startX); });
+        }
 
         var testiSection = root.querySelector('.hv2-testi');
         if (testiSection) {

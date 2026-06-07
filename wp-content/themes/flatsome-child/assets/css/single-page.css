@@ -231,7 +231,7 @@
 /* ============================================================
  * PREMIUM COMPANY INFO PAGES STYLING OVERRIDES
  * Scope: .content-area and full width company templates
- * Colors: Primary #00A1B2, Dark teal #063443, Muted gray #5B6C76
+ * Colors: Primary #129C94, Dark teal #063443, Muted gray #5B6C76
  * ============================================================ */
 
 /* typography reset */
@@ -257,7 +257,7 @@
     left: 0 !important;
     right: 0 !important;
     bottom: 0 !important;
-    background: linear-gradient(135deg, rgba(6, 52, 67, 0.35) 0%, rgba(0, 161, 178, 0.15) 100%) !important;
+    background: linear-gradient(135deg, rgba(6, 52, 67, 0.35) 0%, rgba(18, 156, 148, 0.15) 100%) !important;
     z-index: 1 !important;
 }
 .page-title-section .row,
@@ -404,7 +404,7 @@ p.page-sub-title {
     content: '' !important;
     position: absolute !important;
     inset: 0 !important;
-    background: radial-gradient(600px 360px at 90% 10%, rgba(0,161,178,0.20), transparent 60%) !important;
+    background: radial-gradient(600px 360px at 90% 10%, rgba(18, 156, 148,0.20), transparent 60%) !important;
     pointer-events: none !important;
 }
 .testimonials-section .testimonials-heading-row h2 {
@@ -438,7 +438,7 @@ p.page-sub-title {
     display: block !important;
     width: 44px !important;
     height: 36px !important;
-    color: #00A1B2 !important;
+    color: #129C94 !important;
     margin-bottom: 14px !important;
     flex-shrink: 0 !important;
 }
@@ -496,6 +496,7 @@ p.page-sub-title {
     bottom: -30px !important;
     display: flex !important;
     justify-content: center !important;
+    align-items: center !important;
     gap: 8px !important;
 }
 .testimonials-section .flickity-page-dots .dot {
@@ -511,14 +512,14 @@ p.page-sub-title {
 }
 .testimonials-section .flickity-page-dots .dot.is-selected {
     width: 28px !important;
-    background: #00A1B2 !important;
+    background: #129C94 !important;
     border-radius: 6px !important;
 }
 .testimonials-section .flickity-page-dots .dot:hover {
     background: rgba(255, 255, 255, 0.55) !important;
 }
 .testimonials-section .flickity-page-dots .dot.is-selected:hover {
-    background: #00A1B2 !important;
+    background: #129C94 !important;
 }
 
 /* 5. Contact Form 7 Modern Overrides */
@@ -526,10 +527,10 @@ p.page-sub-title {
     max-width: 620px !important;
     margin: 0 auto !important;
     background: #ffffff !important;
-    padding: 35px 40px !important;
-    border-radius: 16px !important;
+    padding: 35px 0px !important;
+    /* border-radius: 16px !important;
     border: 1px solid #E1E8EC !important;
-    box-shadow: 0 12px 36px rgba(6, 52, 67, 0.04) !important;
+    box-shadow: 0 12px 36px rgba(6, 52, 67, 0.04) !important; */
 }
 .wpcf7-form p {
     margin-bottom: 18px !important;
@@ -567,13 +568,13 @@ p.page-sub-title {
 .wpcf7-form input:focus,
 .wpcf7-form textarea:focus,
 .wpcf7-form select:focus {
-    border-color: #00A1B2 !important;
+    border-color: #129C94 !important;
     background: #ffffff !important;
-    box-shadow: 0 0 0 4px rgba(0, 161, 178, 0.1) !important;
+    box-shadow: 0 0 0 4px rgba(18, 156, 148, 0.1) !important;
     outline: none !important;
 }
 .wpcf7-form input[type="submit"] {
-    background: #00A1B2 !important;
+    background: #129C94 !important;
     color: #ffffff !important;
     border: none !important;
     height: 48px !important;
@@ -582,15 +583,15 @@ p.page-sub-title {
     font-weight: 700 !important;
     font-size: 16px !important;
     letter-spacing: 0.02em !important;
-    box-shadow: 0 4px 14px rgba(0, 161, 178, 0.25) !important;
+    box-shadow: 0 4px 14px rgba(18, 156, 148, 0.25) !important;
     transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
     cursor: pointer !important;
     margin: 10px 0 0 0 !important;
 }
 .wpcf7-form input[type="submit"]:hover {
-    background: #008a9a !important;
+    background: #0C7B73 !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 6px 20px rgba(0, 161, 178, 0.35) !important;
+    box-shadow: 0 6px 20px rgba(18, 156, 148, 0.35) !important;
 }
 
 /* Accordion overrides on quy-trinh page */
@@ -607,19 +608,19 @@ p.page-sub-title {
 }
 .quy_trinh .accordion-item .accordion-title.active,
 .quy_trinh .accordion-item .accordion-title:hover {
-    background: rgba(0, 161, 178, 0.05) !important;
-    color: #00A1B2 !important;
-    border-color: rgba(0, 161, 178, 0.2) !important;
+    background: rgba(18, 156, 148, 0.05) !important;
+    color: #129C94 !important;
+    border-color: rgba(18, 156, 148, 0.2) !important;
 }
 .quy_trinh .accordion-item .accordion-inner {
     padding: 15px 25px !important;
-    border-left: 3px solid #00A1B2 !important;
+    border-left: 3px solid #129C94 !important;
     margin-bottom: 12px !important;
 }
 
 /* testimonial profile colors */
 .testimonials-slider-row strong span {
-    color: #00A1B2 !important;
+    color: #129C94 !important;
 }
 
 /* Location and Contact boxes */
@@ -704,8 +705,8 @@ p.page-sub-title {
 .contact-info-item:hover {
     transform: translateX(6px) !important;
     background: #ffffff !important;
-    border-color: #00A1B2 !important;
-    box-shadow: 0 8px 24px rgba(0, 161, 178, 0.08) !important;
+    border-color: #129C94 !important;
+    box-shadow: 0 8px 24px rgba(18, 156, 148, 0.08) !important;
 }
 
 .contact-info-item h5 {
@@ -721,7 +722,7 @@ p.page-sub-title {
 .contact-info-item h4 {
     font-size: 20px !important;
     font-weight: 800 !important;
-    color: #00A1B2 !important;
+    color: #129C94 !important;
     margin: 0 !important;
     text-align: left !important;
 }
@@ -769,6 +770,117 @@ p.page-sub-title {
 /* Page-specific Consignment Form (Ký gửi) styling overrides */
 .page-id-450 .wpcf7-form {
     max-width: 100% !important;
+}
+
+/* ============================================================
+ * SEO CARD ON PROFILE PAGE (Hồ sơ năng lực)
+ * ============================================================ */
+.oo-profile-seo-card {
+    background: #ffffff !important;
+    border: 1px solid #E1E8EC !important;
+    border-radius: 16px !important;
+    padding: 24px !important;
+    box-shadow: 0 10px 30px rgba(6, 52, 67, 0.04) !important;
+    text-align: center !important;
+    max-width: 800px !important;
+    margin: 0 auto !important;
+}
+
+@media (min-width: 768px) {
+    .oo-profile-seo-card {
+        padding: 40px !important;
+    }
+}
+
+.oo-profile-seo-card__title {
+    font-size: clamp(20px, 3vw, 26px) !important;
+    font-weight: 800 !important;
+    color: #063443 !important;
+    margin: 0 0 12px 0 !important;
+    text-transform: none !important;
+}
+
+.oo-profile-seo-card__divider {
+    width: 48px !important;
+    height: 3px !important;
+    background: #129C94 !important;
+    border-radius: 2px !important;
+    margin: 16px auto !important;
+}
+
+.oo-profile-seo-card__desc {
+    font-size: 14.5px !important;
+    line-height: 1.65 !important;
+    color: #5B6C76 !important;
+    margin: 0 0 16px 0 !important;
+    text-align: justify !important;
+}
+
+@media (min-width: 768px) {
+    .oo-profile-seo-card__desc {
+        text-align: center !important;
+    }
+}
+
+.oo-profile-seo-card__links {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    margin-top: 24px !important;
+}
+
+.oo-profile-seo-card__links br {
+    display: none !important;
+}
+
+.oo-profile-seo-card__link {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    padding: 8px 16px !important;
+    border-radius: 30px !important;
+    background: #F8FAFB !important;
+    border: 1px solid #E1E8EC !important;
+    color: #5B6C76 !important;
+    transition: all 0.2s ease !important;
+    text-decoration: none !important;
+    line-height: 1.2 !important;
+}
+
+.oo-profile-seo-card__link:hover {
+    background: #ffffff !important;
+    border-color: #129C94 !important;
+    color: #129C94 !important;
+    transform: translateY(-1px) !important;
+}
+
+.oo-profile-seo-card__link--primary {
+    background: linear-gradient(135deg, #129C94 0%, #0C7B73 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    box-shadow: 0 4px 10px rgba(18, 156, 148, 0.2) !important;
+}
+
+.oo-profile-seo-card__link--primary:hover {
+    background: linear-gradient(135deg, #0C7B73 0%, #00606B 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 6px 14px rgba(18, 156, 148, 0.3) !important;
+}
+
+.oo-profile-seo-card__link--zalo {
+    background: #0068ff !important;
+    color: #ffffff !important;
+    border: none !important;
+    box-shadow: 0 4px 10px rgba(0, 104, 255, 0.15) !important;
+}
+
+.oo-profile-seo-card__link--zalo:hover {
+    background: #0055d4 !important;
+    color: #ffffff !important;
+    box-shadow: 0 6px 14px rgba(0, 104, 255, 0.25) !important;
 }
 
 

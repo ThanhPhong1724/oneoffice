@@ -3,12 +3,12 @@
  * (URL: /cho-thue-van-phong-ha-noi/{toa-nha}/).
  *
  * Scoped styles under body.single-product.
- * Palette: primary #00A1B2, dark #063443, bg #F6FAFB.
+ * Palette: primary #129C94, dark #063443, bg #F6FAFB.
  */
 
 body.single-product {
-    --sp2-primary:    #00A1B2;
-    --sp2-primary-d:  #007D8C;
+    --sp2-primary:    #129C94;
+    --sp2-primary-d:  #0C7B73;
     --sp2-primary-l:  #E6F6F8;
     --sp2-dark:       #063443;
     --sp2-dark-2:     #0a4a5d;
@@ -20,9 +20,9 @@ body.single-product {
     --sp2-shadow-sm:  0 2px 8px rgba(6,52,67,.06);
     --sp2-shadow:     0 8px 28px rgba(6,52,67,.10);
     --sp2-shadow-lg:  0 16px 48px rgba(6,52,67,.16);
-    --sp2-radius:     16px;
-    --sp2-radius-sm:  12px;
-    --sp2-radius-lg:  24px;
+    --sp2-radius:     14px;
+    --sp2-radius-sm:  10px;
+    --sp2-radius-lg:  20px;
     --sp2-fast:       .2s ease;
     --sp2-base:       .32s cubic-bezier(.2,.7,.2,1);
     --sp2-font-display: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
@@ -50,18 +50,16 @@ body.single-product .product-info > .sp2-spec-card {
  * 2. HEADER CARD (Breadcrumbs + Title + Rank + Meta)
  * ===================================================== */
 body.single-product .sp2-header-card {
-    background: var(--sp2-white);
-    border: 1px solid var(--sp2-border);
-    border-radius: var(--sp2-radius);
-    padding: 24px 30px;
-    box-shadow: var(--sp2-shadow-sm);
-    margin-top: 24px;
-    margin-bottom: 24px;
-    transition: box-shadow var(--sp2-base), border-color var(--sp2-base);
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    margin-top: 24px !important;
+    margin-bottom: 24px !important;
 }
 body.single-product .sp2-header-card:hover {
-    box-shadow: var(--sp2-shadow);
-    border-color: rgba(0, 161, 178, 0.2);
+    box-shadow: none !important;
 }
 
 body.single-product .sp2-header-card__breadcrumbs {
@@ -108,7 +106,7 @@ body.single-product .sp2-rank-badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(0, 161, 178, 0.15);
+    border: 1px solid rgba(18, 156, 148, 0.15);
 }
 
 body.single-product .sp2-header-card__meta {
@@ -231,42 +229,43 @@ body.single-product .sp2-gallery-more-btn:hover {
         display: none;
     }
     body.single-product #BuildingGalleryMobile {
-        display: block;
-        margin-bottom: 24px;
+        display: block !important;
+        margin-bottom: 24px !important;
+        padding: 0 !important;
     }
     body.single-product #BuildingGalleryMobile .BuildingGallery {
-        display: flex;
-        gap: 12px;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 8px;
-        margin: 0 -15px;
-        padding: 0 15px 8px;
-        height: auto;
+        overflow: hidden !important;
+        position: relative !important;
+        margin: 0 -15px !important;
+        padding: 0 15px !important;
+        display: block !important;
+        scroll-snap-type: none !important;
+        -webkit-overflow-scrolling: auto !important;
+        height: auto !important;
     }
     body.single-product #BuildingGalleryMobile .swiper-wrapper {
-        display: flex;
-        flex-direction: row;
-        width: auto;
-        height: auto;
+        display: flex !important;
+        flex-direction: row !important;
+        width: 100% !important;
+        height: auto !important;
     }
     body.single-product #BuildingGalleryMobile .swiper-slide {
-        flex: 0 0 82%;
-        scroll-snap-align: start;
-        width: 82%;
+        width: 82% !important;
+        flex-shrink: 0 !important;
+        scroll-snap-align: none !important;
     }
     body.single-product #BuildingGalleryMobile .BuildingGallery-Item {
-        display: block;
-        border-radius: 12px;
-        overflow: hidden;
-        aspect-ratio: 16 / 10;
-        box-shadow: var(--sp2-shadow-sm);
+        display: block !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+        aspect-ratio: 16 / 10 !important;
+        box-shadow: var(--sp2-shadow-sm) !important;
+        margin: 0 !important;
     }
     body.single-product #BuildingGalleryMobile .BuildingGallery-ItemIMG {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
     }
 }
 
@@ -293,6 +292,9 @@ body.single-product .sp2-sidebar-col {
         padding-left: 15px !important;
         padding-right: 15px !important;
     }
+    body.single-product .sp2-sticky-sidebar {
+        position: static !important;
+    }
 }
 
 /* =====================================================
@@ -309,7 +311,7 @@ body.single-product .sp2-spec-card {
 }
 body.single-product .sp2-spec-card:hover {
     box-shadow: var(--sp2-shadow);
-    border-color: rgba(0, 161, 178, 0.25);
+    border-color: rgba(18, 156, 148, 0.25);
 }
 
 body.single-product .sp2-spec-card__title {
@@ -355,7 +357,7 @@ body.single-product .sp2-spec-item:hover {
 body.single-product .sp2-spec-item__icon {
     width: 40px;
     height: 40px;
-    background: rgba(0, 161, 178, 0.06);
+    background: rgba(18, 156, 148, 0.06);
     border-radius: var(--sp2-radius-sm);
     display: flex;
     align-items: center;
@@ -425,13 +427,13 @@ body.single-product .sp2-price-box {
     border-radius: var(--sp2-radius);
     padding: 24px;
     margin-bottom: 18px;
-    box-shadow: 0 12px 30px rgba(0, 161, 178, 0.22);
+    box-shadow: 0 12px 30px rgba(18, 156, 148, 0.22);
     color: var(--sp2-white);
     transition: transform var(--sp2-base), box-shadow var(--sp2-base);
 }
 body.single-product .sp2-price-box:hover {
     transform: translateY(-2px);
-    box-shadow: 0 16px 36px rgba(0, 161, 178, 0.32);
+    box-shadow: 0 16px 36px rgba(18, 156, 148, 0.32);
 }
 
 body.single-product .sp2-price-box__label {
@@ -462,7 +464,7 @@ body.single-product .sp2-consult-card {
 }
 body.single-product .sp2-consult-card:hover {
     box-shadow: var(--sp2-shadow);
-    border-color: rgba(0, 161, 178, 0.2);
+    border-color: rgba(18, 156, 148, 0.2);
 }
 
 body.single-product .sp2-consult-card h3 {
@@ -504,11 +506,11 @@ body.single-product .sp2-sidebar-btn--phone {
     background: linear-gradient(135deg, var(--sp2-primary) 0%, var(--sp2-primary-d) 100%);
     color: var(--sp2-white) !important;
     border: none;
-    box-shadow: 0 4px 14px rgba(0, 161, 178, 0.2);
+    box-shadow: 0 4px 14px rgba(18, 156, 148, 0.2);
 }
 body.single-product .sp2-sidebar-btn--phone:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 161, 178, 0.35);
+    box-shadow: 0 8px 20px rgba(18, 156, 148, 0.35);
     color: var(--sp2-white) !important;
 }
 
@@ -521,7 +523,19 @@ body.single-product .sp2-sidebar-btn--form.btn-trang:hover {
     background: var(--sp2-primary) !important;
     color: var(--sp2-white) !important;
     transform: translateY(-2px);
-    box-shadow: 0 4px 14px rgba(0, 161, 178, 0.2);
+    box-shadow: 0 4px 14px rgba(18, 156, 148, 0.2);
+}
+
+/* Fix empty CF7 form box under the sidebar consult button */
+body.single-product .sp2-consult-card form.wpcf7-form {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    overflow: visible !important;
 }
 
 /* =====================================================
@@ -565,7 +579,7 @@ body.single-product .csncngbg .body_csncngbg {
 
 body.single-product .csncngbg .header_csncngbg h4 {
     background: linear-gradient(135deg, var(--sp2-primary) 0%, var(--sp2-primary-d) 100%) !important;
-    color: var(--sp2-white) !important;
+    color: #ffffff !important;
     font-size: 20px;
     font-weight: 800;
     padding: 24px 32px !important;
@@ -574,14 +588,28 @@ body.single-product .csncngbg .header_csncngbg h4 {
     letter-spacing: -0.01em;
     margin: 0;
 }
+body.single-product .csncngbg .header_csncngbg h4.modal-title {
+    color: #ffffff !important;
+}
 
 body.single-product .csncngbg .close_csncngbg {
     top: 24px;
     right: 24px;
-    opacity: 0.8;
-    color: var(--sp2-white) !important;
+    opacity: 0.85;
+    color: #ffffff !important;
     font-size: 20px;
     transition: opacity var(--sp2-fast);
+    z-index: 10;
+}
+body.single-product .csncngbg .close_csncngbg button.close,
+body.single-product .csncngbg .close_csncngbg button.close i {
+    color: #ffffff !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    font-size: 20px !important;
+    cursor: pointer;
 }
 body.single-product .csncngbg .close_csncngbg:hover {
     opacity: 1;
@@ -641,7 +669,7 @@ body.single-product .csncngbg input[type="tel"]:focus,
 body.single-product .csncngbg textarea:focus {
     background: var(--sp2-white) !important;
     border-color: var(--sp2-primary) !important;
-    box-shadow: 0 0 0 4px rgba(0, 161, 178, 0.12) !important;
+    box-shadow: 0 0 0 4px rgba(18, 156, 148, 0.12) !important;
     outline: none !important;
 }
 
@@ -663,12 +691,12 @@ body.single-product .csncngbg .wpcf7-submit {
     font-weight: 700 !important;
     cursor: pointer !important;
     transition: transform var(--sp2-fast), box-shadow var(--sp2-fast) !important;
-    box-shadow: 0 4px 14px rgba(0, 161, 178, 0.2) !important;
+    box-shadow: 0 4px 14px rgba(18, 156, 148, 0.2) !important;
     text-transform: none !important;
 }
 body.single-product .csncngbg .wpcf7-submit:hover {
     transform: translateY(-2px) !important;
-    box-shadow: 0 6px 20px rgba(0, 161, 178, 0.35) !important;
+    box-shadow: 0 6px 20px rgba(18, 156, 148, 0.35) !important;
 }
 
 @media (max-width: 767px) {
@@ -731,7 +759,7 @@ body.single-product .sp2-contact-callout {
     width: 100%;
 }
 body.single-product .sp2-contact-callout__box {
-    background: rgba(0, 161, 178, 0.05);
+    background: rgba(18, 156, 148, 0.05);
     border-left: 4px solid var(--sp2-primary);
     border-radius: 4px var(--sp2-radius-sm) var(--sp2-radius-sm) 4px;
     padding: 18px 24px;
@@ -739,9 +767,9 @@ body.single-product .sp2-contact-callout__box {
     align-items: flex-start;
     gap: 14px;
     box-shadow: var(--sp2-shadow-sm);
-    border-top: 1px solid rgba(0, 161, 178, 0.06);
-    border-right: 1px solid rgba(0, 161, 178, 0.06);
-    border-bottom: 1px solid rgba(0, 161, 178, 0.06);
+    border-top: 1px solid rgba(18, 156, 148, 0.06);
+    border-right: 1px solid rgba(18, 156, 148, 0.06);
+    border-bottom: 1px solid rgba(18, 156, 148, 0.06);
 }
 body.single-product .sp2-contact-callout__box i {
     color: var(--sp2-primary);
@@ -843,56 +871,50 @@ body.single-product .oneoffice-product-share .share-label {
 }
 
 /* =====================================================
- * 10. DARK CTA SECTION (Bottom tiet-kiem-95 block)
+ * 10. MOBILE LAYOUT & SPACING FIXES
  * ===================================================== */
-body.single-product section.section.dark {
-    background: linear-gradient(135deg, var(--sp2-dark) 0%, var(--sp2-dark-2) 100%) !important;
-    color: var(--sp2-white);
-    position: relative;
-    overflow: hidden;
-}
-body.single-product section.section.dark::before {
-    content: '';
-    position: absolute;
-    top: -120px; right: -80px;
-    width: 360px; height: 360px;
-    background: radial-gradient(circle, rgba(0,161,178,.20), transparent 70%);
-    pointer-events: none;
-}
-body.single-product section.section.dark h1,
-body.single-product section.section.dark h2,
-body.single-product section.section.dark h3,
-body.single-product section.section.dark h4,
-body.single-product section.section.dark p,
-body.single-product section.section.dark li {
-    color: var(--sp2-white) !important;
-}
-body.single-product section.section.dark h2,
-body.single-product section.section.dark h3 {
-    font-weight: 800;
-}
-body.single-product section.section.dark .button.primary {
-    background: var(--sp2-white) !important;
-    color: var(--sp2-primary) !important;
-    border-color: var(--sp2-white) !important;
-    font-weight: 700;
-    box-shadow: 0 8px 22px rgba(0,0,0,.15);
-    transition: transform var(--sp2-fast), background var(--sp2-fast), color var(--sp2-fast);
-}
-body.single-product section.section.dark .button.primary:hover {
-    background: var(--sp2-primary) !important;
-    color: var(--sp2-white) !important;
-    transform: translateY(-2px);
-}
-body.single-product section.section.dark .button.secondary {
-    background: transparent !important;
-    color: var(--sp2-white) !important;
-    border: 1.5px solid rgba(255,255,255,.55) !important;
-    font-weight: 600;
-}
-body.single-product section.section.dark .button.secondary:hover {
-    background: var(--sp2-white) !important;
-    color: var(--sp2-dark) !important;
+@media (max-width: 767px) {
+    body.single-product .sp2-header-card {
+        padding: 0 !important;
+        margin-top: 12px !important;
+        margin-bottom: 16px !important;
+        border-radius: 0 !important;
+    }
+    body.single-product .sp2-header-card__title-row h1 {
+        font-size: 20px !important;
+    }
+    body.single-product .sp2-header-card__title-row {
+        gap: 8px !important;
+        margin-bottom: 10px !important;
+    }
+    body.single-product .sp2-header-card__meta {
+        padding-top: 12px !important;
+        gap: 12px !important;
+    }
+    body.single-product .sp2-spec-card__grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px 16px !important;
+    }
+    body.single-product .sp2-spec-card {
+        padding: 16px 20px !important;
+        margin-bottom: 16px !important;
+    }
+    body.single-product .sp2-spec-item {
+        gap: 10px !important;
+        padding: 4px 0 !important;
+    }
+    body.single-product .sp2-spec-item__icon {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 13px !important;
+    }
+    body.single-product .sp2-spec-item__label {
+        font-size: 9.5px !important;
+        margin-bottom: 1px !important;
+    }
+    body.single-product .sp2-spec-item__value {
+        font-size: 12.5px !important;
+    }
 }
 
 /* =====================================================

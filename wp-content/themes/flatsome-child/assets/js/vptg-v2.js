@@ -31,10 +31,19 @@
         }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
         revealEls.forEach(function (el) { io.observe(el); });
 
-        // Failsafe — không để section ẩn quá 2s
-        setTimeout(function () {
-            revealEls.forEach(function (el) { el.classList.add('is-in'); });
-        }, 2000);
+        // BẢO HIỂM (không phá hiệu ứng): chỉ hiện phần ĐANG TRONG/QUA màn hình.
+        var revealInView = function () {
+            var vh = window.innerHeight;
+            revealEls.forEach(function (el) {
+                if (!el.classList.contains('is-in') && el.getBoundingClientRect().top < vh * 0.9) {
+                    el.classList.add('is-in');
+                }
+            });
+        };
+        window.addEventListener('load', revealInView);
+        window.addEventListener('scroll', revealInView, { passive: true });
+        window.addEventListener('resize', revealInView);
+        setTimeout(revealInView, 1500);
     }
 
     /* -------------------------------------------------

@@ -720,17 +720,9 @@ add_action('wp_footer', function(){
 		const gallery = document.querySelector("#BuildingGalleryMobile .BuildingGallery");
 		if (gallery) {
 			new Swiper(gallery, {
-				loop: true,
-				slidesPerView: 3,
-				spaceBetween: 10,
-				pagination: {
-					el: ".swiper-pagination",
-					clickable: true,
-				},
-				navigation: {
-					nextEl: ".swiper-button-next",
-					prevEl: ".swiper-button-prev",
-				},
+				loop: false,
+				slidesPerView: "auto",
+				spaceBetween: 12,
 			});
 		}
 	});
@@ -904,11 +896,12 @@ function oneoffice_sprint1_assets() {
     ) );
 
     // Main stylesheet extracted from header.php (replaces inline <style>)
+    // Version = filemtime để tự cache-bust mỗi lần sửa (trước đây hardcode '1.1' gây cache cũ).
     wp_enqueue_style(
         'oneoffice-main',
         $uri . '/assets/css/main.css',
         array(),
-        '1.1'
+        filemtime( get_stylesheet_directory() . '/assets/css/main.css' )
     );
 
     // Category page overrides
@@ -933,6 +926,27 @@ function oneoffice_sprint1_assets() {
         $uri . '/assets/css/sprint1.css',
         array( 'oneoffice-main' ),
         filemtime( get_stylesheet_directory() . '/assets/css/sprint1.css' )
+    );
+
+    // Design System — tokens + component primitives toàn site.
+    // Nạp SAU cùng trong nhóm global (dep đủ 4 file) ⇒ override layer cũ.
+    // V2 (home/vptg/product) nạp ưu tiên 30 → vẫn nạp sau file này, không bị đụng.
+    // ROLLBACK: comment cả block wp_enqueue_style() này.
+    wp_enqueue_style(
+        'oneoffice-design-system',
+        $uri . '/assets/css/design-system.css',
+        array( 'oneoffice-main', 'oneoffice-category-page', 'oneoffice-single-page', 'oneoffice-sprint1' ),
+        filemtime( get_stylesheet_directory() . '/assets/css/design-system.css' )
+    );
+
+    // Global motion — reveal-on-scroll cho trang cũ (tự bỏ qua V2 + reduced-motion).
+    // ROLLBACK: comment block wp_enqueue_script() này.
+    wp_enqueue_script(
+        'oneoffice-motion',
+        $uri . '/assets/js/oo-motion.js',
+        array(),
+        filemtime( get_stylesheet_directory() . '/assets/js/oo-motion.js' ),
+        true
     );
 
     // jQuery Cookie — moved from CDN hardcode in header.php to proper enqueue
@@ -1026,6 +1040,26 @@ require_once __DIR__ . '/inc/schema-markup.php';
 require_once __DIR__ . '/inc/uchat-widget.php';
 
 /* =============================================================
+ * COMPANY V3 — 7 trang Thông tin công ty / Liên hệ / Ký gửi.
+ * Rollback: xoá dòng require_once dưới đây + chạy ngược script
+ * assign template (xem company-v3-loader.php).
+ * ============================================================= */
+require_once __DIR__ . '/inc/company-v3-loader.php';
+
+/* =============================================================
+ * [oo_link path="/..." class="..."]Text[/oo_link]
+ * Helper shortcode: resolve URL theo home_url() → an toàn subdir lẫn root.
+ * Dùng cho các block UX-Builder/static muốn link nội bộ mà không hardcode '/oneoffice'.
+ * ============================================================= */
+add_shortcode( 'oo_link', function ( $atts, $content = '' ) {
+    $a = shortcode_atts( array( 'path' => '/', 'class' => '', 'target' => '_self' ), $atts );
+    $url = esc_url( home_url( $a['path'] ) );
+    $cls = $a['class'] ? ' class="' . esc_attr( $a['class'] ) . '"' : '';
+    $tgt = $a['target'] !== '_self' ? ' target="' . esc_attr( $a['target'] ) . '" rel="noopener"' : '';
+    return '<a href="' . $url . '"' . $cls . $tgt . '>' . do_shortcode( $content ) . '</a>';
+} );
+
+/* =============================================================
  * SEO EXTRAS — honeypot chống spam CF7 + đảm bảo 1 H1/bài viết.
  * Rollback: xoá dòng require_once dưới đây.
  * ============================================================= */
@@ -1078,5 +1112,15 @@ function oo_dynamic_internal_links_filter( $content ) {
 add_filter( 'the_content', 'oo_dynamic_internal_links_filter', 99 );
 add_filter( 'the_excerpt', 'oo_dynamic_internal_links_filter', 99 );
 add_filter( 'woocommerce_short_description', 'oo_dynamic_internal_links_filter', 99 );
+
+/* Inject inline style directly into file upload input for "dinhkem" on the ky-gui page */
+function oo_add_inline_style_to_dinhkem( $content ) {
+    if ( strpos( $content, 'name="dinhkem"' ) !== false ) {
+        $content = str_replace( 'name="dinhkem"', 'name="dinhkem" style="width: 100%; padding-bottom: 38px;"', $content );
+    }
+    return $content;
+}
+add_filter( 'wpcf7_form_elements', 'oo_add_inline_style_to_dinhkem', 10 );
+
 
 
