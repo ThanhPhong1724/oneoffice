@@ -1,23 +1,48 @@
 <?php
 /**
- * UChat (uhchat.net) live-chat widget — nhúng toàn site.
+ * Live-chat widget — Tawk.to (đã thay UChat vào 2026-06-07).
  *
- * Mã nhúng do tài khoản UChat cung cấp (f=cad774).
- * Vị trí hiển thị (góc phải/trái), màu, lời chào… cấu hình trong dashboard https://uhchat.net
- * (KHÔNG cấu hình ở đây — file này chỉ chèn script).
+ * Mã nhúng do tài khoản Tawk.to cung cấp (property ID: 6a2585cb8ff16b1c302951af).
+ * Cấu hình vị trí widget, lời chào, giờ làm việc… trong dashboard:
+ *   https://dashboard.tawk.to/ → Administration → Chat Widget
  *
- * Lưu ý: cụm nút Gọi/Zalo/Messenger (plugin Call Now Button) đang ở góc PHẢI dưới.
- * Nếu UChat cũng để góc phải và bị đè, đổi vị trí UChat trong dashboard.
+ * Lưu ý vị trí:
+ *   - Cụm nút Gọi/Zalo/Messenger floating đang ở góc TRÁI dưới (.oo-desktop-cta).
+ *   - Tawk.to mặc định góc PHẢI dưới → KHÔNG đè cụm nút floating.
+ *   - Trên mobile có sticky CTA bar đáy → CSS dưới đẩy Tawk lên 70px tránh đè.
  *
+ * File vẫn giữ tên 'uchat-widget.php' để khỏi sửa nhiều nơi require.
  * Để tắt: xoá dòng require_once trong functions.php.
+ * Rollback về UChat: git checkout 7ae9d4d -- inc/uchat-widget.php.
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-add_action( 'wp_footer', 'oo_uchat_widget', 99 );
+add_action( 'wp_footer', 'oo_tawk_widget', 99 );
 
-function oo_uchat_widget() {
+function oo_tawk_widget() {
     if ( is_admin() ) return;
-    echo "\n<!-- UChat live-chat widget -->\n";
-    echo '<script src="https://uhchat.net/code.php?f=cad774"></script>' . "\n";
+    ?>
+<!-- Tawk.to live-chat widget -->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+/* Push widget up 70px on mobile to avoid sticky CTA bar at bottom.
+   Desktop giữ mặc định (bottom-right) — không đè cụm nút floating bên TRÁI. */
+Tawk_API.customStyle = {
+    visibility: {
+        desktop: { position: 'br', xOffset: 15, yOffset: 30 },
+        mobile:  { position: 'br', xOffset: 10, yOffset: 75 }
+    }
+};
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a2585cb8ff16b1c302951af/1jqh959lf';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!-- End Tawk.to -->
+    <?php
 }
