@@ -593,7 +593,7 @@
     position: relative;
     border-radius: var(--hv2-radius);
     overflow: hidden;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 1 / 1;
     box-shadow: var(--hv2-shadow-sm);
     transition: transform var(--hv2-base), box-shadow var(--hv2-base);
     color: var(--hv2-white);
@@ -659,9 +659,50 @@
     transition: transform var(--hv2-base), opacity var(--hv2-base);
 }
 
+.hv2-cta-txt-wrapper {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    height: 16px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.hv2-cta-txt {
+    display: block;
+    line-height: 16px;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+
+.hv2-cta-txt--default {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hv2-cta-txt--hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transform: translateY(100%);
+    white-space: nowrap;
+}
+
 .hv2-areas__item a:hover .hv2-areas__cta {
     transform: translateY(0);
     opacity: 1;
+}
+
+.hv2-areas__item a:hover .hv2-cta-txt--default {
+    opacity: 0;
+    transform: translateY(-100%);
+    transition-delay: 0.08s;
+}
+
+.hv2-areas__item a:hover .hv2-cta-txt--hover {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.08s;
 }
 
 .hv2-areas__more {
@@ -1467,7 +1508,7 @@
     }
 
     .hv2-areas__item a {
-        aspect-ratio: 3 / 4;
+        aspect-ratio: 1 / 1;
     }
 
     .hv2-areas__name {

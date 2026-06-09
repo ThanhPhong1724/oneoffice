@@ -807,3 +807,27 @@ body.single-product .sp2-sidebar-btn--quote:hover {
 @media (prefers-reduced-motion: reduce) {
     .oo-tk95__btn { transition: none; }
 }
+
+/* =============================================================
+ * 16. BUILDING ITEM HOVER OVERLAY (Branding gradient)
+ * ============================================================= */
+.building-item .thumb a {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.building-item .thumb a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(6, 52, 67, 0) 60%, rgba(6, 52, 67, 0.4) 100%);
+    opacity: 1;
+    transition: background var(--base);
+    pointer-events: none;
+    z-index: 1;
+}
+.building-item:hover .thumb a::after {
+    background: linear-gradient(180deg, rgba(6, 52, 67, 0.2) 20%, rgba(18, 156, 148, 0.7) 100%) !important;
+}
+

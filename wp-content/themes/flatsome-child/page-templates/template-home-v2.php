@@ -332,7 +332,11 @@ get_header(); ?>
                     <a href="<?php echo esc_url( $d['href'] ); ?>" aria-label="Văn phòng cho thuê quận <?php echo esc_attr( $d['name'] ); ?>">
                         <span class="hv2-areas__img" style="background-image:url('<?php echo esc_url( $img ); ?>');"></span>
                         <span class="hv2-areas__name"><?php echo esc_html( $d['name'] ); ?></span>
-                        <span class="hv2-areas__cta">Xem tòa nhà
+                        <span class="hv2-areas__cta">
+                            <span class="hv2-cta-txt-wrapper">
+                                <span class="hv2-cta-txt hv2-cta-txt--default">Xem tòa nhà</span>
+                                <span class="hv2-cta-txt hv2-cta-txt--hover">Khám phá ngay</span>
+                            </span>
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
                         </span>
                     </a>
