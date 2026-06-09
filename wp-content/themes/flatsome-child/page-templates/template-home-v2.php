@@ -203,7 +203,7 @@ get_header(); ?>
         <div class="hv2-container">
             <div class="hv2-quickform__card">
                 <div class="hv2-quickform__head">
-                    <h2>Tìm văn phòng phù hợp chỉ trong 30&nbsp;giây</h2>
+                    <h2>Tìm văn phòng phù hợp chỉ sau 1 cuộc gọi</h2>
                     <p>Chia sẻ nhu cầu — chuyên viên tư vấn sẽ gửi báo giá &amp; danh sách tòa nhà phù hợp ngay.</p>
                 </div>
                 <?php
@@ -307,7 +307,7 @@ get_header(); ?>
                 ?>
                 <p class="hv2-quickform__note">
                     <!-- [NEEDS CLIENT CONTENT] Backend form chuyên dụng cho homepage chưa có — tạm thời chuyển sang /lien-he/. Cần khách cấu hình form xử lý + thông báo Telegram/Email. -->
-                    Hoặc gọi trực tiếp <a href="tel:0966681616"><strong>0966 68 1616</strong></a> — phục vụ 8h–18h hàng ngày.
+                    Hoặc gọi trực tiếp hotline 24/7: <a href="tel:0966681616"><strong>0966 68 1616</strong></a>
                 </p>
             </div>
         </div>

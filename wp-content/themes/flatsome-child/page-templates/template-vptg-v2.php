@@ -166,7 +166,7 @@ get_header(); ?>
         <div class="vp2-container">
             <div class="vp2-quickform__card">
                 <div class="vp2-quickform__head">
-                    <h2>Nhận tư vấn không gian phù hợp trong 30&nbsp;giây</h2>
+                    <h2>Tìm văn phòng phù hợp chỉ sau 1 cuộc gọi</h2>
                     <p>Chia sẻ nhu cầu — chuyên viên Wonderland sẽ gửi gợi ý địa điểm &amp; báo giá phù hợp.</p>
                 </div>
                 <?php
@@ -280,7 +280,7 @@ get_header(); ?>
                 ?>
                 <p class="vp2-quickform__note">
                     <!-- [NEEDS CLIENT CONTENT] Form gốc page 751 dùng [contact-form-7 id="601"] + ux_sidebar — cần map backend khi triển khai. Tạm thời chuyển /lien-he/. -->
-                    Hoặc gọi trực tiếp <a href="tel:0966681616"><strong>0966 68 1616</strong></a> — phục vụ 8h–18h hàng ngày.
+                    Hoặc gọi trực tiếp hotline 24/7: <a href="tel:0966681616"><strong>0966 68 1616</strong></a>
                 </p>
             </div>
         </div>
