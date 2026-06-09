@@ -680,11 +680,8 @@
 }
 
 .hv2-cta-txt--hover {
-    position: absolute;
-    top: 0;
-    left: 0;
     opacity: 0;
-    transform: translateY(100%);
+    transform: translateY(0);
     white-space: nowrap;
 }
 
@@ -701,7 +698,7 @@
 
 .hv2-areas__item a:hover .hv2-cta-txt--hover {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(-100%);
     transition-delay: 0.08s;
 }
 
