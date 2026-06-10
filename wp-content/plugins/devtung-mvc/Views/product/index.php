@@ -256,6 +256,337 @@
 
     <!-- End SectionBuilding -->
 
+    <!-- ============================================================
+         WL SECTIONS ADDITIONS (Phân hạng, Gợi ý, FAQ, Thị trường)
+         ============================================================ -->
+
+    <!-- Section 1: Phân hạng tòa nhà văn phòng cho thuê tại Hà Nội -->
+    <section class="wl-listing-section wl-ranking-section">
+      <div class="wl-section-header text-center">
+        <h2 class="wl-section-title">Phân hạng các tòa nhà văn phòng cho thuê tại Hà Nội</h2>
+        <p class="wl-section-subtitle">Các tòa nhà văn phòng cho thuê tại Hà Nội được phân loại thành hạng A, B và C dựa trên các tiêu chí như vị trí trung tâm, chất lượng xây dựng, trang thiết bị kỹ thuật, dịch vụ vận hành và mức giá thuê. Mỗi phân hạng đáp ứng các nhu cầu và ngân sách khác nhau của doanh nghiệp.</p>
+      </div>
+      <div class="row wl-ranking-row">
+        <div class="col large-4 medium-4 small-12">
+          <div class="wl-ranking-card card-grade-a">
+            <a href="<?php echo esc_url( home_url('/cho-thue-van-phong-ha-noi/?filter_rank=toa-nha-hang-a') ); ?>" class="wl-ranking-card-link">
+              <div class="wl-ranking-icon">
+                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M20 60V8a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2v52" stroke-linecap="round"/>
+                  <path d="M10 60V24a2 2 0 0 1 2-2h8v38m32 0V34a2 2 0 0 0-2-2h-8v28M4 60h56" stroke-linecap="round"/>
+                  <line x1="28" y1="14" x2="36" y2="14" stroke-linecap="round"/>
+                  <line x1="28" y1="22" x2="36" y2="22" stroke-linecap="round"/>
+                  <line x1="28" y1="30" x2="36" y2="30" stroke-linecap="round"/>
+                  <line x1="28" y1="38" x2="36" y2="38" stroke-linecap="round"/>
+                  <line x1="28" y1="46" x2="36" y2="46" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h3 class="wl-ranking-card-title">Tòa nhà hạng A tại Hà Nội</h3>
+              <p class="wl-ranking-card-desc">Vị trí đắc địa tại trung tâm Hoàn Kiếm, Ba Đình. Trang thiết bị tối tân, quản lý chuyên nghiệp chuẩn quốc tế dành cho tập đoàn lớn.</p>
+            </a>
+          </div>
+        </div>
+        <div class="col large-4 medium-4 small-12">
+          <div class="wl-ranking-card card-grade-b">
+            <a href="<?php echo esc_url( home_url('/cho-thue-van-phong-ha-noi/?filter_rank=toa-nha-hang-b') ); ?>" class="wl-ranking-card-link">
+              <div class="wl-ranking-icon">
+                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M14 60V16a2 2 0 0 1 2-2h32a2 2 0 0 1 2 2v44" stroke-linecap="round"/>
+                  <path d="M6 60V32a2 2 0 0 1 2-2h6v28m36 0V38a2 2 0 0 0-2-2h-6v24M2 60h60" stroke-linecap="round"/>
+                  <rect x="22" y="22" width="6" height="6" rx="1"/>
+                  <rect x="36" y="22" width="6" height="6" rx="1"/>
+                  <rect x="22" y="34" width="6" height="6" rx="1"/>
+                  <rect x="36" y="34" width="6" height="6" rx="1"/>
+                  <rect x="22" y="46" width="6" height="6" rx="1"/>
+                  <rect x="36" y="46" width="6" height="6" rx="1"/>
+                </svg>
+              </div>
+              <h3 class="wl-ranking-card-title">Tòa nhà hạng B tại Hà Nội</h3>
+              <p class="wl-ranking-card-desc">Sự cân bằng hoàn hảo giữa chi phí và chất lượng. Tòa nhà hiện đại, tập trung nhiều ở Cầu Giấy, Đống Đa, Thanh Xuân.</p>
+            </a>
+          </div>
+        </div>
+        <div class="col large-4 medium-4 small-12">
+          <div class="wl-ranking-card card-grade-c">
+            <a href="<?php echo esc_url( home_url('/cho-thue-van-phong-ha-noi/?filter_rank=toa-nha-hang-c') ); ?>" class="wl-ranking-card-link">
+              <div class="wl-ranking-icon">
+                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="16" y="20" width="32" height="40" rx="2" stroke-linecap="round"/>
+                  <path d="M8 60h48" stroke-linecap="round"/>
+                  <line x1="24" y1="28" x2="28" y2="28" stroke-linecap="round"/>
+                  <line x1="36" y1="28" x2="40" y2="28" stroke-linecap="round"/>
+                  <line x1="24" y1="38" x2="28" y2="38" stroke-linecap="round"/>
+                  <line x1="36" y1="38" x2="40" y2="38" stroke-linecap="round"/>
+                  <line x1="24" y1="48" x2="28" y2="48" stroke-linecap="round"/>
+                  <line x1="36" y1="48" x2="40" y2="48" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h3 class="wl-ranking-card-title">Tòa nhà hạng C tại Hà Nội</h3>
+              <p class="wl-ranking-card-desc">Lựa chọn tối ưu ngân sách cho doanh nghiệp vừa và nhỏ, startup. Diện tích thuê linh hoạt, phân bổ khắp các quận.</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Gợi ý các tòa nhà văn phòng Hà Nội nổi bật -->
+    <section class="wl-listing-section wl-suggestions-section">
+      <div class="wl-section-header text-center">
+        <h2 class="wl-section-title">Gợi ý các tòa nhà văn phòng Hà Nội nổi bật</h2>
+        <p class="wl-section-subtitle">Danh sách chọn lọc các tòa nhà văn phòng theo khu vực, phân hạng và xu hướng tìm kiếm phổ biến nhất tại thủ đô.</p>
+      </div>
+      <div class="row wl-suggestions-row">
+        <div class="col large-4 medium-4 small-12">
+          <div class="wl-suggestion-card">
+            <a href="<?php echo esc_url( home_url('/cho-thue-van-phong-ha-noi/') ); ?>" class="wl-suggestion-link">
+              <div class="wl-suggestion-img" style="background-image: url('<?php echo esc_url( home_url('/wp-content/uploads/2026/06/Keangnam-Nam%20Tu%20Liem.jpg') ); ?>');"></div>
+              <div class="wl-suggestion-content">
+                <h3 class="wl-suggestion-title">Khu vực tập trung nhiều văn phòng nhất</h3>
+                <p class="wl-suggestion-desc">Cầu Giấy, Nam Từ Liêm và Đống Đa là các "trung tâm" văn phòng mới của Hà Nội với nguồn cung dồi dào, thiết kế hiện đại và giá thuê cạnh tranh.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col large-4 medium-4 small-12">
+          <div class="wl-suggestion-card">
+            <a href="<?php echo esc_url( home_url('/cho-thue-van-phong-ha-noi/') ); ?>" class="wl-suggestion-link">
+              <div class="wl-suggestion-img" style="background-image: url('<?php echo esc_url( home_url('/wp-content/uploads/2026/06/Lotte-Ba%20Dinh.jpg') ); ?>');"></div>
+              <div class="wl-suggestion-content">
+                <h3 class="wl-suggestion-title">Top 20+ tòa nhà văn phòng Hà Nội tốt nhất</h3>
+                <p class="wl-suggestion-desc">Tổng hợp những tòa nhà văn phòng nổi bật nhất về dịch vụ vận hành, thiết kế kiến trúc độc đáo, đạt tỷ lệ lấp đầy cao nhất năm nay.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col large-4 medium-4 small-12">
+          <div class="wl-suggestion-card">
+            <a href="<?php echo esc_url( home_url('/cho-thue-van-phong-ha-noi/') ); ?>" class="wl-suggestion-link">
+              <div class="wl-suggestion-img" style="background-image: url('<?php echo esc_url( home_url('/wp-content/uploads/2026/06/CSB-Hoan%20Kiem.jpg') ); ?>');"></div>
+              <div class="wl-suggestion-content">
+                <h3 class="wl-suggestion-title">Top tòa nhà Hạng A ở quận trung tâm</h3>
+                <p class="wl-suggestion-desc">Khám phá các cao ốc văn phòng hạng sang đạt tiêu chuẩn LEED quốc tế tại Hoàn Kiếm, Ba Đình, khẳng định vị thế và thương hiệu của doanh nghiệp.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="text-center wl-suggestions-more">
+        <a href="<?php echo esc_url( home_url('/tu-van/kinh-nghiem/') ); ?>" class="wl-btn-more">Xem tất cả bài viết</a>
+      </div>
+    </section>
+
+    <!-- Section 3: Câu hỏi thường gặp khi thuê văn phòng tại Hà Nội (FAQ) -->
+    <section class="wl-listing-section wl-faq-section">
+      <div class="wl-section-header text-center">
+        <h2 class="wl-section-title">Câu hỏi thường gặp khi thuê văn phòng tại Hà Nội</h2>
+        <p class="wl-section-subtitle">Giải đáp các thắc mắc phổ biến nhất của doanh nghiệp về quy trình, chi phí và thủ tục thuê văn phòng tại Hà Nội.</p>
+      </div>
+      <div class="wl-faq-accordion">
+        <div class="wl-faq-item">
+          <button class="wl-faq-trigger" aria-expanded="false">
+            <span>Các dạng văn phòng cho thuê phổ biến tại Hà Nội?</span>
+            <svg class="wl-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="wl-faq-content">
+            <div class="wl-faq-content-inner">
+              <p>Tại Hà Nội, doanh nghiệp có thể lựa chọn các loại hình văn phòng sau:</p>
+              <ul>
+                <li><strong>Văn phòng truyền thống:</strong> Doanh nghiệp tự thiết kế, thi công và quản lý không gian riêng.</li>
+                <li><strong>Văn phòng trọn gói (Coworking Space):</strong> Đã setup sẵn nội thất, wifi, phòng họp, quầy lễ tân chung, phù hợp cho startup hoặc văn phòng đại diện.</li>
+                <li><strong>Văn phòng ảo (Virtual Office):</strong> Dùng để đặt địa chỉ đăng ký kinh doanh và tiếp nhận thư tín.</li>
+                <li><strong>Văn phòng chia sẻ:</strong> Thuê chỗ ngồi làm việc cố định hoặc linh hoạt trong không gian chung.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="wl-faq-item">
+          <button class="wl-faq-trigger" aria-expanded="false">
+            <span>Giá thuê văn phòng tại Hà Nội dao động khoảng bao nhiêu?</span>
+            <svg class="wl-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="wl-faq-content">
+            <div class="wl-faq-content-inner">
+              <p>Mức giá thuê văn phòng Hà Nội phụ thuộc rất lớn vào quận và hạng tòa nhà:</p>
+              <ul>
+                <li><strong>Văn phòng hạng A:</strong> Từ $25 đến trên $60 / m² / tháng (tập trung chủ yếu tại Hoàn Kiếm, Ba Đình).</li>
+                <li><strong>Văn phòng hạng B:</strong> Từ $15 đến $28 / m² / tháng (phổ biến tại Cầu Giấy, Đống Đa, Thanh Xuân).</li>
+                <li><strong>Văn phòng hạng C:</strong> Từ $10 đến $15 / m² / tháng (phù hợp doanh nghiệp vừa và nhỏ).</li>
+              </ul>
+              <p>Lưu ý: Giá thuê thường chưa bao gồm thuế VAT và phí dịch vụ quản lý của tòa nhà.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="wl-faq-item">
+          <button class="wl-faq-trigger" aria-expanded="false">
+            <span>Phí dịch vụ ngoài giờ (OT) được tính thế nào?</span>
+            <svg class="wl-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="wl-faq-content">
+            <div class="wl-faq-content-inner">
+              <p>Phí làm việc ngoài giờ tại các tòa nhà văn phòng được tính theo một trong các cách sau:</p>
+              <ul>
+                <li>Tính theo giờ và diện tích thuê (ví dụ: 0.02 USD/m²/giờ).</li>
+                <li>Tính theo thiết bị sử dụng (ví dụ: dựa trên số lượng điều hòa chạy ngoài giờ, khoảng 100,000 - 300,000đ/giờ/họng lạnh).</li>
+                <li>Khoán trọn gói theo tháng nếu doanh nghiệp thường xuyên làm thêm ngoài giờ.</li>
+                <li>Một số tòa nhà hạng C hoặc văn phòng tư nhân nhỏ có thể miễn phí tiền điện ngoài giờ nếu chỉ sử dụng thiết bị văn phòng cơ bản mà không chạy điều hòa tổng.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="wl-faq-item">
+          <button class="wl-faq-trigger" aria-expanded="false">
+            <span>Thời hạn thuê và phương thức thanh toán phổ biến?</span>
+            <svg class="wl-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="wl-faq-content">
+            <div class="wl-faq-content-inner">
+              <p>Hợp đồng thuê văn phòng truyền thống tại Hà Nội thường quy định:</p>
+              <ul>
+                <li><strong>Thời hạn thuê tối thiểu:</strong> Thường là 2 đến 3 năm. Nếu ký hợp đồng ngắn hơn, giá thuê có thể cao hơn.</li>
+                <li><strong>Đặt cọc:</strong> Thường là 3 tháng tiền thuê.</li>
+                <li><strong>Kỳ thanh toán:</strong> Thanh toán 3 tháng/lần hoặc 6 tháng/lần tùy thuộc vào thỏa thuận và quy mô của doanh nghiệp.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="wl-faq-item">
+          <button class="wl-faq-trigger" aria-expanded="false">
+            <span>Diện tích văn phòng trung bình cho mỗi nhân viên là bao nhiêu?</span>
+            <svg class="wl-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="wl-faq-content">
+            <div class="wl-faq-content-inner">
+              <p>Theo tiêu chuẩn thiết kế văn phòng hiện đại, diện tích trung bình được khuyến nghị là:</p>
+              <ul>
+                <li><strong>Tiêu chuẩn cơ bản:</strong> 4m² - 5m² / người (đã bao gồm không gian làm việc cá nhân và lối đi chung).</li>
+                <li><strong>Tiêu chuẩn rộng rãi:</strong> 6m² - 8m² / người (nếu văn phòng có thêm pantry, phòng họp lớn, khu vực giải trí).</li>
+                <li>Doanh nghiệp nên tính toán cả tốc độ tăng trưởng nhân sự trong vòng 2-3 năm tới để lựa chọn diện tích thuê phù hợp nhất.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="wl-faq-item">
+          <button class="wl-faq-trigger" aria-expanded="false">
+            <span>Wonderland hỗ trợ gì cho khách hàng đi thuê văn phòng?</span>
+            <svg class="wl-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="wl-faq-content">
+            <div class="wl-faq-content-inner">
+              <p>Wonderland Việt Nam hỗ trợ toàn diện và hoàn toàn miễn phí dịch vụ cho khách thuê:</p>
+              <ul>
+                <li>Khảo sát, lọc danh sách các tòa nhà có diện tích trống phù hợp nhu cầu chỉ sau 1 cuộc gọi.</li>
+                <li>Đồng hành đi xem thực tế và đánh giá chi tiết ưu/nhược điểm của từng tòa nhà.</li>
+                <li>Hỗ trợ phân tích báo giá, đàm phán giảm giá thuê, miễn phí thời gian setup và các điều khoản hợp đồng có lợi nhất.</li>
+                <li>Cung cấp gói giải pháp thiết kế - thi công nội thất văn phòng chuyên nghiệp với ưu đãi đặc biệt cho khách hàng của Wonderland.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Thị trường văn phòng cho thuê tại Hà Nội -->
+    <section class="wl-listing-section wl-market-section">
+      <div class="row wl-market-row">
+        <div class="col large-7 medium-7 small-12">
+          <div class="wl-market-text">
+            <h2 class="wl-section-title text-left">Thị trường văn phòng cho thuê Hà Nội</h2>
+            <p>Thị trường văn phòng Hà Nội đang chứng kiến sự dịch chuyển mạnh mẽ từ các quận trung tâm cũ (Hoàn Kiếm, Ba Đình) sang các trung tâm tài chính và công nghệ mới nổi (Cầu Giấy, Nam Từ Liêm, Thanh Xuân) nhờ hạ tầng giao thông kết nối đồng bộ và nguồn cung dồi dào từ các dự án tòa nhà mới khánh thành.</p>
+            <p>Mức giá thuê tại Hà Nội giữ mức ổn định và có sự phân hóa rõ rệt, mở ra nhiều cơ hội lựa chọn tối ưu cho các doanh nghiệp trong nước và quốc tế:</p>
+          </div>
+          
+          <div class="wl-market-table-wrapper">
+            <table class="wl-market-table">
+              <thead>
+                <tr>
+                  <th>Khu vực cho thuê phổ biến</th>
+                  <th>Giá thuê văn phòng trung bình</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="<?php echo esc_url( home_url('/cho-thue-van-phong-ha-noi/quan-hoan-kiem/') ); ?>">Cho thuê văn phòng Quận Hoàn Kiếm</a></td>
+                  <td><strong>$25 - $60+</strong>/m²/tháng</td>
+                </tr>
+                <tr>
+                  <td><a href="<?php echo esc_url( home_url('/cho-thue-van-phong-ha-noi/quan-ba-dinh/') ); ?>">Cho thuê văn phòng Quận Ba Đình</a></td>
+                  <td><strong>$20 - $45</strong>/m²/tháng</td>
+                </tr>
+                <tr>
+                  <td><a href="<?php echo esc_url( home_url('/cho-thue-van-phong-ha-noi/quan-dong-da/') ); ?>">Cho thuê văn phòng Quận Đống Đa</a></td>
+                  <td><strong>$15 - $35</strong>/m²/tháng</td>
+                </tr>
+                <tr>
+                  <td><a href="<?php echo esc_url( home_url('/cho-thue-van-phong-ha-noi/quan-cau-giay/') ); ?>">Cho thuê văn phòng Quận Cầu Giấy</a></td>
+                  <td><strong>$12 - $30</strong>/m²/tháng</td>
+                </tr>
+                <tr>
+                  <td><a href="<?php echo esc_url( home_url('/cho-thue-van-phong-ha-noi/quan-nam-tu-liem/') ); ?>">Cho thuê văn phòng Quận Nam Từ Liêm</a></td>
+                  <td><strong>$12 - $28</strong>/m²/tháng</td>
+                </tr>
+                <tr>
+                  <td><a href="<?php echo esc_url( home_url('/cho-thue-van-phong-ha-noi/quan-thanh-xuan/') ); ?>">Cho thuê văn phòng Quận Thanh Xuân</a></td>
+                  <td><strong>$11 - $25</strong>/m²/tháng</td>
+                </tr>
+                <tr>
+                  <td><a href="<?php echo esc_url( home_url('/cho-thue-van-phong-ha-noi/quan-tay-ho/') ); ?>">Cho thuê văn phòng Quận Tây Hồ</a></td>
+                  <td><strong>$15 - $35</strong>/m²/tháng</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="wl-market-more">
+            <a href="<?php echo esc_url( home_url('/lien-he/') ); ?>" class="wl-btn-primary">Nhận báo giá chi tiết tất cả khu vực</a>
+          </div>
+        </div>
+        <div class="col large-5 medium-5 small-12">
+          <div class="wl-market-image-wrapper">
+            <img src="<?php echo esc_url( home_url('/wp-content/uploads/2020/11/leadvisors-tower-36-pham-van-dong-bac-tu-liem-ha-noi.jpg') ); ?>" alt="Thị trường văn phòng cho thuê Hà Nội" class="wl-market-image">
+            <div class="wl-image-badge">
+              <span>Leadvisors Tower Phạm Văn Đồng</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const triggers = document.querySelectorAll(".wl-faq-trigger");
+      triggers.forEach(trigger => {
+        trigger.addEventListener("click", function() {
+          const parent = this.parentElement;
+          const isExpanded = this.getAttribute("aria-expanded") === "true";
+          
+          // Close other items
+          document.querySelectorAll(".wl-faq-item").forEach(item => {
+            if (item !== parent) {
+              item.classList.remove("active");
+              item.querySelector(".wl-faq-trigger").setAttribute("aria-expanded", "false");
+              item.querySelector(".wl-faq-content").style.maxHeight = null;
+            }
+          });
+          
+          // Toggle current item
+          parent.classList.toggle("active");
+          this.setAttribute("aria-expanded", !isExpanded);
+          const content = parent.querySelector(".wl-faq-content");
+          if (parent.classList.contains("active")) {
+            content.style.maxHeight = content.scrollHeight + "px";
+          } else {
+            content.style.maxHeight = null;
+          }
+        });
+      });
+    });
+    </script>
+
   </div>
 </div>
 <?php echo do_shortcode('[block id="tiet-kiem-95"]'); ?>

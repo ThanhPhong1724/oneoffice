@@ -1236,4 +1236,432 @@
     }
 }
 
+/* ============================================================
+   NEW SECTIONS STYLING (Rankings, Suggestions, FAQ, Market)
+   ============================================================ */
 
+/* Common Section Layout */
+.wl-listing-section {
+    padding: 60px 0 !important;
+    border-top: 1px solid #E1E8EC !important;
+}
+
+.wl-section-header {
+    margin-bottom: 40px !important;
+    max-width: 800px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.wl-section-title {
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    color: #063443 !important;
+    margin-bottom: 12px !important;
+    letter-spacing: -0.02em !important;
+}
+
+.wl-section-subtitle {
+    font-size: 14.5px !important;
+    line-height: 1.6 !important;
+    color: #5B6C76 !important;
+}
+
+/* 1. Ranking Section */
+.wl-ranking-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0 !important;
+}
+
+.wl-ranking-card {
+    background: #ffffff !important;
+    border: 1px solid #E1E8EC !important;
+    border-radius: 16px !important;
+    padding: 30px 24px !important;
+    text-align: center !important;
+    height: 100% !important;
+    box-shadow: 0 4px 20px rgba(6, 52, 67, 0.02) !important;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+}
+
+.wl-ranking-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 12px 30px rgba(6, 52, 67, 0.08) !important;
+    border-color: rgba(18, 156, 148, 0.25) !important;
+}
+
+.wl-ranking-card-link {
+    text-decoration: none !important;
+    color: inherit !important;
+    display: block !important;
+}
+
+.wl-ranking-icon {
+    width: 64px !important;
+    height: 64px !important;
+    margin: 0 auto 20px !important;
+    color: #129C94 !important;
+    transition: transform 0.3s ease !important;
+}
+
+.wl-ranking-card:hover .wl-ranking-icon {
+    transform: scale(1.1) !important;
+}
+
+.wl-ranking-card-title {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #063443 !important;
+    margin-bottom: 12px !important;
+}
+
+.wl-ranking-card-desc {
+    font-size: 13.5px !important;
+    line-height: 1.5 !important;
+    color: #5B6C76 !important;
+    margin-bottom: 0 !important;
+}
+
+/* 2. Suggestions/News Section */
+.wl-suggestions-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+}
+
+.wl-suggestion-card {
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    border: 1px solid #E1E8EC !important;
+    overflow: hidden !important;
+    height: 100% !important;
+    box-shadow: 0 4px 20px rgba(6, 52, 67, 0.02) !important;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+}
+
+.wl-suggestion-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 12px 30px rgba(6, 52, 67, 0.08) !important;
+    border-color: rgba(18, 156, 148, 0.25) !important;
+}
+
+.wl-suggestion-link {
+    text-decoration: none !important;
+    color: inherit !important;
+    display: block !important;
+    height: 100% !important;
+}
+
+.wl-suggestion-img {
+    height: 200px !important;
+    background-size: cover !important;
+    background-position: center !important;
+    transition: transform 0.5s ease !important;
+}
+
+.wl-suggestion-card:hover .wl-suggestion-img {
+    transform: scale(1.04) !important;
+}
+
+.wl-suggestion-content {
+    padding: 24px !important;
+}
+
+.wl-suggestion-title {
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    color: #063443 !important;
+    margin-bottom: 10px !important;
+    line-height: 1.4 !important;
+}
+
+.wl-suggestion-desc {
+    font-size: 13.5px !important;
+    line-height: 1.6 !important;
+    color: #5B6C76 !important;
+    margin-bottom: 0 !important;
+}
+
+.wl-suggestions-more {
+    margin-top: 35px !important;
+}
+
+.wl-btn-more {
+    display: inline-block !important;
+    padding: 10px 24px !important;
+    border: 1px solid #129C94 !important;
+    border-radius: 30px !important;
+    color: #129C94 !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.03em !important;
+    transition: all 0.2s ease !important;
+}
+
+.wl-btn-more:hover {
+    background: #129C94 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(18, 156, 148, 0.2) !important;
+}
+
+.wl-btn-primary {
+    display: inline-block !important;
+    padding: 12px 28px !important;
+    background: #129C94 !important;
+    color: #ffffff !important;
+    border-radius: 30px !important;
+    font-weight: 700 !important;
+    font-size: 14.5px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.03em !important;
+    box-shadow: 0 4px 14px rgba(18, 156, 148, 0.2) !important;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+    text-decoration: none !important;
+}
+
+.wl-btn-primary:hover {
+    background: #0C7B73 !important;
+    color: #ffffff !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(18, 156, 148, 0.3) !important;
+}
+
+/* 3. FAQ Section */
+.wl-faq-accordion {
+    max-width: 850px !important;
+    margin: 0 auto !important;
+    background: #ffffff !important;
+    border: 1px solid #E1E8EC !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    box-shadow: 0 8px 25px rgba(6, 52, 67, 0.03) !important;
+}
+
+.wl-faq-item {
+    border-bottom: 1px solid #E1E8EC !important;
+}
+
+.wl-faq-item:last-child {
+    border-bottom: none !important;
+}
+
+.wl-faq-trigger {
+    width: 100% !important;
+    background: none !important;
+    border: none !important;
+    padding: 20px 24px !important;
+    text-align: left !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    cursor: pointer !important;
+    outline: none !important;
+    transition: background-color 0.2s ease !important;
+}
+
+.wl-faq-trigger:hover,
+.wl-faq-item.active .wl-faq-trigger {
+    background-color: rgba(18, 156, 148, 0.02) !important;
+}
+
+.wl-faq-trigger span {
+    font-size: 15.5px !important;
+    font-weight: 700 !important;
+    color: #063443 !important;
+    padding-right: 15px !important;
+    line-height: 1.4 !important;
+}
+
+.wl-faq-icon {
+    width: 18px !important;
+    height: 18px !important;
+    color: #129C94 !important;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+    flex-shrink: 0 !important;
+}
+
+.wl-faq-item.active .wl-faq-icon {
+    transform: rotate(180deg) !important;
+}
+
+.wl-faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+}
+
+.wl-faq-content-inner {
+    padding: 0 24px 20px 24px !important;
+    font-size: 14.5px !important;
+    line-height: 1.6 !important;
+    color: #5B6C76 !important;
+}
+
+.wl-faq-content-inner ul {
+    margin-top: 8px !important;
+    margin-bottom: 0 !important;
+    padding-left: 20px !important;
+}
+
+.wl-faq-content-inner li {
+    margin-bottom: 6px !important;
+}
+
+/* 4. Market Section */
+.wl-market-row {
+    align-items: center !important;
+}
+
+.wl-market-text .wl-section-title {
+    margin-bottom: 20px !important;
+}
+
+.wl-market-text p {
+    font-size: 14.5px !important;
+    line-height: 1.6 !important;
+    color: #5B6C76 !important;
+    margin-bottom: 16px !important;
+}
+
+.wl-market-table-wrapper {
+    background: #ffffff !important;
+    border: 1px solid #E1E8EC !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 15px rgba(6, 52, 67, 0.015) !important;
+    margin: 24px 0 !important;
+}
+
+.wl-market-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 0 !important;
+}
+
+.wl-market-table th,
+.wl-market-table td {
+    padding: 12px 18px !important;
+    text-align: left !important;
+    font-size: 14px !important;
+}
+
+.wl-market-table th {
+    background-color: #063443 !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    font-size: 12px !important;
+    letter-spacing: 0.05em !important;
+}
+
+.wl-market-table td {
+    color: #172B35 !important;
+    border-bottom: 1px solid #F0F4F6 !important;
+}
+
+.wl-market-table tr:last-child td {
+    border-bottom: none !important;
+}
+
+.wl-market-table tr:nth-child(even) td {
+    background-color: rgba(6, 52, 67, 0.01) !important;
+}
+
+.wl-market-table td a {
+    color: #063443 !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease !important;
+}
+
+.wl-market-table td a:hover {
+    color: #129C94 !important;
+}
+
+.wl-market-table td strong {
+    color: #129C94 !important;
+    font-weight: 700 !important;
+}
+
+.wl-market-more {
+    margin-top: 10px !important;
+}
+
+.wl-market-image-wrapper {
+    position: relative !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    box-shadow: 0 10px 30px rgba(6, 52, 67, 0.08) !important;
+}
+
+.wl-market-image {
+    width: 100% !important;
+    height: 420px !important;
+    object-fit: cover !important;
+    display: block !important;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+}
+
+.wl-market-image-wrapper:hover .wl-market-image {
+    transform: scale(1.05) !important;
+}
+
+.wl-image-badge {
+    position: absolute !important;
+    bottom: 20px !important;
+    left: 20px !important;
+    right: 20px !important;
+    background: rgba(6, 52, 67, 0.85) !important;
+    backdrop-filter: blur(8px) !important;
+    padding: 12px 18px !important;
+    border-radius: 8px !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.wl-image-badge span {
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    display: block !important;
+    text-align: center !important;
+}
+
+/* Mobile responsive fixes */
+@media (max-width: 768px) {
+    .wl-listing-section {
+        padding: 40px 0 !important;
+    }
+    
+    .wl-ranking-card,
+    .wl-suggestion-card {
+        margin-bottom: 20px !important;
+    }
+    
+    .wl-ranking-row,
+    .wl-suggestions-row {
+        margin-bottom: -20px !important;
+    }
+    
+    .wl-market-image-wrapper {
+        margin-top: 30px !important;
+    }
+    
+    .wl-market-image {
+        height: 280px !important;
+    }
+    
+    .wl-market-table th,
+    .wl-market-table td {
+        padding: 10px 12px !important;
+        font-size: 13px !important;
+    }
+    
+    .wl-faq-trigger {
+        padding: 16px 18px !important;
+    }
+    
+    .wl-faq-trigger span {
+        font-size: 14.5px !important;
+    }
+}
