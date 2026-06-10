@@ -19,14 +19,14 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 // 8 khu vực — copy từ section "address" page 233
 $oo_districts = array(
-    array( 'name' => 'Hoàn Kiếm',    'img_id' => 783,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-hoan-kiem/' ) ),
-    array( 'name' => 'Hai Bà Trưng', 'img_id' => 787,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-hai-ba-trung/' ) ),
-    array( 'name' => 'Ba Đình',      'img_id' => 789,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-ba-dinh/' ) ),
-    array( 'name' => 'Đống Đa',      'img_id' => 791,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-dong-da/' ) ),
+    array( 'name' => 'Hoàn Kiếm',    'img_id' => 5268,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-hoan-kiem/' ) ),
+    array( 'name' => 'Hai Bà Trưng', 'img_id' => 5269,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-hai-ba-trung/' ) ),
+    array( 'name' => 'Ba Đình',      'img_id' => 5270,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-ba-dinh/' ) ),
+    array( 'name' => 'Đống Đa',      'img_id' => 5271,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-dong-da/' ) ),
     array( 'name' => 'Cầu Giấy',     'img_id' => 1870, 'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-cau-giay/' ) ),
-    array( 'name' => 'Nam Từ Liêm',  'img_id' => 794,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-nam-tu-liem/' ) ),
-    array( 'name' => 'Thanh Xuân',   'img_id' => 1869, 'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-thanh-xuan/' ) ),
-    array( 'name' => 'Tây Hồ',       'img_id' => 798,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-tay-ho/' ) ),
+    array( 'name' => 'Nam Từ Liêm',  'img_id' => 5272,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-nam-tu-liem/' ) ),
+    array( 'name' => 'Thanh Xuân',   'img_id' => 5273,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-thanh-xuan/' ) ),
+    array( 'name' => 'Tây Hồ',       'img_id' => 5274,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-tay-ho/' ) ),
 );
 
 // 3 lý do — copy từ section "reason" page 233 (text rút gọn, giữ đúng ý)
