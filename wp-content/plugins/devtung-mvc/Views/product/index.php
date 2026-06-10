@@ -336,39 +336,42 @@
         <p class="wl-section-subtitle">Danh sách chọn lọc các tòa nhà văn phòng theo khu vực, phân hạng và xu hướng tìm kiếm phổ biến nhất tại thủ đô.</p>
       </div>
       <div class="row wl-suggestions-row">
+        <?php
+        $wl_recent_posts = get_posts(array(
+            'post_type'      => 'post',
+            'post_status'    => 'publish',
+            'posts_per_page' => 3,
+            'category'       => 30, // Kinh nghiệm thuê văn phòng
+        ));
+        if (!empty($wl_recent_posts)) :
+          foreach ($wl_recent_posts as $p) :
+            $img_url = get_the_post_thumbnail_url($p->ID, 'large');
+            if (!$img_url) {
+                // Fallback image
+                $img_url = home_url('/wp-content/uploads/2026/06/Keangnam-Nam%20Tu%20Liem.jpg');
+            }
+            $title = get_the_title($p->ID);
+            $link = get_permalink($p->ID);
+            $excerpt = !empty($p->post_excerpt) ? $p->post_excerpt : wp_strip_all_tags(strip_shortcodes($p->post_content));
+            $excerpt = wp_html_excerpt($excerpt, 120, '...');
+        ?>
         <div class="col large-4 medium-4 small-12">
           <div class="wl-suggestion-card">
-            <a href="<?php echo esc_url( home_url('/cho-thue-van-phong-ha-noi/') ); ?>" class="wl-suggestion-link">
-              <div class="wl-suggestion-img" style="background-image: url('<?php echo esc_url( home_url('/wp-content/uploads/2026/06/Keangnam-Nam%20Tu%20Liem.jpg') ); ?>');"></div>
+            <a href="<?php echo esc_url( $link ); ?>" class="wl-suggestion-link">
+              <div class="wl-suggestion-img" style="background-image: url('<?php echo esc_url( $img_url ); ?>');"></div>
               <div class="wl-suggestion-content">
-                <h3 class="wl-suggestion-title">Khu vực tập trung nhiều văn phòng nhất</h3>
-                <p class="wl-suggestion-desc">Cầu Giấy, Nam Từ Liêm và Đống Đa là các "trung tâm" văn phòng mới của Hà Nội với nguồn cung dồi dào, thiết kế hiện đại và giá thuê cạnh tranh.</p>
+                <h3 class="wl-suggestion-title"><?php echo esc_html( $title ); ?></h3>
+                <p class="wl-suggestion-desc"><?php echo esc_html( $excerpt ); ?></p>
               </div>
             </a>
           </div>
         </div>
-        <div class="col large-4 medium-4 small-12">
-          <div class="wl-suggestion-card">
-            <a href="<?php echo esc_url( home_url('/cho-thue-van-phong-ha-noi/') ); ?>" class="wl-suggestion-link">
-              <div class="wl-suggestion-img" style="background-image: url('<?php echo esc_url( home_url('/wp-content/uploads/2026/06/Lotte-Ba%20Dinh.jpg') ); ?>');"></div>
-              <div class="wl-suggestion-content">
-                <h3 class="wl-suggestion-title">Top 20+ tòa nhà văn phòng Hà Nội tốt nhất</h3>
-                <p class="wl-suggestion-desc">Tổng hợp những tòa nhà văn phòng nổi bật nhất về dịch vụ vận hành, thiết kế kiến trúc độc đáo, đạt tỷ lệ lấp đầy cao nhất năm nay.</p>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="col large-4 medium-4 small-12">
-          <div class="wl-suggestion-card">
-            <a href="<?php echo esc_url( home_url('/cho-thue-van-phong-ha-noi/') ); ?>" class="wl-suggestion-link">
-              <div class="wl-suggestion-img" style="background-image: url('<?php echo esc_url( home_url('/wp-content/uploads/2026/06/CSB-Hoan%20Kiem.jpg') ); ?>');"></div>
-              <div class="wl-suggestion-content">
-                <h3 class="wl-suggestion-title">Top tòa nhà Hạng A ở quận trung tâm</h3>
-                <p class="wl-suggestion-desc">Khám phá các cao ốc văn phòng hạng sang đạt tiêu chuẩn LEED quốc tế tại Hoàn Kiếm, Ba Đình, khẳng định vị thế và thương hiệu của doanh nghiệp.</p>
-              </div>
-            </a>
-          </div>
-        </div>
+        <?php 
+          endforeach;
+        else :
+        ?>
+          <div class="col large-12 text-center"><p>Không tìm thấy bài viết nào.</p></div>
+        <?php endif; ?>
       </div>
       <div class="text-center wl-suggestions-more">
         <a href="<?php echo esc_url( home_url('/tu-van/kinh-nghiem/') ); ?>" class="wl-btn-more">Xem tất cả bài viết</a>
@@ -381,112 +384,82 @@
         <h2 class="wl-section-title">Câu hỏi thường gặp khi thuê văn phòng tại Hà Nội</h2>
         <p class="wl-section-subtitle">Giải đáp các thắc mắc phổ biến nhất của doanh nghiệp về quy trình, chi phí và thủ tục thuê văn phòng tại Hà Nội.</p>
       </div>
-      <div class="wl-faq-accordion">
-        <div class="wl-faq-item">
-          <button class="wl-faq-trigger" aria-expanded="false">
-            <span>Các dạng văn phòng cho thuê phổ biến tại Hà Nội?</span>
-            <svg class="wl-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="wl-faq-content">
-            <div class="wl-faq-content-inner">
-              <p>Tại Hà Nội, doanh nghiệp có thể lựa chọn các loại hình văn phòng sau:</p>
-              <ul>
-                <li><strong>Văn phòng truyền thống:</strong> Doanh nghiệp tự thiết kế, thi công và quản lý không gian riêng.</li>
-                <li><strong>Văn phòng trọn gói (Coworking Space):</strong> Đã setup sẵn nội thất, wifi, phòng họp, quầy lễ tân chung, phù hợp cho startup hoặc văn phòng đại diện.</li>
-                <li><strong>Văn phòng ảo (Virtual Office):</strong> Dùng để đặt địa chỉ đăng ký kinh doanh và tiếp nhận thư tín.</li>
-                <li><strong>Văn phòng chia sẻ:</strong> Thuê chỗ ngồi làm việc cố định hoặc linh hoạt trong không gian chung.</li>
-              </ul>
-            </div>
+      <div class="wl-faq-list">
+        <?php 
+        $wl_hanoi_faqs = array(
+          array(
+            'q' => 'Các dạng văn phòng cho thuê phổ biến tại Hà Nội?',
+            'a' => '<p>Tại Hà Nội, doanh nghiệp có thể lựa chọn các loại hình văn phòng sau:</p>
+                    <ul>
+                      <li><strong>Văn phòng truyền thống:</strong> Doanh nghiệp tự thiết kế, thi công và quản lý không gian riêng.</li>
+                      <li><strong>Văn phòng trọn gói (Coworking Space):</strong> Đã setup sẵn nội thất, wifi, phòng họp, quầy lễ tân chung, phù hợp cho startup hoặc văn phòng đại diện.</li>
+                      <li><strong>Văn phòng ảo (Virtual Office):</strong> Dùng để đặt địa chỉ đăng ký kinh doanh và tiếp nhận thư tín.</li>
+                      <li><strong>Văn phòng chia sẻ:</strong> Thuê chỗ ngồi làm việc cố định hoặc linh hoạt trong không gian chung.</li>
+                    </ul>'
+          ),
+          array(
+            'q' => 'Giá thuê văn phòng tại Hà Nội dao động khoảng bao nhiêu?',
+            'a' => '<p>Mức giá thuê văn phòng Hà Nội phụ thuộc rất lớn vào quận và hạng tòa nhà:</p>
+                    <ul>
+                      <li><strong>Văn phòng hạng A:</strong> Từ $25 đến trên $60 / m² / tháng (tập trung chủ yếu tại Hoàn Kiếm, Ba Đình).</li>
+                      <li><strong>Văn phòng hạng B:</strong> Từ $15 đến $28 / m² / tháng (phổ biến tại Cầu Giấy, Đống Đa, Thanh Xuân).</li>
+                      <li><strong>Văn phòng hạng C:</strong> Từ $10 đến $15 / m² / tháng (phù hợp doanh nghiệp vừa và nhỏ).</li>
+                    </ul>
+                    <p>Lưu ý: Giá thuê thường chưa bao gồm thuế VAT và phí dịch vụ quản lý của tòa nhà.</p>'
+          ),
+          array(
+            'q' => 'Phí dịch vụ ngoài giờ (OT) được tính thế nào?',
+            'a' => '<p>Phí làm việc ngoài giờ tại các tòa nhà văn phòng được tính theo một trong các cách sau:</p>
+                    <ul>
+                      <li>Tính theo giờ và diện tích thuê (ví dụ: 0.02 USD/m²/giờ).</li>
+                      <li>Tính theo thiết bị sử dụng (ví dụ: dựa trên số lượng điều hòa chạy ngoài giờ, khoảng 100,000 - 300,000đ/giờ/họng lạnh).</li>
+                      <li>Khoán trọn gói theo tháng nếu doanh nghiệp thường xuyên làm thêm ngoài giờ.</li>
+                      <li>Một số tòa nhà hạng C hoặc văn phòng tư nhân nhỏ có thể miễn phí tiền điện ngoài giờ nếu chỉ sử dụng thiết bị văn phòng cơ bản mà không chạy điều hòa tổng.</li>
+                    </ul>'
+          ),
+          array(
+            'q' => 'Thời hạn thuê và phương thức thanh toán phổ biến?',
+            'a' => '<p>Hợp đồng thuê văn phòng truyền thống tại Hà Nội thường quy định:</p>
+                    <ul>
+                      <li><strong>Thời hạn thuê tối thiểu:</strong> Thường là 2 đến 3 năm. Nếu ký hợp đồng ngắn hơn, giá thuê có thể cao hơn.</li>
+                      <li><strong>Đặt cọc:</strong> Thường là 3 tháng tiền thuê.</li>
+                      <li><strong>Kỳ thanh toán:</strong> Thanh toán 3 tháng/lần hoặc 6 tháng/lần tùy thuộc vào thỏa thuận và quy mô của doanh nghiệp.</li>
+                    </ul>'
+          ),
+          array(
+            'q' => 'Diện tích văn phòng trung bình cho mỗi nhân viên là bao nhiêu?',
+            'a' => '<p>Theo tiêu chuẩn thiết kế văn phòng hiện đại, diện tích trung bình được khuyến nghị là:</p>
+                    <ul>
+                      <li><strong>Tiêu chuẩn cơ bản:</strong> 4m² - 5m² / người (đã bao gồm không gian làm việc cá nhân và lối đi chung).</li>
+                      <li><strong>Tiêu chuẩn rộng rãi:</strong> 6m² - 8m² / người (nếu văn phòng có thêm pantry, phòng họp lớn, khu vực giải trí).</li>
+                      <li>Doanh nghiệp nên tính toán cả tốc độ tăng trưởng nhân sự trong vòng 2-3 năm tới để lựa chọn diện tích thuê phù hợp nhất.</li>
+                    </ul>'
+          ),
+          array(
+            'q' => 'Wonderland hỗ trợ gì cho khách hàng đi thuê văn phòng?',
+            'a' => '<p>Wonderland Việt Nam hỗ trợ toàn diện và hoàn toàn miễn phí dịch vụ cho khách thuê:</p>
+                    <ul>
+                      <li>Khảo sát, lọc danh sách các tòa nhà có diện tích trống phù hợp nhu cầu chỉ sau 1 cuộc gọi.</li>
+                      <li>Đồng hành đi xem thực tế và đánh giá chi tiết ưu/nhược điểm của từng tòa nhà.</li>
+                      <li>Hỗ trợ phân tích báo giá, đàm phán giảm giá thuê, miễn phí thời gian setup và các điều khoản hợp đồng có lợi nhất.</li>
+                      <li>Cung cấp gói giải pháp thiết kế - thi công nội thất văn phòng chuyên nghiệp với ưu đãi đặc biệt cho khách hàng của Wonderland.</li>
+                    </ul>'
+          )
+        );
+        foreach ($wl_hanoi_faqs as $i => $f) :
+        ?>
+        <details class="wl-faq-item"<?php echo $i === 0 ? ' open' : ''; ?>>
+          <summary>
+            <span class="wl-faq-q"><?php echo esc_html($f['q']); ?></span>
+            <span class="wl-faq-toggle" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </summary>
+          <div class="wl-faq-a">
+            <?php echo wp_kses_post($f['a']); ?>
           </div>
-        </div>
-        
-        <div class="wl-faq-item">
-          <button class="wl-faq-trigger" aria-expanded="false">
-            <span>Giá thuê văn phòng tại Hà Nội dao động khoảng bao nhiêu?</span>
-            <svg class="wl-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="wl-faq-content">
-            <div class="wl-faq-content-inner">
-              <p>Mức giá thuê văn phòng Hà Nội phụ thuộc rất lớn vào quận và hạng tòa nhà:</p>
-              <ul>
-                <li><strong>Văn phòng hạng A:</strong> Từ $25 đến trên $60 / m² / tháng (tập trung chủ yếu tại Hoàn Kiếm, Ba Đình).</li>
-                <li><strong>Văn phòng hạng B:</strong> Từ $15 đến $28 / m² / tháng (phổ biến tại Cầu Giấy, Đống Đa, Thanh Xuân).</li>
-                <li><strong>Văn phòng hạng C:</strong> Từ $10 đến $15 / m² / tháng (phù hợp doanh nghiệp vừa và nhỏ).</li>
-              </ul>
-              <p>Lưu ý: Giá thuê thường chưa bao gồm thuế VAT và phí dịch vụ quản lý của tòa nhà.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="wl-faq-item">
-          <button class="wl-faq-trigger" aria-expanded="false">
-            <span>Phí dịch vụ ngoài giờ (OT) được tính thế nào?</span>
-            <svg class="wl-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="wl-faq-content">
-            <div class="wl-faq-content-inner">
-              <p>Phí làm việc ngoài giờ tại các tòa nhà văn phòng được tính theo một trong các cách sau:</p>
-              <ul>
-                <li>Tính theo giờ và diện tích thuê (ví dụ: 0.02 USD/m²/giờ).</li>
-                <li>Tính theo thiết bị sử dụng (ví dụ: dựa trên số lượng điều hòa chạy ngoài giờ, khoảng 100,000 - 300,000đ/giờ/họng lạnh).</li>
-                <li>Khoán trọn gói theo tháng nếu doanh nghiệp thường xuyên làm thêm ngoài giờ.</li>
-                <li>Một số tòa nhà hạng C hoặc văn phòng tư nhân nhỏ có thể miễn phí tiền điện ngoài giờ nếu chỉ sử dụng thiết bị văn phòng cơ bản mà không chạy điều hòa tổng.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="wl-faq-item">
-          <button class="wl-faq-trigger" aria-expanded="false">
-            <span>Thời hạn thuê và phương thức thanh toán phổ biến?</span>
-            <svg class="wl-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="wl-faq-content">
-            <div class="wl-faq-content-inner">
-              <p>Hợp đồng thuê văn phòng truyền thống tại Hà Nội thường quy định:</p>
-              <ul>
-                <li><strong>Thời hạn thuê tối thiểu:</strong> Thường là 2 đến 3 năm. Nếu ký hợp đồng ngắn hơn, giá thuê có thể cao hơn.</li>
-                <li><strong>Đặt cọc:</strong> Thường là 3 tháng tiền thuê.</li>
-                <li><strong>Kỳ thanh toán:</strong> Thanh toán 3 tháng/lần hoặc 6 tháng/lần tùy thuộc vào thỏa thuận và quy mô của doanh nghiệp.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="wl-faq-item">
-          <button class="wl-faq-trigger" aria-expanded="false">
-            <span>Diện tích văn phòng trung bình cho mỗi nhân viên là bao nhiêu?</span>
-            <svg class="wl-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="wl-faq-content">
-            <div class="wl-faq-content-inner">
-              <p>Theo tiêu chuẩn thiết kế văn phòng hiện đại, diện tích trung bình được khuyến nghị là:</p>
-              <ul>
-                <li><strong>Tiêu chuẩn cơ bản:</strong> 4m² - 5m² / người (đã bao gồm không gian làm việc cá nhân và lối đi chung).</li>
-                <li><strong>Tiêu chuẩn rộng rãi:</strong> 6m² - 8m² / người (nếu văn phòng có thêm pantry, phòng họp lớn, khu vực giải trí).</li>
-                <li>Doanh nghiệp nên tính toán cả tốc độ tăng trưởng nhân sự trong vòng 2-3 năm tới để lựa chọn diện tích thuê phù hợp nhất.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="wl-faq-item">
-          <button class="wl-faq-trigger" aria-expanded="false">
-            <span>Wonderland hỗ trợ gì cho khách hàng đi thuê văn phòng?</span>
-            <svg class="wl-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="wl-faq-content">
-            <div class="wl-faq-content-inner">
-              <p>Wonderland Việt Nam hỗ trợ toàn diện và hoàn toàn miễn phí dịch vụ cho khách thuê:</p>
-              <ul>
-                <li>Khảo sát, lọc danh sách các tòa nhà có diện tích trống phù hợp nhu cầu chỉ sau 1 cuộc gọi.</li>
-                <li>Đồng hành đi xem thực tế và đánh giá chi tiết ưu/nhược điểm của từng tòa nhà.</li>
-                <li>Hỗ trợ phân tích báo giá, đàm phán giảm giá thuê, miễn phí thời gian setup và các điều khoản hợp đồng có lợi nhất.</li>
-                <li>Cung cấp gói giải pháp thiết kế - thi công nội thất văn phòng chuyên nghiệp với ưu đãi đặc biệt cho khách hàng của Wonderland.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        </details>
+        <?php endforeach; ?>
       </div>
     </section>
 
@@ -555,37 +528,6 @@
         </div>
       </div>
     </section>
-
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const triggers = document.querySelectorAll(".wl-faq-trigger");
-      triggers.forEach(trigger => {
-        trigger.addEventListener("click", function() {
-          const parent = this.parentElement;
-          const isExpanded = this.getAttribute("aria-expanded") === "true";
-          
-          // Close other items
-          document.querySelectorAll(".wl-faq-item").forEach(item => {
-            if (item !== parent) {
-              item.classList.remove("active");
-              item.querySelector(".wl-faq-trigger").setAttribute("aria-expanded", "false");
-              item.querySelector(".wl-faq-content").style.maxHeight = null;
-            }
-          });
-          
-          // Toggle current item
-          parent.classList.toggle("active");
-          this.setAttribute("aria-expanded", !isExpanded);
-          const content = parent.querySelector(".wl-faq-content");
-          if (parent.classList.contains("active")) {
-            content.style.maxHeight = content.scrollHeight + "px";
-          } else {
-            content.style.maxHeight = null;
-          }
-        });
-      });
-    });
-    </script>
 
   </div>
 </div>

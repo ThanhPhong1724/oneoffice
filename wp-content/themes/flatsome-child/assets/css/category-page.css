@@ -1394,7 +1394,7 @@
     color: #129C94 !important;
     font-weight: 700 !important;
     font-size: 14px !important;
-    text-transform: uppercase !important;
+    text-transform: none !important;
     letter-spacing: 0.03em !important;
     transition: all 0.2s ease !important;
 }
@@ -1413,7 +1413,7 @@
     border-radius: 30px !important;
     font-weight: 700 !important;
     font-size: 14.5px !important;
-    text-transform: uppercase !important;
+    text-transform: none !important;
     letter-spacing: 0.03em !important;
     box-shadow: 0 4px 14px rgba(18, 156, 148, 0.2) !important;
     transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
@@ -1428,84 +1428,100 @@
 }
 
 /* 3. FAQ Section */
-.wl-faq-accordion {
-    max-width: 850px !important;
+.wl-faq-list {
+    max-width: 880px !important;
     margin: 0 auto !important;
-    background: #ffffff !important;
-    border: 1px solid #E1E8EC !important;
-    border-radius: 16px !important;
-    overflow: hidden !important;
-    box-shadow: 0 8px 25px rgba(6, 52, 67, 0.03) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
 }
 
 .wl-faq-item {
-    border-bottom: 1px solid #E1E8EC !important;
+    background: #F6FAFB !important;
+    border-radius: 14px !important;
+    border: 1px solid #E1E8EC !important;
+    overflow: hidden !important;
+    transition: border-color 0.32s cubic-bezier(.2,.7,.2,1), box-shadow 0.32s cubic-bezier(.2,.7,.2,1) !important;
+    margin-bottom: 12px !important;
 }
 
-.wl-faq-item:last-child {
-    border-bottom: none !important;
+.wl-faq-item[open] {
+    background: #ffffff !important;
+    border-color: rgba(18, 156, 148,.35) !important;
+    box-shadow: 0 2px 8px rgba(6,52,67,.06) !important;
 }
 
-.wl-faq-trigger {
-    width: 100% !important;
-    background: none !important;
-    border: none !important;
+.wl-faq-item summary {
+    cursor: pointer !important;
     padding: 20px 24px !important;
-    text-align: left !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
-    cursor: pointer !important;
+    gap: 18px !important;
+    list-style: none !important;
     outline: none !important;
-    transition: background-color 0.2s ease !important;
 }
 
-.wl-faq-trigger:hover,
-.wl-faq-item.active .wl-faq-trigger {
-    background-color: rgba(18, 156, 148, 0.02) !important;
+.wl-faq-item summary::-webkit-details-marker {
+    display: none !important;
 }
 
-.wl-faq-trigger span {
-    font-size: 15.5px !important;
-    font-weight: 700 !important;
+.wl-faq-q {
+    font-size: 16px !important;
+    font-weight: 600 !important;
     color: #063443 !important;
-    padding-right: 15px !important;
-    line-height: 1.4 !important;
 }
 
-.wl-faq-icon {
-    width: 18px !important;
-    height: 18px !important;
-    color: #129C94 !important;
-    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+.wl-faq-toggle {
     flex-shrink: 0 !important;
+    width: 36px !important;
+    height: 36px !important;
+    background: #E6F6F8 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #129C94 !important;
+    transition: transform 0.32s cubic-bezier(.2,.7,.2,1), background 0.32s cubic-bezier(.2,.7,.2,1) !important;
 }
 
-.wl-faq-item.active .wl-faq-icon {
+.wl-faq-item[open] .wl-faq-toggle {
     transform: rotate(180deg) !important;
+    background: #129C94 !important;
+    color: #ffffff !important;
 }
 
-.wl-faq-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+.wl-faq-a {
+    padding: 0 24px 22px !important;
+    color: #172B35 !important;
 }
 
-.wl-faq-content-inner {
-    padding: 0 24px 20px 24px !important;
-    font-size: 14.5px !important;
-    line-height: 1.6 !important;
+.wl-faq-a p {
     color: #5B6C76 !important;
+    font-size: 14.5px !important;
+    line-height: 1.7 !important;
+    margin: 0 0 .6em !important;
 }
 
-.wl-faq-content-inner ul {
-    margin-top: 8px !important;
+.wl-faq-a p:last-child {
     margin-bottom: 0 !important;
-    padding-left: 20px !important;
 }
 
-.wl-faq-content-inner li {
-    margin-bottom: 6px !important;
+.wl-faq-a ul {
+    list-style: disc !important;
+    padding-left: 20px !important;
+    margin: 0 0 .4em !important;
+    color: #5B6C76 !important;
+    font-size: 14.5px !important;
+    line-height: 1.7 !important;
+}
+
+.wl-faq-a ul li {
+    margin-bottom: .25em !important;
+}
+
+.wl-faq-a strong {
+    color: #063443 !important;
 }
 
 /* 4. Market Section */
@@ -1586,6 +1602,7 @@
 
 .wl-market-more {
     margin-top: 10px !important;
+    text-align: center !important;
 }
 
 .wl-market-image-wrapper {
@@ -1597,7 +1614,7 @@
 
 .wl-market-image {
     width: 100% !important;
-    height: 420px !important;
+    height: 500px !important;
     object-fit: cover !important;
     display: block !important;
     transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
@@ -1657,11 +1674,11 @@
         font-size: 13px !important;
     }
     
-    .wl-faq-trigger {
+    .wl-faq-item summary {
         padding: 16px 18px !important;
     }
     
-    .wl-faq-trigger span {
+    .wl-faq-q {
         font-size: 14.5px !important;
     }
 }
