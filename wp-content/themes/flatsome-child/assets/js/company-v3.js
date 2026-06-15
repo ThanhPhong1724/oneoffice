@@ -61,6 +61,13 @@
             function stop()  { if (timer) clearInterval(timer); }
             dots.forEach(function (d, i) { d.addEventListener('click', function () { go(i); start(); }); });
 
+            var btnPrev = root.querySelector('.cv3-testi__arrow--prev');
+            var btnNext = root.querySelector('.cv3-testi__arrow--next');
+            if (btnPrev && btnNext) {
+                btnPrev.addEventListener('click', function () { prev(); start(); });
+                btnNext.addEventListener('click', function () { next(); start(); });
+            }
+
             if (track) {
                 var sec = root.querySelector('.cv3-testi');
                 if (sec) {

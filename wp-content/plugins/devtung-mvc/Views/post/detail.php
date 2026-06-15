@@ -1,5 +1,41 @@
-<h1><?php echo get_the_title($post); ?></h1>
-<div><?php echo apply_filters( 'the_content', get_the_content( null, false, $post ) ); ?></div>
+<article class="oo-single-post">
+	<header class="oo-post-header">
+		<h1 class="oo-post-title"><?php echo get_the_title($post); ?></h1>
+		
+		<div class="oo-post-meta">
+			<?php
+			$categories = get_the_category($post->ID);
+			if ( ! empty( $categories ) ) :
+				$cat = $categories[0];
+				?>
+				<a href="<?php echo esc_url( get_category_link( $cat->term_id ) ); ?>" class="oo-post-meta-category">
+					<?php echo esc_html( $cat->name ); ?>
+				</a>
+			<?php endif; ?>
+			<span class="oo-post-meta-item">
+				<i class="far fa-calendar"></i> <?php echo get_the_date( 'd/m/Y', $post ); ?>
+			</span>
+			<span class="oo-post-meta-item">
+				<i class="far fa-clock"></i> 
+				<?php
+				$content_text = get_the_content( null, false, $post );
+				$word_count = count( preg_split( '~[^\p{L}\p{N}\']+~u', strip_tags( $content_text ) ) );
+				$read_time = ceil( $word_count / 250 );
+				if ($read_time < 1) $read_time = 1;
+				echo $read_time . ' phút đọc';
+				?>
+			</span>
+		</div>
+		
+		<?php if ( has_post_thumbnail( $post ) ) : ?>
+			<div class="oo-post-featured-image">
+				<?php echo get_the_post_thumbnail( $post, 'large', array( 'alt' => esc_attr( get_the_title( $post ) ) ) ); ?>
+			</div>
+		<?php endif; ?>
+	</header>
+
+	<div class="entry-content oo-prose"><?php echo apply_filters( 'the_content', get_the_content( null, false, $post ) ); ?></div>
+</article>
 
 <section class="DtSection DtSection--Border">
 	<h3 class="DtSection-Title">Bài viết liên quan</h3>

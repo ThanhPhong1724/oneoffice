@@ -14,9 +14,162 @@
      *    no IntersectionObserver — element stays naturally visible.
      * ------------------------------------------------- */
     var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* -------------------------------------------------
+     * 0) Hero background slider — LUÔN tự chạy mỗi 2s (kể cả khi người dùng
+     *    không làm gì), đổi ảnh mượt kiểu "morph" (mờ chồng + zoom nhẹ, do CSS lo).
+     *    Mũi tên để đổi thủ công + reset đồng hồ. Hỗ trợ vuốt trên mobile.
+     *    KHÔNG dừng khi hover (để chạy liên tục theo yêu cầu).
+     * ------------------------------------------------- */
+    (function initHeroSlider() {
+        var hero = root.querySelector('.hv2-hero--slider');
+        if (!hero) return;
+        var slides = hero.querySelectorAll('.hv2-hero__slide');
+        if (slides.length < 2) return;
+
+        var idx = 0, timer = null;
+        var INTERVAL = 2000;   // 2s mỗi ảnh — chỉnh số này để nhanh/chậm hơn
+
+        function show(n) {
+            idx = (n + slides.length) % slides.length;
+            slides.forEach(function (s, i) { s.classList.toggle('is-active', i === idx); });
+        }
+        function next() { show(idx + 1); }
+        function prev() { show(idx - 1); }
+        function start() { stop(); timer = setInterval(next, INTERVAL); }
+        function stop()  { if (timer) { clearInterval(timer); timer = null; } }
+
+        var btnPrev = hero.querySelector('.hv2-hero__arrow--prev');
+        var btnNext = hero.querySelector('.hv2-hero__arrow--next');
+        if (btnPrev) btnPrev.addEventListener('click', function () { prev(); start(); });
+        if (btnNext) btnNext.addEventListener('click', function () { next(); start(); });
+
+        // Vuốt trên mobile để đổi ảnh
+        var sx = null;
+        hero.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+        hero.addEventListener('touchend', function (e) {
+            if (sx === null) return;
+            var t = e.changedTouches[0];
+            if (t && Math.abs(t.clientX - sx) > 45) { (t.clientX - sx < 0 ? next : prev)(); start(); }
+            sx = null;
+        });
+
+        // Tự chạy ngay; chỉ tạm dừng khi hero ra khỏi màn hình (tiết kiệm), chạy lại khi cuộn vào.
+        if ('IntersectionObserver' in window) {
+            var hio = new IntersectionObserver(function (entries) {
+                entries.forEach(function (en) { en.isIntersecting ? start() : stop(); });
+            }, { threshold: 0.15 });
+            hio.observe(hero);
+        }
+        start();
+    })();
+
+    /* -------------------------------------------------
+     * 0b) Tòa nhà nổi bật — carousel theo NHÓM, hiện 6 tòa/nhóm (desktop) ·
+     *     4 (tablet) · 1 (mobile). Tự chuyển nhóm mỗi 3s bằng hiệu ứng morph
+     *     (mờ chồng + zoom nhẹ) giống slideshow ở hero. Mũi tên hiện khi hover,
+     *     hỗ trợ vuốt, tạm dừng khi rê chuột. Không JS → lưới card bình thường.
+     * ------------------------------------------------- */
+    (function initBuildingsCarousel() {
+        var carousel = root.querySelector('.hv2-buildings__carousel');
+        if (!carousel) return;
+        var track = carousel.querySelector('.hv2-buildings__track');
+        if (!track) return;
+        var allCards = Array.prototype.slice.call(track.querySelectorAll('.hv2-buildings__card'));
+        if (allCards.length < 2) return;
+
+        var btnPrev = carousel.querySelector('.hv2-buildings__arrow--prev');
+        var btnNext = carousel.querySelector('.hv2-buildings__arrow--next');
+
+        // Dựng stage xếp chồng các "trang" để cross-dissolve; giữ track làm nguồn (ẩn đi).
+        var stage = document.createElement('div');
+        stage.className = 'hv2-buildings__stage';
+        track.parentNode.insertBefore(stage, track);
+        track.style.display = 'none';
+
+        var pages = [], page = 0, timer = null, curPV = 0;
+        var INTERVAL = 4000;
+
+        function perView() {
+            var w = window.innerWidth;
+            return w <= 640 ? 1 : (w <= 1024 ? 4 : 6);
+        }
+
+        function buildPages() {
+            curPV = perView();
+            stage.innerHTML = '';
+            pages = [];
+            var count = Math.ceil(allCards.length / curPV);
+            for (var p = 0; p < count; p++) {
+                var pageEl = document.createElement('div');
+                pageEl.className = 'hv2-buildings__page hv2-buildings__grid';
+                for (var i = p * curPV; i < Math.min((p + 1) * curPV, allCards.length); i++) {
+                    pageEl.appendChild(allCards[i]); // di chuyển node vào trang
+                }
+                stage.appendChild(pageEl);
+                pages.push(pageEl);
+            }
+            if (page >= pages.length) page = pages.length - 1;
+            pages.forEach(function (pg, i) { pg.classList.toggle('is-active', i === page); });
+            updateArrows();
+        }
+
+        function updateArrows() {
+            // Dùng visibility (không phải display) để CSS ẩn mũi tên trên mobile vẫn thắng.
+            var multi = pages.length > 1;
+            if (btnPrev) btnPrev.style.visibility = multi ? '' : 'hidden';
+            if (btnNext) btnNext.style.visibility = multi ? '' : 'hidden';
+        }
+
+        function show(p) {
+            if (pages.length < 2) return;
+            page = (p + pages.length) % pages.length;
+            pages.forEach(function (pg, i) { pg.classList.toggle('is-active', i === page); });
+        }
+        function next() { show(page + 1); }
+        function prev() { show(page - 1); }
+        function start() { stop(); if (pages.length > 1) timer = setInterval(next, INTERVAL); }
+        function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+        if (btnPrev) btnPrev.addEventListener('click', function () { prev(); start(); });
+        if (btnNext) btnNext.addEventListener('click', function () { next(); start(); });
+
+        // Vuốt
+        var sx = null;
+        stage.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+        stage.addEventListener('touchend', function (e) {
+            if (sx === null) return;
+            var t = e.changedTouches[0];
+            if (t && Math.abs(t.clientX - sx) > 45) { (t.clientX - sx < 0 ? next : prev)(); start(); }
+            sx = null;
+        });
+
+        // Tạm dừng khi rê chuột (để kịp đọc / bấm vào card)
+        carousel.addEventListener('mouseenter', stop);
+        carousel.addEventListener('mouseleave', start);
+
+        // Đổi breakpoint → dựng lại nhóm
+        var rT;
+        window.addEventListener('resize', function () {
+            clearTimeout(rT);
+            rT = window.setTimeout(function () { if (perView() !== curPV) buildPages(); }, 200);
+        });
+
+        buildPages();
+        // Chỉ auto-chạy khi khối trong viewport
+        if ('IntersectionObserver' in window) {
+            var bio = new IntersectionObserver(function (entries) {
+                entries.forEach(function (en) { en.isIntersecting ? start() : stop(); });
+            }, { threshold: 0.1 });
+            bio.observe(carousel);
+        } else {
+            start();
+        }
+    })();
+
     var revealEls = root.querySelectorAll(
         '.hv2-secthead, .hv2-areas__item, .hv2-reasons__card, ' +
-        '.hv2-process__item, .hv2-buildings__card, .hv2-team__card, ' +
+        '.hv2-process__item, .hv2-team__card, ' +
         '.hv2-final__card, .hv2-quickform__card'
     );
 
@@ -119,6 +272,13 @@
         dots.forEach(function (dot, i) {
             dot.addEventListener('click', function () { go(i); start(); });
         });
+
+        var btnPrev = root.querySelector('.hv2-testi__arrow--prev');
+        var btnNext = root.querySelector('.hv2-testi__arrow--next');
+        if (btnPrev && btnNext) {
+            btnPrev.addEventListener('click', function () { prev(); start(); });
+            btnNext.addEventListener('click', function () { next(); start(); });
+        }
 
         /* Kéo/vuốt (chuột + cảm ứng) để gạt qua lại testimonial */
         var track = root.querySelector('.hv2-testi__track');

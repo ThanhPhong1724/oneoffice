@@ -134,6 +134,8 @@ body.single-product .sp2-header-card__address i {
 body.single-product .sp2-header-card__share {
     display: flex;
     align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
 }
 
 /* =====================================================
@@ -299,6 +301,7 @@ body.single-product .sp2-main-content {
 }
 body.single-product .sp2-sidebar-col {
     padding-left: 0 !important;
+    align-self: stretch;
 }
 
 @media (max-width: 991px) {
@@ -436,8 +439,11 @@ body.single-product .sp2-spec-item__value {
 body.single-product .sp2-sticky-sidebar {
     position: -webkit-sticky;
     position: sticky;
-    top: 90px;
+    top: 110px;
     z-index: 99;
+}
+body.admin-bar.single-product .sp2-sticky-sidebar {
+    top: 142px;
 }
 
 body.single-product .sp2-price-box {

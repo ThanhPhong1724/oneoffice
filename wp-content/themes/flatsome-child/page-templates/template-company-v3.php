@@ -256,19 +256,29 @@ case 'khach-hang-du-an-tieu-bieu':
     <section class="cv3-section cv3-testi">
         <div class="cv3-container">
             <div class="cv3-secthead"><span class="cv3-eyebrow">Phản hồi khách hàng</span><h2>Ý kiến từ những người đã đồng hành</h2></div>
-            <div class="cv3-testi__track">
-                <?php foreach ( $testis as $i => $t ) : ?>
-                    <article class="cv3-testi__card<?php echo $i === 0 ? ' is-active' : ''; ?>">
-                        <p class="cv3-testi__quote"><?php echo esc_html( $t[0] ); ?></p>
-                        <div class="cv3-testi__person">
-                            <img src="<?php echo esc_url( $t[1] ); ?>" alt="<?php echo esc_attr( $t[2] ); ?>" loading="lazy">
-                            <div>
-                                <strong class="cv3-testi__name"><?php echo esc_html( $t[2] ); ?></strong>
-                                <span class="cv3-testi__role"><?php echo esc_html( $t[3] ); ?></span>
+            <div class="cv3-testi__wrapper">
+                <button type="button" class="cv3-testi__arrow cv3-testi__arrow--prev" aria-label="Previous testimonial">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+
+                <div class="cv3-testi__track">
+                    <?php foreach ( $testis as $i => $t ) : ?>
+                        <article class="cv3-testi__card<?php echo $i === 0 ? ' is-active' : ''; ?>">
+                            <p class="cv3-testi__quote"><?php echo esc_html( $t[0] ); ?></p>
+                            <div class="cv3-testi__person">
+                                <img src="<?php echo esc_url( $t[1] ); ?>" alt="<?php echo esc_attr( $t[2] ); ?>" loading="lazy">
+                                <div>
+                                    <strong class="cv3-testi__name"><?php echo esc_html( $t[2] ); ?></strong>
+                                    <span class="cv3-testi__role"><?php echo esc_html( $t[3] ); ?></span>
+                                </div>
                             </div>
-                        </div>
-                    </article>
-                <?php endforeach; ?>
+                        </article>
+                    <?php endforeach; ?>
+                </div>
+
+                <button type="button" class="cv3-testi__arrow cv3-testi__arrow--next" aria-label="Next testimonial">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
             </div>
             <div class="cv3-testi__nav">
                 <?php foreach ( $testis as $i => $t ) : ?>

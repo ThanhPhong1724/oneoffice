@@ -258,15 +258,62 @@
  * ===================================================== */
 .hv2-hero {
     position: relative;
-    min-height: 680px;
-    padding: 120px 0 90px;
-    background-size: cover;
-    background-position: center 30%;
-    background-repeat: no-repeat;
+    min-height: clamp(640px, 92vh, 880px);
+    padding: 168px 0 132px;          /* top padding lớn để chừa chỗ cho header absolute */
     color: var(--hv2-white);
     overflow: hidden;
     isolation: isolate;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--hv2-dark); /* nền nền tạm khi ảnh chưa load */
+}
+
+/* --- Slider layers (ảnh nền cross-fade + Ken Burns) --- */
+.hv2-hero__slides {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+/* "Morph" chuyển ảnh: ảnh mới mờ chồng (cross-dissolve) + zoom nhẹ về vị trí nghỉ,
+   ảnh cũ mờ dần + phóng nhẹ ra → cảm giác mượt như hiệu ứng Morph của PowerPoint. */
+.hv2-hero__slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center 35%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transform: scale(1.06);
+    transition: opacity 1s ease, transform 1.3s cubic-bezier(.2, .7, .2, 1);
+    will-change: opacity, transform;
+    filter: saturate(1.06) contrast(1.04);
+}
+
+.hv2-hero__slide.is-active {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 1;
+}
+
+/* --- Overlay: scrim tối ở trên (cho header) + gradient thương hiệu --- */
+.hv2-hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+        /* scrim dọc: tối ở đỉnh (header) + sau tiêu đề (giữa) + chân; nhạt ở 2 dải để lộ ảnh */
+        linear-gradient(180deg,
+            rgba(6, 52, 67, .52) 0%,
+            rgba(6, 52, 67, .24) 30%,
+            rgba(6, 52, 67, .40) 52%,
+            rgba(6, 52, 67, .28) 74%,
+            rgba(6, 52, 67, .46) 100%),
+        /* tint thương hiệu nhẹ — nhạt hơn nhiều so với trước để ảnh nền "trong"/rõ hơn */
+        linear-gradient(125deg, rgba(15, 84, 104, .40) 0%, rgba(18, 156, 148, .18) 100%);
 }
 
 .hv2-hero::after {
@@ -276,12 +323,12 @@
     height: 120px;
     background: linear-gradient(to bottom, transparent, var(--hv2-bg));
     pointer-events: none;
-    z-index: 1;
+    z-index: 3;
 }
 
 .hv2-hero__inner {
     position: relative;
-    z-index: 2;
+    z-index: 4;
     max-width: 880px;
     margin-left: auto;
     margin-right: auto;
@@ -384,10 +431,15 @@
     height: 44px;
     border: 2px solid rgba(255, 255, 255, .6);
     border-radius: 14px;
-    z-index: 2;
+    z-index: 4;
     display: flex;
     justify-content: center;
     padding-top: 8px;
+}
+
+/* Khi là slider, dots làm nhiệm vụ ở đáy hero — ẩn mũi tên cuộn để tránh chồng. */
+.hv2-hero--slider .hv2-hero__scroll {
+    display: none;
 }
 
 .hv2-hero__scroll span {
@@ -408,6 +460,101 @@
         transform: translateY(14px);
         opacity: 0;
     }
+}
+
+/* --- Hero slider: mũi tên trái/phải --- */
+.hv2-hero__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    width: 50px;
+    height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--hv2-white);
+    background: rgba(255, 255, 255, .12);
+    border: 1px solid rgba(255, 255, 255, .32);
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    /* Mặc định ẩn — chỉ hiện khi rê chuột vào hero (hoặc focus bàn phím). */
+    opacity: 0;
+    visibility: hidden;
+    transition: background var(--hv2-fast), border-color var(--hv2-fast), transform var(--hv2-fast), opacity var(--hv2-base), visibility var(--hv2-base);
+}
+
+.hv2-hero:hover .hv2-hero__arrow,
+.hv2-hero__arrow:focus-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.hv2-hero__arrow:hover {
+    background: var(--hv2-primary);
+    border-color: var(--hv2-primary);
+}
+
+.hv2-hero__arrow:active {
+    transform: translateY(-50%) scale(.94);
+}
+
+.hv2-hero__arrow--prev {
+    left: 24px;
+}
+
+.hv2-hero__arrow--next {
+    right: 24px;
+}
+
+/* =====================================================
+ * 1b. TRANSPARENT HEADER OVERLAY (chỉ trang Home V2)
+ *  - Trạng thái top (chưa cuộn / không .stuck): chữ + logo trắng, nền trong suốt
+ *    để menu nổi trên ảnh hero. Scrim tối lấy từ .hv2-hero__overlay.
+ *  - Khi cuộn xuống Flatsome thêm .stuck → header solid trắng mặc định (không đụng).
+ * ===================================================== */
+/* Bỏ đường kẻ xám mảnh dưới header (border-bottom mặc định) để liền mạch với hero. */
+body.page-template-template-home-v2 #header,
+body.page-template-template-home-v2 #header .header-wrapper:not(.stuck) {
+    border-bottom: 0 !important;
+}
+
+body.page-template-template-home-v2 #header .header-wrapper:not(.stuck) {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* CHỈ làm trắng item cấp 1 của menu (không đụng item trong dropdown để tránh trắng-trên-trắng).
+   Bao gồm cả item HTML tuỳ biến "Quan tâm (0)" (màu nằm trên <li>, không phải <a>). */
+body.page-template-template-home-v2 #header .header-wrapper:not(.stuck) .nav > li > a,
+body.page-template-template-home-v2 #header .header-wrapper:not(.stuck) .nav > li > a:hover,
+body.page-template-template-home-v2 #header .header-wrapper:not(.stuck) .nav > li.html,
+body.page-template-template-home-v2 #header .header-wrapper:not(.stuck) .nav > li.html a,
+body.page-template-template-home-v2 #header .header-wrapper:not(.stuck) .nav > li.html span {
+    color: #fff !important;
+}
+
+/* Icon (mũi tên dropdown cấp 1 / giỏ hàng / nút mở menu mobile) cũng sáng ở trạng thái top */
+body.page-template-template-home-v2 #header .header-wrapper:not(.stuck) .nav > li > a .nav-dropdown-toggle,
+body.page-template-template-home-v2 #header .header-wrapper:not(.stuck) .icon-menu,
+body.page-template-template-home-v2 #header .header-wrapper:not(.stuck) button.icon,
+body.page-template-template-home-v2 #header .header-wrapper:not(.stuck) .header-button .icon {
+    color: #fff !important;
+}
+
+/* An toàn: dropdown luôn giữ chữ tối trên nền trắng (kể cả khi header trong suốt). */
+body.page-template-template-home-v2 #header .nav-dropdown a {
+    color: #334 !important;
+}
+body.page-template-template-home-v2 #header .nav-dropdown a:hover {
+    color: var(--hv2-primary) !important;
+}
+
+/* Logo → trắng (silhouette) khi đè lên hero tối; trả lại bản gốc khi .stuck */
+body.page-template-template-home-v2 #header .header-wrapper:not(.stuck) .logo img {
+    filter: brightness(0) invert(1);
 }
 
 /* =====================================================
@@ -622,12 +769,12 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(6, 52, 67, .18) 30%, rgba(6, 52, 67, .85) 100%);
+    background: linear-gradient(180deg, transparent 70%, rgba(0, 0, 0, 0.35) 100%);
     transition: background var(--hv2-base);
 }
 
 .hv2-areas__item a:hover::after {
-    background: linear-gradient(180deg, rgba(6, 52, 67, .34) 30%, rgba(18, 156, 148, .92) 100%);
+    background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.5) 100%);
 }
 
 .hv2-areas__name {
@@ -641,6 +788,7 @@
     text-transform: uppercase;
     letter-spacing: .03em;
     color: var(--hv2-white);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .hv2-areas__cta {
@@ -657,6 +805,7 @@
     transform: translateY(8px);
     opacity: 0;
     transition: transform var(--hv2-base), opacity var(--hv2-base);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 .hv2-cta-txt-wrapper {
@@ -957,6 +1106,87 @@
     align-self: flex-start;
 }
 
+/* --- Buildings carousel: đổi NHÓM bằng hiệu ứng morph như hero (mờ chồng + zoom nhẹ) --- */
+.hv2-buildings__carousel {
+    position: relative;
+}
+
+/* Stage: trang đang hiện (relative) định chiều cao; các trang khác (absolute) xếp
+   chồng lên trên để cross-dissolve mượt — giống slideshow ở hero. */
+.hv2-buildings__stage {
+    position: relative;
+}
+
+.hv2-buildings__page {
+    opacity: 0;
+    transform: scale(1.04);
+    transition: opacity .9s ease, transform 1.2s cubic-bezier(.2, .7, .2, 1);
+    will-change: opacity, transform;
+}
+
+.hv2-buildings__page:not(.is-active) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+}
+
+.hv2-buildings__page.is-active {
+    position: relative;
+    opacity: 1;
+    transform: scale(1);
+    z-index: 1;
+}
+
+/* Mũi tên: ẩn, chỉ hiện khi rê chuột vào khối (giống hero); canh giữa dọc cho cân đối. */
+.hv2-buildings__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--hv2-dark);
+    background: rgba(255, 255, 255, .94);
+    border: 1px solid var(--hv2-border);
+    border-radius: 50%;
+    box-shadow: var(--hv2-shadow);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    transition: background var(--hv2-fast), color var(--hv2-fast), border-color var(--hv2-fast), opacity var(--hv2-base), visibility var(--hv2-base);
+}
+
+.hv2-buildings__carousel:hover .hv2-buildings__arrow,
+.hv2-buildings__arrow:focus-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.hv2-buildings__arrow:hover {
+    background: var(--hv2-primary);
+    color: var(--hv2-white);
+    border-color: var(--hv2-primary);
+}
+
+.hv2-buildings__arrow:active {
+    transform: translateY(-50%) scale(.94);
+}
+
+.hv2-buildings__arrow--prev {
+    left: -14px;
+}
+
+.hv2-buildings__arrow--next {
+    right: -14px;
+}
+
 /* =====================================================
  * 7. TESTIMONIALS
  * ===================================================== */
@@ -986,6 +1216,68 @@
 .hv2-testi .hv2-eyebrow {
     color: var(--hv2-white);
     background: rgba(255, 255, 255, .15);
+}
+
+.hv2-testi__wrapper {
+    position: relative;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.hv2-testi__arrow {
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--hv2-white);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--hv2-base);
+    z-index: 10;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hv2-testi__arrow--prev {
+    left: 0;
+}
+
+.hv2-testi__arrow--next {
+    right: 0;
+}
+
+.hv2-testi__arrow:hover {
+    background: var(--hv2-primary);
+    border-color: var(--hv2-primary);
+    transform: translateY(-50%) scale(1.08);
+    box-shadow: 0 4px 12px rgba(18, 156, 148, 0.3);
+}
+
+.hv2-testi__arrow--prev svg {
+    transform: translateX(-1px);
+    transition: transform var(--hv2-fast);
+}
+
+.hv2-testi__arrow--prev:hover svg {
+    transform: translateX(-3px);
+}
+
+.hv2-testi__arrow--next svg {
+    transform: translateX(1px);
+    transition: transform var(--hv2-fast);
+}
+
+.hv2-testi__arrow--next:hover svg {
+    transform: translateX(3px);
 }
 
 .hv2-testi__track {
@@ -1406,6 +1698,10 @@
     .hv2-quickform__submit {
         grid-column: 1 / -1;
     }
+
+    .hv2-testi__arrow {
+        display: none !important;
+    }
 }
 
 /* =====================================================
@@ -1419,7 +1715,7 @@
 
     .hv2-hero {
         min-height: 580px;
-        padding: 80px 0 70px;
+        padding: 112px 0 70px;   /* chừa đủ cho logo header (cao ~90px) khỏi đè eyebrow */
     }
 
     .hv2-hero__title {
@@ -1459,6 +1755,11 @@
     }
 
     .hv2-hero__scroll {
+        display: none;
+    }
+
+    /* Mobile: ẩn mũi tên (đè chữ ở màn nhỏ) — dùng vuốt + tự chạy. */
+    .hv2-hero__arrow {
         display: none;
     }
 
@@ -1569,6 +1870,11 @@
         margin-bottom: 28px;
     }
 
+    /* Mobile: ẩn mũi tên (đè card) — dùng vuốt + tự chuyển nhóm. */
+    .hv2-buildings__arrow {
+        display: none;
+    }
+
     .hv2-testi {
         padding: 60px 0;
     }
@@ -1657,5 +1963,12 @@
     .home-v2 *::after {
         animation-duration: .01ms !important;
         transition-duration: .01ms !important;
+    }
+
+    /* Hero slideshow vẫn tự chạy (theo yêu cầu) → giữ mờ chuyển nhẹ cho đỡ giật,
+       nhưng bỏ zoom để tôn trọng reduced-motion. */
+    .home-v2 .hv2-hero__slide {
+        transition: opacity .8s ease !important;
+        transform: none !important;
     }
 }

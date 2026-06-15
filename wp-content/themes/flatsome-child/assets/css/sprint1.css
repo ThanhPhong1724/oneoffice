@@ -467,6 +467,61 @@ a.btn-phone:hover {
     display: block;
 }
 
+/* --- Compact circular variant (product header card) --- */
+.oo-share-buttons.compact {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.oo-share-btn.compact {
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    background-color: #e2e8f0 !important;
+    color: #475569 !important;
+    box-shadow: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: background-color 0.22s ease, color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease !important;
+}
+.oo-share-btn.compact .oo-share-icon {
+    width: 15px;
+    height: 15px;
+}
+.oo-share-btn.compact span { display: none !important; }
+
+.oo-share-btn.compact:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15) !important;
+    color: #ffffff !important;
+}
+.oo-share-btn.compact.oo-share-btn--facebook:hover {
+    background-color: #1877f2 !important;
+}
+.oo-share-btn.compact.oo-share-btn--zalo:hover {
+    background-color: #0068ff !important;
+}
+.oo-share-btn.compact.oo-share-btn--linkedin:hover {
+    background-color: #0077b5 !important;
+}
+.oo-share-btn.compact.oo-share-btn--copy:hover {
+    background-color: #475569 !important;
+}
+.oo-share-btn.compact.oo-share-btn--copy.copied {
+    background-color: #10b981 !important;
+    color: #ffffff !important;
+}
+
+/* Share label inside header card */
+.sp2-header-card__share .share-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #94a3b8;
+    white-space: nowrap;
+    margin-right: 4px;
+}
 @media (max-width: 550px) {
     .oneoffice-post-share {
         flex-direction: column;

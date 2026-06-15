@@ -686,6 +686,10 @@
 			list-style: none;
 		}
 
+		#footer p {
+			margin-bottom: 12px;
+		}
+
 		#footer a,
 		#footer li {
 			font-size: 14px;

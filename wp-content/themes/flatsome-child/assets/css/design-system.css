@@ -704,10 +704,11 @@ body.single-product .sp2-sidebar-btn--quote:hover {
     max-width: 540px;
 }
 .oo-tk95__bullets {
-    list-style: none; padding: 0; margin: 0 0 40px;
+    list-style: none !important; padding: 0; margin: 0 0 40px;
     display: grid; grid-template-columns: 1fr 1fr; gap: 20px 28px;
 }
 .oo-tk95__bullets li {
+    list-style-type: none !important;
     position: relative; padding-left: 36px;
     color: rgba(255,255,255,.92);
     font-size: 15.5px;

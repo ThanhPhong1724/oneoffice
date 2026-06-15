@@ -1,0 +1,259 @@
+/* =============================================================================
+ * OneOffice — SINGLE POST TYPOGRAPHY ("PROSE")
+ * -----------------------------------------------------------------------------
+ * Stylesheet riêng cho bài viết đơn (single blog post).
+ * Chứa typography scale, readable layout, and overrides cho editor inline styles.
+ * ========================================================================== */
+
+.oo-single-post {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--sp-5) 0;
+}
+
+/* 1. POST HEADER & META */
+.oo-post-header {
+    margin-bottom: var(--sp-6);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: var(--sp-5);
+}
+
+.oo-post-title {
+    font-size: var(--fs-h1);
+    color: var(--dark);
+    line-height: var(--lh-heading);
+    font-weight: 700;
+    margin-top: 0 !important;
+    margin-bottom: var(--sp-4) !important;
+}
+
+.oo-post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--sp-4);
+    color: var(--text-muted);
+    font-size: var(--fs-sm);
+    margin-bottom: var(--sp-5);
+}
+
+.oo-post-meta-category {
+    background-color: var(--primary-l);
+    color: var(--primary) !important;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: var(--r-pill);
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    transition: var(--fast);
+    text-decoration: none !important;
+}
+
+.oo-post-meta-category:hover {
+    background-color: var(--primary);
+    color: var(--text-inverse) !important;
+}
+
+.oo-post-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.oo-post-meta-item i {
+    color: var(--primary);
+    font-size: 14px;
+}
+
+/* 2. FEATURED HERO IMAGE */
+.oo-post-featured-image {
+    margin-top: var(--sp-5);
+    border-radius: var(--r);
+    overflow: hidden;
+    box-shadow: var(--sh-sm);
+}
+
+.oo-post-featured-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    max-height: 480px;
+}
+
+/* 3. CONTENT TYPOGRAPHY (.oo-prose) */
+.oo-prose {
+    color: var(--text-body);
+    font-size: 17px;
+    line-height: 1.8;
+    letter-spacing: -0.01em;
+}
+
+.oo-prose p {
+    margin-top: 0;
+    margin-bottom: 1.5em;
+    color: var(--text-body);
+}
+
+/* Headings */
+.oo-prose h2, 
+.oo-prose h3, 
+.oo-prose h4 {
+    color: var(--dark);
+    font-weight: 700;
+    line-height: var(--lh-heading);
+    margin-top: 1.8em;
+    margin-bottom: 0.6em;
+}
+
+.oo-prose h2 {
+    font-size: 1.55em;
+    border-left: 4px solid var(--primary);
+    padding-left: var(--sp-3);
+}
+
+.oo-prose h3 {
+    font-size: 1.3em;
+}
+
+.oo-prose h4 {
+    font-size: 1.15em;
+}
+
+/* Lists */
+.oo-prose ul, 
+.oo-prose ol {
+    margin-top: 0;
+    margin-bottom: 1.5em;
+    padding-left: var(--sp-5);
+}
+
+.oo-prose li {
+    margin-bottom: 0.5em;
+    line-height: var(--lh-body);
+}
+
+.oo-prose ul {
+    list-style-type: disc;
+}
+
+.oo-prose ol {
+    list-style-type: decimal;
+}
+
+/* Images & Captions */
+.oo-prose img {
+    border-radius: var(--r-sm);
+    margin: 1.8em auto;
+    display: block;
+    box-shadow: var(--sh-sm);
+    max-width: 100%;
+    height: auto;
+}
+
+.oo-prose .aligncenter, 
+.oo-prose figure {
+    text-align: center;
+    margin: 2em 0;
+}
+
+.oo-prose figcaption, 
+.oo-prose .wp-caption-text {
+    font-size: var(--fs-cap);
+    color: var(--text-muted);
+    margin-top: 0.5em;
+    font-style: italic;
+}
+
+/* Links */
+.oo-prose a {
+    color: var(--primary);
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(var(--primary-rgb), 0.3);
+    transition: var(--fast);
+}
+
+.oo-prose a:hover {
+    color: var(--primary-d);
+    border-bottom-color: var(--primary-d);
+}
+
+/* Blockquotes */
+.oo-prose blockquote {
+    border-left: 4px solid var(--primary);
+    background-color: var(--background);
+    padding: var(--sp-4) var(--sp-5);
+    margin: 2em 0;
+    border-radius: 0 var(--r-sm) var(--r-sm) 0;
+    font-style: italic;
+    color: var(--text-main);
+}
+
+.oo-prose blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* Horizontal Rule */
+.oo-prose hr {
+    border: 0;
+    height: 1px;
+    background: var(--border);
+    margin: 2.5em 0;
+}
+
+/* Tables */
+.oo-prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2em 0;
+    font-size: var(--fs-sm);
+    line-height: var(--lh-body);
+}
+
+.oo-prose th, 
+.oo-prose td {
+    border: 1px solid var(--border);
+    padding: var(--sp-3);
+    text-align: left;
+}
+
+.oo-prose th {
+    background-color: var(--surface-alt);
+    color: var(--dark);
+    font-weight: 600;
+}
+
+.oo-prose tr:nth-child(even) {
+    background-color: rgba(var(--dark-rgb), 0.02);
+}
+
+/* 4. HARMFUL INLINE STYLES OVERRIDES */
+/* Override tiny font-size on span elements inside blog post content */
+.oo-prose span[style*="font-size: 75%"],
+.oo-prose span[style*="font-size:75%"] {
+    font-size: 0.9em !important;
+}
+
+.oo-prose span[style*="font-size: 11px"],
+.oo-prose span[style*="font-size:11px"],
+.oo-prose span[style*="font-size: 10px"],
+.oo-prose span[style*="font-size:10px"],
+.oo-prose span[style*="font-size: 9px"],
+.oo-prose span[style*="font-size:9px"] {
+    font-size: 0.9em !important;
+}
+
+/* Normalize general custom inline color overrides */
+.oo-prose span[style*="color: #333333"],
+.oo-prose span[style*="color:#333333"],
+.oo-prose span[style*="color: #000000"],
+.oo-prose span[style*="color:#000000"] {
+    color: inherit !important;
+}
+
+/* Handle excessive spacing caused by nested brs */
+.oo-prose br + br {
+    display: none !important;
+}

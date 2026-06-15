@@ -939,6 +939,16 @@ function oneoffice_sprint1_assets() {
         filemtime( get_stylesheet_directory() . '/assets/css/design-system.css' )
     );
 
+    // Single Blog Post stylesheet
+    if ( is_single() && get_post_type() === 'post' ) {
+        wp_enqueue_style(
+            'oneoffice-single-post',
+            $uri . '/assets/css/single-post.css',
+            array( 'oneoffice-design-system' ),
+            filemtime( get_stylesheet_directory() . '/assets/css/single-post.css' )
+        );
+    }
+
     // Global motion — reveal-on-scroll cho trang cũ (tự bỏ qua V2 + reduced-motion).
     // ROLLBACK: comment block wp_enqueue_script() này.
     wp_enqueue_script(
@@ -968,14 +978,13 @@ function oneoffice_sprint1_assets() {
     );
 }
 
-// Social share button for single product pages (WooCommerce)
-add_action( 'woocommerce_single_product_summary', 'oneoffice_product_social_share', 60 );
+// Disable AddToAny automatic insertion in content (posts/pages/etc)
+add_filter( 'addtoany_sharing_disabled', '__return_true' );
+
+// Social share button for single product pages (WooCommerce) - disabled duplicate bottom summary share widget
+// add_action( 'woocommerce_single_product_summary', 'oneoffice_product_social_share', 60 );
 function oneoffice_product_social_share() {
-    if ( ! function_exists( 'ADDTOANY_SHARE_SAVE_KIT' ) ) return;
-    echo '<div class="oneoffice-product-share">';
-    echo '<span class="share-label">Chia sẻ:</span>';
-    ADDTOANY_SHARE_SAVE_KIT( array( 'use_current_page' => true ) );
-    echo '</div>';
+    // Disabled in favor of the custom circular sharing widget in the header card (detail.php)
 }
 
 // Social share for single blog posts — appended after content
@@ -1070,7 +1079,17 @@ require_once __DIR__ . '/inc/seo-extras.php';
  * Automatically replaces production domain links with current environment URL
  * ============================================================= */
 function oo_clean_chatgpt_wrappers( $content ) {
-    if ( empty( $content ) || strpos( $content, 'markdown-new-styling' ) === false ) {
+    if ( empty( $content ) ) {
+        return $content;
+    }
+    
+    // Check if there are any ChatGPT-related indicators
+    if ( strpos( $content, 'markdown-new-styling' ) === false && 
+         strpos( $content, 'TyagGW_' ) === false && 
+         strpos( $content, 'text-message' ) === false &&
+         strpos( $content, 'flex-col' ) === false &&
+         strpos( $content, 'empty:hidden' ) === false &&
+         strpos( $content, 'bg-token' ) === false ) {
         return $content;
     }
     
@@ -1083,14 +1102,103 @@ function oo_clean_chatgpt_wrappers( $content ) {
     libxml_clear_errors();
     
     $xpath = new DOMXPath($dom);
-    $nodes = $xpath->query('//div[contains(@class, "markdown-new-styling")]');
     
-    if ( $nodes->length > 0 ) {
-        $markdown_div = $nodes->item(0);
-        return $dom->saveHTML( $markdown_div );
+    // Find all div elements
+    $divs = $xpath->query('//div');
+    $div_list = [];
+    foreach ($divs as $div) {
+        $div_list[] = $div;
     }
     
-    return $content;
+    // Sort by depth (node path length) descending so we process innermost divs first
+    usort($div_list, function($a, $b) {
+        return strlen($b->getNodePath()) - strlen($a->getNodePath());
+    });
+    
+    $chatgpt_indicators = [
+        'markdown-new-styling',
+        'TyagGW_table',
+        'TyagGW_',
+        'text-message',
+        'flex',
+        'grow',
+        'prose',
+        'token-',
+        'bg-token',
+        'empty:hidden',
+        'keyboard-focused',
+        'min-h-',
+        'rounded-xl',
+        'border-gray-'
+    ];
+    
+    foreach ($div_list as $div) {
+        // Skip the root wrapper div we added
+        if ($div->getNodePath() === '/div') {
+            continue;
+        }
+        
+        $class = $div->getAttribute('class');
+        $data_message = $div->getAttribute('data-message-id');
+        
+        $is_chatgpt = false;
+        if (!empty($data_message)) {
+            $is_chatgpt = true;
+        } else {
+            foreach ($chatgpt_indicators as $indicator) {
+                if (strpos($class, $indicator) !== false) {
+                    $is_chatgpt = true;
+                    break;
+                }
+            }
+        }
+        
+        if ($is_chatgpt) {
+            if (!$div->parentNode) {
+                continue;
+            }
+            
+            // Check if it has meaningful content
+            $meaningful_tags = ['img', 'table', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'ul', 'ol', 'li', 'blockquote', 'a', 'hr', 'iframe'];
+            $has_meaningful_tags = false;
+            foreach ($meaningful_tags as $tag) {
+                if ($div->getElementsByTagName($tag)->length > 0) {
+                    $has_meaningful_tags = true;
+                    break;
+                }
+            }
+            
+            $has_text = false;
+            if (trim($div->textContent) !== '') {
+                $has_text = true;
+            }
+            
+            if ($has_meaningful_tags || $has_text) {
+                // Unwrap: replace $div with its children
+                $fragment = $dom->createDocumentFragment();
+                while ($div->firstChild) {
+                    $fragment->appendChild($div->firstChild);
+                }
+                $div->parentNode->replaceChild($fragment, $div);
+            } else {
+                // Remove: completely remove the div
+                $div->parentNode->removeChild($div);
+            }
+        }
+    }
+    
+    // Return inner HTML of the wrapper div
+    $root_div = $dom->getElementsByTagName('div')->item(0);
+    $clean_content = '';
+    if ($root_div) {
+        foreach ($root_div->childNodes as $child) {
+            $clean_content .= $dom->saveHTML($child);
+        }
+    } else {
+        $clean_content = $dom->saveHTML();
+    }
+    
+    return $clean_content;
 }
 add_filter( 'the_content', 'oo_clean_chatgpt_wrappers', 10 );
 
@@ -1112,6 +1220,30 @@ function oo_dynamic_internal_links_filter( $content ) {
 add_filter( 'the_content', 'oo_dynamic_internal_links_filter', 99 );
 add_filter( 'the_excerpt', 'oo_dynamic_internal_links_filter', 99 );
 add_filter( 'woocommerce_short_description', 'oo_dynamic_internal_links_filter', 99 );
+
+/**
+ * Fix wp-content/uploads URLs that WPML/Polylang incorrectly rewrites
+ * by injecting language prefix (e.g. /vi/trang-chu-3/) before /wp-content/.
+ * Must run very late (priority 9999) to catch any rewriting that happens after
+ * the oo_dynamic_internal_links_filter.
+ */
+function oo_fix_upload_urls( $content ) {
+    if ( empty( $content ) ) {
+        return $content;
+    }
+    // Match any URL where something like /vi/trang-chu-3/ or /vi/ gets inserted
+    // between /oneoffice/ (or site base) and /wp-content/uploads/
+    // Pattern: /oneoffice/[anything that's NOT wp-content]/wp-content/uploads/
+    $content = preg_replace(
+        '#(/oneoffice)/(?:vi/)?(?:[^"\'<>\s]+/)*?(wp-content/uploads/)#',
+        '$1/$2',
+        $content
+    );
+    return $content;
+}
+add_filter( 'the_content', 'oo_fix_upload_urls', 9999 );
+add_filter( 'the_excerpt', 'oo_fix_upload_urls', 9999 );
+add_filter( 'woocommerce_short_description', 'oo_fix_upload_urls', 9999 );
 
 /* Inject inline style directly into file upload input for "dinhkem" on the ky-gui page */
 function oo_add_inline_style_to_dinhkem( $content ) {

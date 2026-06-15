@@ -23,7 +23,7 @@ $oo_districts = array(
     array( 'name' => 'Hai Bà Trưng', 'img_id' => 5269,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-hai-ba-trung/' ) ),
     array( 'name' => 'Ba Đình',      'img_id' => 5270,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-ba-dinh/' ) ),
     array( 'name' => 'Đống Đa',      'img_id' => 5271,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-dong-da/' ) ),
-    array( 'name' => 'Cầu Giấy',     'img_id' => 1870, 'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-cau-giay/' ) ),
+    array( 'name' => 'Cầu Giấy',     'img_id' => 5277, 'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-cau-giay/' ) ),
     array( 'name' => 'Nam Từ Liêm',  'img_id' => 5272,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-nam-tu-liem/' ) ),
     array( 'name' => 'Thanh Xuân',   'img_id' => 5273,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-thanh-xuan/' ) ),
     array( 'name' => 'Tây Hồ',       'img_id' => 5274,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-tay-ho/' ) ),
@@ -126,23 +126,57 @@ $oo_final_cta = array(
     ),
 );
 
-// Hero background — ưu tiên ảnh ID 883 (gốc) nếu có, fallback sang ảnh thật khác
-$oo_hero_bg_id  = 883;
-$oo_hero_bg_url = wp_get_attachment_url( $oo_hero_bg_id );
-if ( ! $oo_hero_bg_url || ! file_exists( str_replace( site_url('/'), ABSPATH, $oo_hero_bg_url ) ) ) {
-    // Fallback ảnh có sẵn trong uploads
-    $oo_hero_bg_url = home_url( '/wp-content/uploads/2020/11/leadvisors-tower-36-pham-van-dong-bac-tu-liem-ha-noi.jpg' );
+// Hero slider — bộ ảnh banner gốc (1584×550) trong uploads/2020/12. Dùng URL trực tiếp
+// kèm file_exists guard để không bao giờ render slide hỏng. Có thể thêm/bớt file ở đây.
+$oo_hero_slide_files = array( '01.jpg', '02.jpg', '03.jpg' );
+$oo_upload_dir       = wp_upload_dir();
+$oo_hero_slides      = array();
+foreach ( $oo_hero_slide_files as $oo_f ) {
+    $oo_path = trailingslashit( $oo_upload_dir['basedir'] ) . '2020/12/' . $oo_f;
+    if ( file_exists( $oo_path ) ) {
+        $oo_hero_slides[] = trailingslashit( $oo_upload_dir['baseurl'] ) . '2020/12/' . $oo_f;
+    }
+}
+// Fallback: nếu không tìm thấy slide nào, dùng 1 ảnh tòa nhà có sẵn.
+if ( empty( $oo_hero_slides ) ) {
+    $oo_hero_slides[] = home_url( '/wp-content/uploads/2020/11/leadvisors-tower-36-pham-van-dong-bac-tu-liem-ha-noi.jpg' );
+}
+$oo_hero_is_slider = count( $oo_hero_slides ) > 1;
+
+// Tòa nhà nổi bật — ưu tiên sản phẩm gắn cờ "Sản phẩm nổi bật" (★) của WooCommerce.
+// Admin bật/tắt bằng ngôi sao trong danh sách sản phẩm (hoặc Dữ liệu sản phẩm → Hiển thị → Nổi bật).
+$oo_buildings_limit = 12;  // tối đa số tòa nạp vào slider (nhiều nhóm để tự chuyển)
+$oo_buildings_min   = 6;   // nếu chưa đủ tòa nổi bật → bù thêm tòa mới nhất cho đủ slider
+
+$oo_featured_ids = function_exists( 'wc_get_featured_product_ids' ) ? wc_get_featured_product_ids() : array();
+
+$oo_buildings = array();
+if ( ! empty( $oo_featured_ids ) ) {
+    $oo_buildings = get_posts( array(
+        'post_type'      => 'product',
+        'post_status'    => 'publish',
+        'posts_per_page' => $oo_buildings_limit,
+        'post__in'       => $oo_featured_ids,
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+        'fields'         => 'ids',
+    ) );
 }
 
-// Tòa nhà nổi bật — lấy động 6 sản phẩm publish
-$oo_buildings = get_posts( array(
-    'post_type'      => 'product',
-    'post_status'    => 'publish',
-    'posts_per_page' => 6,
-    'orderby'        => 'date',
-    'order'          => 'DESC',
-    'fields'         => 'ids',
-) );
+// Bù thêm tòa mới nhất nếu chưa đánh dấu đủ "nổi bật" (luôn có nội dung cho slider).
+if ( count( $oo_buildings ) < $oo_buildings_min ) {
+    $oo_fill = get_posts( array(
+        'post_type'      => 'product',
+        'post_status'    => 'publish',
+        'posts_per_page' => $oo_buildings_limit - count( $oo_buildings ),
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+        'fields'         => 'ids',
+        'post__not_in'   => ! empty( $oo_buildings ) ? $oo_buildings : array( 0 ),
+    ) );
+    $oo_buildings = array_merge( $oo_buildings, $oo_fill );
+}
+$oo_buildings_is_carousel = count( $oo_buildings ) > 1;
 
 get_header(); ?>
 
@@ -151,8 +185,15 @@ get_header(); ?>
     <?php /* =========================================================
      * 1) HERO
      * ========================================================= */ ?>
-    <section class="hv2-hero" aria-label="Cho thuê văn phòng Hà Nội"
-             style="background-image: linear-gradient(135deg, rgba(6,52,67,.80) 0%, rgba(21,113,181,.42) 60%, rgba(18,156,148,.50) 100%), url('<?php echo esc_url( $oo_hero_bg_url ); ?>');">
+    <section class="hv2-hero<?php echo $oo_hero_is_slider ? ' hv2-hero--slider' : ''; ?>" aria-label="Cho thuê văn phòng Hà Nội">
+        <div class="hv2-hero__slides" aria-hidden="true">
+            <?php foreach ( $oo_hero_slides as $oo_i => $oo_src ) : ?>
+                <div class="hv2-hero__slide<?php echo $oo_i === 0 ? ' is-active' : ''; ?>" data-index="<?php echo (int) $oo_i; ?>"
+                     style="background-image:url('<?php echo esc_url( $oo_src ); ?>');"></div>
+            <?php endforeach; ?>
+        </div>
+        <div class="hv2-hero__overlay" aria-hidden="true"></div>
+
         <div class="hv2-container">
             <div class="hv2-hero__inner">
                 <span class="hv2-hero__eyebrow">Wonderland Việt Nam · 10+ năm kinh nghiệm</span>
@@ -188,6 +229,15 @@ get_header(); ?>
                 </ul>
             </div>
         </div>
+        <?php if ( $oo_hero_is_slider ) : ?>
+        <button type="button" class="hv2-hero__arrow hv2-hero__arrow--prev" aria-label="Ảnh nền trước">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button type="button" class="hv2-hero__arrow hv2-hero__arrow--next" aria-label="Ảnh nền kế tiếp">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+        <?php endif; ?>
+
         <a href="#hv2-quickform" class="hv2-hero__scroll" aria-label="Cuộn xuống">
             <span></span>
         </a>
@@ -307,7 +357,7 @@ get_header(); ?>
                 ?>
                 <p class="hv2-quickform__note">
                     <!-- [NEEDS CLIENT CONTENT] Backend form chuyên dụng cho homepage chưa có — tạm thời chuyển sang /lien-he/. Cần khách cấu hình form xử lý + thông báo Telegram/Email. -->
-                    Hoặc gọi trực tiếp hotline 24/7: <a href="tel:0966681616"><strong>0966 68 1616</strong></a>
+                    Gọi hotline 24/7 với số điện thoại: <a href="tel:0966681616"><strong>0966 68 1616</strong></a> để nhận tư vấn chuyên sâu ngay hoặc vui lòng điền form để team Wonderland liên hệ lại.
                 </p>
             </div>
         </div>
@@ -426,7 +476,13 @@ get_header(); ?>
                 <p>Một số tòa nhà có vị trí đẹp, giá thuê và tiện ích nổi trội đang được tư vấn nhiều nhất.</p>
             </header>
 
-            <div class="hv2-buildings__grid">
+            <div class="hv2-buildings__carousel">
+                <?php if ( $oo_buildings_is_carousel ) : ?>
+                <button type="button" class="hv2-buildings__arrow hv2-buildings__arrow--prev" aria-label="Nhóm tòa nhà trước">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <?php endif; ?>
+                <div class="hv2-buildings__grid hv2-buildings__track">
                 <?php foreach ( $oo_buildings as $bid ) :
                     $thumb = get_the_post_thumbnail_url( $bid, 'large' );
                     $title = get_the_title( $bid );
@@ -460,7 +516,13 @@ get_header(); ?>
                     </div>
                 </article>
                 <?php endforeach; ?>
-            </div>
+                </div><!-- /.hv2-buildings__track -->
+                <?php if ( $oo_buildings_is_carousel ) : ?>
+                <button type="button" class="hv2-buildings__arrow hv2-buildings__arrow--next" aria-label="Nhóm tòa nhà kế tiếp">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <?php endif; ?>
+            </div><!-- /.hv2-buildings__carousel -->
 
             <div class="hv2-areas__more">
                 <a href="<?php echo esc_url( home_url( '/cho-thue-van-phong-ha-noi/' ) ); ?>" class="hv2-btn hv2-btn--outline">
@@ -481,26 +543,36 @@ get_header(); ?>
                 <h2>Phản hồi của khách&nbsp;hàng</h2>
             </header>
 
-            <div class="hv2-testi__track" role="region" aria-live="polite">
-                <?php foreach ( $oo_testimonials as $i => $t ) :
-                    $avatar = wp_get_attachment_image_url( $t['img_id'], 'thumbnail' );
-                ?>
-                <article class="hv2-testi__card<?php echo $i===0 ? ' is-active' : ''; ?>" data-index="<?php echo $i; ?>">
-                    <div class="hv2-testi__quote-mark" aria-hidden="true">
-                        <svg viewBox="0 0 44 36" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M0 36V20.9c0-5.5 1.1-10 3.4-13.6C5.6 3.7 9.5 1.1 15 0v6.3c-2.6.7-4.5 2.1-5.7 4-1.2 2-1.8 4.5-1.8 7.6h7.7V36H0Zm26.6 0V20.9c0-5.5 1.1-10 3.4-13.6 2.2-3.6 6.1-6.2 11.6-7.3v6.3c-2.6.7-4.5 2.1-5.7 4-1.2 2-1.8 4.5-1.8 7.6H42V36H26.6Z"/></svg>
-                    </div>
-                    <p class="hv2-testi__quote"><?php echo esc_html( $t['quote'] ); ?></p>
-                    <div class="hv2-testi__person">
-                        <?php if ( $avatar ) : ?>
-                            <img src="<?php echo esc_url( $avatar ); ?>" alt="<?php echo esc_attr( $t['name'] ); ?>" loading="lazy" width="56" height="56">
-                        <?php endif; ?>
-                        <div>
-                            <strong><?php echo esc_html( $t['name'] ); ?></strong>
-                            <span><?php echo esc_html( $t['title'] ); ?></span>
+            <div class="hv2-testi__wrapper">
+                <button type="button" class="hv2-testi__arrow hv2-testi__arrow--prev" aria-label="Previous testimonial">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+
+                <div class="hv2-testi__track" role="region" aria-live="polite">
+                    <?php foreach ( $oo_testimonials as $i => $t ) :
+                        $avatar = wp_get_attachment_image_url( $t['img_id'], 'thumbnail' );
+                    ?>
+                    <article class="hv2-testi__card<?php echo $i===0 ? ' is-active' : ''; ?>" data-index="<?php echo $i; ?>">
+                        <div class="hv2-testi__quote-mark" aria-hidden="true">
+                            <svg viewBox="0 0 44 36" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M0 36V20.9c0-5.5 1.1-10 3.4-13.6C5.6 3.7 9.5 1.1 15 0v6.3c-2.6.7-4.5 2.1-5.7 4-1.2 2-1.8 4.5-1.8 7.6h7.7V36H0Zm26.6 0V20.9c0-5.5 1.1-10 3.4-13.6 2.2-3.6 6.1-6.2 11.6-7.3v6.3c-2.6.7-4.5 2.1-5.7 4-1.2 2-1.8 4.5-1.8 7.6H42V36H26.6Z"/></svg>
                         </div>
-                    </div>
-                </article>
-                <?php endforeach; ?>
+                        <p class="hv2-testi__quote"><?php echo esc_html( $t['quote'] ); ?></p>
+                        <div class="hv2-testi__person">
+                            <?php if ( $avatar ) : ?>
+                                <img src="<?php echo esc_url( $avatar ); ?>" alt="<?php echo esc_attr( $t['name'] ); ?>" loading="lazy" width="56" height="56">
+                            <?php endif; ?>
+                            <div>
+                                <strong><?php echo esc_html( $t['name'] ); ?></strong>
+                                <span><?php echo esc_html( $t['title'] ); ?></span>
+                            </div>
+                        </div>
+                    </article>
+                    <?php endforeach; ?>
+                </div>
+
+                <button type="button" class="hv2-testi__arrow hv2-testi__arrow--next" aria-label="Next testimonial">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
             </div>
 
             <div class="hv2-testi__nav" role="tablist">

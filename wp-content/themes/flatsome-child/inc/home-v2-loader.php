@@ -132,6 +132,21 @@ function oo_child_templates_enqueue() {
 }
 
 /**
+ * 3b) Home V2 — bật transparent header của Flatsome (đè lên hero), CHỈ trên template này.
+ *     Tận dụng cơ chế sẵn có của parent: khi header có class 'transparent has-transparent'
+ *     Flatsome tự đặt position:absolute + nền trong suốt, và tự chuyển sang header solid
+ *     (sticky) khi cuộn. Màu chữ/logo sáng ở trạng thái top xử lý trong home-v2.css.
+ *     Rollback: xoá filter này.
+ */
+add_filter( 'flatsome_header_class', 'oo_home_v2_transparent_header' );
+function oo_home_v2_transparent_header( $classes ) {
+    if ( is_page() && get_page_template_slug( get_queried_object_id() ) === 'page-templates/template-home-v2.php' ) {
+        $classes[] = 'transparent has-transparent';
+    }
+    return $classes;
+}
+
+/**
  * 4) Single Product V2 — polish cho tất cả product single
  *    (URL pattern: /cho-thue-van-phong-ha-noi/{toa-nha-slug}/).
  *    Không động single-product.php của parent — chỉ thêm CSS layer.
