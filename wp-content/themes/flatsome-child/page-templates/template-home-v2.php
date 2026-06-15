@@ -304,7 +304,7 @@ get_header(); ?>
                                 <input type="tel" name="phone" placeholder="VD: 0912 345 678" pattern="[0-9 \-\+]{8,15}">
                             </label>
                             <button type="submit" class="hv2-btn hv2-btn--primary hv2-quickform__submit">
-                                Nhận tư vấn miễn phí
+                                Tìm kiếm
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
                             </button>
                         </form>
@@ -348,7 +348,7 @@ get_header(); ?>
                             <input type="tel" name="phone" placeholder="VD: 0912 345 678" pattern="[0-9 \-\+]{8,15}">
                         </label>
                         <button type="submit" class="hv2-btn hv2-btn--primary hv2-quickform__submit">
-                            Nhận tư vấn miễn phí
+                            Tìm kiếm
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
                         </button>
                     </form>
@@ -357,7 +357,7 @@ get_header(); ?>
                 ?>
                 <p class="hv2-quickform__note">
                     <!-- [NEEDS CLIENT CONTENT] Backend form chuyên dụng cho homepage chưa có — tạm thời chuyển sang /lien-he/. Cần khách cấu hình form xử lý + thông báo Telegram/Email. -->
-                    Gọi hotline 24/7 với số điện thoại: <a href="tel:0966681616"><strong>0966 68 1616</strong></a> để nhận tư vấn chuyên sâu ngay hoặc vui lòng điền form để team Wonderland liên hệ lại.
+                    Gọi hotline 24/7 với số điện thoại: <a href="tel:0966681616"><strong>0966 68 1616</strong></a> để nhận tư vấn chuyên sâu ngay hoặc <a href="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" target="_blank"><strong>vui lòng điền form</strong></a> để team Wonderland liên hệ lại.
                 </p>
             </div>
         </div>

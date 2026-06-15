@@ -280,7 +280,7 @@ get_header(); ?>
                 ?>
                 <p class="vp2-quickform__note">
                     <!-- [NEEDS CLIENT CONTENT] Form gốc page 751 dùng [contact-form-7 id="601"] + ux_sidebar — cần map backend khi triển khai. Tạm thời chuyển /lien-he/. -->
-                    Gọi hotline 24/7 với số điện thoại: <a href="tel:0966681616"><strong>0966 68 1616</strong></a> để nhận tư vấn chuyên sâu ngay hoặc vui lòng điền form để team Wonderland liên hệ lại.
+                    Gọi hotline 24/7 với số điện thoại: <a href="tel:0966681616"><strong>0966 68 1616</strong></a> để nhận tư vấn chuyên sâu ngay hoặc <a href="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" target="_blank"><strong>vui lòng điền form</strong></a> để team Wonderland liên hệ lại.
                 </p>
             </div>
         </div>
