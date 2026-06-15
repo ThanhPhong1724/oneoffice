@@ -19,14 +19,14 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 // 8 khu vực — copy từ section "address" page 233
 $oo_districts = array(
-    array( 'name' => 'Hoàn Kiếm',    'img_id' => 5268,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-hoan-kiem/' ) ),
-    array( 'name' => 'Hai Bà Trưng', 'img_id' => 5269,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-hai-ba-trung/' ) ),
-    array( 'name' => 'Ba Đình',      'img_id' => 5270,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-ba-dinh/' ) ),
-    array( 'name' => 'Đống Đa',      'img_id' => 5271,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-dong-da/' ) ),
-    array( 'name' => 'Cầu Giấy',     'img_id' => 5277, 'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-cau-giay/' ) ),
-    array( 'name' => 'Nam Từ Liêm',  'img_id' => 5272,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-nam-tu-liem/' ) ),
-    array( 'name' => 'Thanh Xuân',   'img_id' => 5273,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-thanh-xuan/' ) ),
-    array( 'name' => 'Tây Hồ',       'img_id' => 5274,  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-tay-ho/' ) ),
+    array( 'name' => 'Hoàn Kiếm',    'img_id' => 5268,  'slug' => 'quan-hoan-kiem',    'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-hoan-kiem/' ) ),
+    array( 'name' => 'Hai Bà Trưng', 'img_id' => 5269,  'slug' => 'quan-hai-ba-trung', 'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-hai-ba-trung/' ) ),
+    array( 'name' => 'Ba Đình',      'img_id' => 5270,  'slug' => 'quan-ba-dinh',      'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-ba-dinh/' ) ),
+    array( 'name' => 'Đống Đa',      'img_id' => 5271,  'slug' => 'quan-dong-da',      'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-dong-da/' ) ),
+    array( 'name' => 'Cầu Giấy',     'img_id' => 5277,  'slug' => 'quan-cau-giay',     'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-cau-giay/' ) ),
+    array( 'name' => 'Nam Từ Liêm',  'img_id' => 5272,  'slug' => 'quan-nam-tu-liem',  'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-nam-tu-liem/' ) ),
+    array( 'name' => 'Thanh Xuân',   'img_id' => 5273,  'slug' => 'quan-thanh-xuan',   'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-thanh-xuan/' ) ),
+    array( 'name' => 'Tây Hồ',       'img_id' => 5274,  'slug' => 'quan-tay-ho',       'href' => home_url( '/cho-thue-van-phong-ha-noi/quan-tay-ho/' ) ),
 );
 
 // 3 lý do — copy từ section "reason" page 233 (text rút gọn, giữ đúng ý)
@@ -256,99 +256,42 @@ get_header(); ?>
                     <h2>Tìm văn phòng phù hợp chỉ sau 1 cuộc gọi</h2>
                     <p>Chia sẻ nhu cầu — chuyên viên tư vấn sẽ gửi báo giá &amp; danh sách tòa nhà phù hợp ngay.</p>
                 </div>
-                <?php
-                if ( function_exists( 'wpcf7_contact_form' ) ) {
-                    $home_form = get_page_by_path( 'tu-van-nhanh-trang-chu', OBJECT, 'wpcf7_contact_form' );
-                    if ( ! $home_form ) {
-                        $home_form = get_page_by_title( 'Tư vấn nhanh - Trang chủ', OBJECT, 'wpcf7_contact_form' );
-                    }
-                    if ( $home_form ) {
-                        add_filter( 'wpcf7_autop_or_not', '__return_false' );
-                        echo do_shortcode( '[contact-form-7 id="' . $home_form->ID . '" title="' . esc_attr( $home_form->post_title ) . '"]' );
-                        remove_filter( 'wpcf7_autop_or_not', '__return_false' );
-                    } else {
-                        // Fallback static form
-                        ?>
-                        <form class="hv2-quickform__form" action="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" method="get" novalidate>
-                            <label class="hv2-field">
-                                <span>Khu vực</span>
-                                <select name="khu_vuc" required>
-                                    <option value="">Chọn quận</option>
-                                    <?php foreach ( $oo_districts as $d ) : ?>
-                                        <option value="<?php echo esc_attr( $d['name'] ); ?>"><?php echo esc_html( $d['name'] ); ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </label>
-                            <label class="hv2-field">
-                                <span>Hạng tòa nhà</span>
-                                <select name="hang">
-                                    <option value="">Tất cả</option>
-                                    <option value="A">Hạng A</option>
-                                    <option value="B">Hạng B</option>
-                                    <option value="C">Hạng C</option>
-                                </select>
-                            </label>
-                            <label class="hv2-field">
-                                <span>Diện tích (m²)</span>
-                                <select name="dien_tich">
-                                    <option value="">Tất cả</option>
-                                    <option value="0-100">Dưới 100</option>
-                                    <option value="100-300">100 — 300</option>
-                                    <option value="300-500">300 — 500</option>
-                                    <option value="500-1000">500 — 1.000</option>
-                                    <option value="1000+">Trên 1.000</option>
-                                </select>
-                            </label>
-                            
-                            <button type="submit" class="hv2-btn hv2-btn--primary hv2-quickform__submit">
-                                Tìm kiếm
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-                            </button>
-                        </form>
-                        <?php
-                    }
-                } else {
-                    // Fallback static form
-                    ?>
-                    <form class="hv2-quickform__form" action="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" method="get" novalidate>
-                        <label class="hv2-field">
-                            <span>Khu vực</span>
-                            <select name="khu_vuc" required>
-                                <option value="">Chọn quận</option>
-                                <?php foreach ( $oo_districts as $d ) : ?>
-                                    <option value="<?php echo esc_attr( $d['name'] ); ?>"><?php echo esc_html( $d['name'] ); ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </label>
-                        <label class="hv2-field">
-                            <span>Hạng tòa nhà</span>
-                            <select name="hang">
-                                <option value="">Tất cả</option>
-                                <option value="A">Hạng A</option>
-                                <option value="B">Hạng B</option>
-                                <option value="C">Hạng C</option>
-                            </select>
-                        </label>
-                        <label class="hv2-field">
-                            <span>Diện tích (m²)</span>
-                            <select name="dien_tich">
-                                <option value="">Tất cả</option>
-                                <option value="0-100">Dưới 100</option>
-                                <option value="100-300">100 — 300</option>
-                                <option value="300-500">300 — 500</option>
-                                <option value="500-1000">500 — 1.000</option>
-                                <option value="1000+">Trên 1.000</option>
-                            </select>
-                        </label>
-                        
-                        <button type="submit" class="hv2-btn hv2-btn--primary hv2-quickform__submit">
-                            Tìm kiếm
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-                        </button>
-                    </form>
-                    <?php
-                }
-                ?>
+                <form class="hv2-quickform__form" action="<?php echo esc_url( home_url( '/cho-thue-van-phong-ha-noi/' ) ); ?>" method="get" novalidate>
+                    <label class="hv2-field">
+                        <span>Khu vực</span>
+                        <select name="filter_location">
+                            <option value="">Chọn quận</option>
+                            <?php foreach ( $oo_districts as $d ) : ?>
+                                <option value="<?php echo esc_attr( $d['slug'] ); ?>"><?php echo esc_html( $d['name'] ); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </label>
+                    <label class="hv2-field">
+                        <span>Hạng tòa nhà</span>
+                        <select name="filter_rank">
+                            <option value="">Tất cả</option>
+                            <option value="toa-nha-hang-a">Hạng A</option>
+                            <option value="toa-nha-hang-b">Hạng B</option>
+                            <option value="toa-nha-hang-c">Hạng C</option>
+                        </select>
+                    </label>
+                    <label class="hv2-field">
+                        <span>Diện tích (m²)</span>
+                        <select name="dien_tich">
+                            <option value="">Tất cả</option>
+                            <option value="0-100">Dưới 100</option>
+                            <option value="100-300">100 — 300</option>
+                            <option value="300-500">300 — 500</option>
+                            <option value="500-1000">500 — 1.000</option>
+                            <option value="1000+">Trên 1.000</option>
+                        </select>
+                    </label>
+                    
+                    <button type="submit" class="hv2-btn hv2-btn--primary hv2-quickform__submit">
+                        Tìm kiếm
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                    </button>
+                </form>
                 <p class="hv2-quickform__note">
                     <!-- [NEEDS CLIENT CONTENT] Backend form chuyên dụng cho homepage chưa có — tạm thời chuyển sang /lien-he/. Cần khách cấu hình form xử lý + thông báo Telegram/Email. -->
                     Gọi hotline 24/7 với số điện thoại: <a href="tel:0966681616"><strong>0966 68 1616</strong></a> để nhận tư vấn chuyên sâu ngay hoặc <a href="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" target="_blank"><strong>vui lòng điền form</strong></a> để team Wonderland liên hệ lại.
