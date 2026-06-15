@@ -594,7 +594,7 @@ body.page-template-template-home-v2 #header .header-wrapper:not(.stuck) .logo im
 .hv2-quickform__form,
 .hv2-quickform .wpcf7-form {
     display: grid !important;
-    grid-template-columns: repeat(4, 1fr) auto !important;
+    grid-template-columns: repeat(3, 1fr) auto !important;
     gap: 14px !important;
     align-items: end !important;
     max-width: none !important;

@@ -299,10 +299,7 @@ get_header(); ?>
                                     <option value="1000+">Trên 1.000</option>
                                 </select>
                             </label>
-                            <label class="hv2-field">
-                                <span>Số điện thoại</span>
-                                <input type="tel" name="phone" placeholder="VD: 0912 345 678" pattern="[0-9 \-\+]{8,15}">
-                            </label>
+                            
                             <button type="submit" class="hv2-btn hv2-btn--primary hv2-quickform__submit">
                                 Tìm kiếm
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
@@ -343,10 +340,7 @@ get_header(); ?>
                                 <option value="1000+">Trên 1.000</option>
                             </select>
                         </label>
-                        <label class="hv2-field">
-                            <span>Số điện thoại</span>
-                            <input type="tel" name="phone" placeholder="VD: 0912 345 678" pattern="[0-9 \-\+]{8,15}">
-                        </label>
+                        
                         <button type="submit" class="hv2-btn hv2-btn--primary hv2-quickform__submit">
                             Tìm kiếm
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
