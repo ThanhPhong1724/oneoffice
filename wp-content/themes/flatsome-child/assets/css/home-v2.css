@@ -1119,9 +1119,8 @@ body.page-template-template-home-v2 #header .header-wrapper:not(.stuck) .logo im
 
 .hv2-buildings__page {
     opacity: 0;
-    transform: scale(1.04);
-    transition: opacity .9s ease, transform 1.2s cubic-bezier(.2, .7, .2, 1);
-    will-change: opacity, transform;
+    transition: opacity .5s ease;
+    will-change: opacity;
 }
 
 .hv2-buildings__page:not(.is-active) {
@@ -1135,8 +1134,34 @@ body.page-template-template-home-v2 #header .header-wrapper:not(.stuck) .logo im
 .hv2-buildings__page.is-active {
     position: relative;
     opacity: 1;
-    transform: scale(1);
     z-index: 1;
+}
+
+/* Staggered progressive reveal animation for cards when page becomes active */
+.hv2-buildings__page .hv2-buildings__card {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow var(--hv2-base);
+}
+
+.hv2-buildings__page.is-active .hv2-buildings__card {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.hv2-buildings__page.is-active .hv2-buildings__card:nth-child(1) { transition-delay: 0ms; }
+.hv2-buildings__page.is-active .hv2-buildings__card:nth-child(2) { transition-delay: 80ms; }
+.hv2-buildings__page.is-active .hv2-buildings__card:nth-child(3) { transition-delay: 160ms; }
+.hv2-buildings__page.is-active .hv2-buildings__card:nth-child(4) { transition-delay: 240ms; }
+.hv2-buildings__page.is-active .hv2-buildings__card:nth-child(5) { transition-delay: 320ms; }
+.hv2-buildings__page.is-active .hv2-buildings__card:nth-child(6) { transition-delay: 400ms; }
+
+/* Immediate response to card hover without delay */
+.hv2-buildings__page.is-active .hv2-buildings__card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--hv2-shadow-lg);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+    transition-delay: 0ms !important;
 }
 
 /* Mũi tên: ẩn, chỉ hiện khi rê chuột vào khối (giống hero); canh giữa dọc cho cân đối. */
