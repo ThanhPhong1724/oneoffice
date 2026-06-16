@@ -306,8 +306,10 @@ if ( ! empty( $district_id ) ) {
     }
 }
 
-// Gợi ý tòa nhà đồng hạng (cùng hạng)
+// Gợi ý tòa nhà đồng hạng (cùng hạng hoặc cùng phân khúc giá)
 $same_rank_buildings = [];
+$same_rank_title = 'Tòa nhà văn phòng cùng hạng';
+
 if ( ! empty( $rank_id ) ) {
     $same_rank_query = new WP_Query([
         'post_type'      => 'product',
@@ -334,6 +336,45 @@ if ( ! empty( $rank_id ) ) {
             ];
         }
         wp_reset_postdata();
+    }
+}
+
+if ( empty( $same_rank_buildings ) ) {
+    // Fallback: gợi ý cùng phân khúc giá
+    $price_str = get_post_meta( $productID, '_gia_hien_thi', true );
+    preg_match('/([0-9.]+)/', $price_str, $matches);
+    $current_price = !empty($matches[1]) ? floatval($matches[1]) : 0;
+    if ( $current_price > 0 ) {
+        $same_rank_title = 'Tòa nhà cùng phân khúc giá';
+        $min_price = max(0, $current_price - 5);
+        $max_price = $current_price + 5;
+        $same_price_query = new WP_Query([
+            'post_type'      => 'product',
+            'posts_per_page' => 4,
+            'post__not_in'   => [ $productID ],
+            'meta_query'     => [
+                [
+                    'key'     => '_gia_hien_thi',
+                    'value'   => [$min_price, $max_price],
+                    'compare' => 'BETWEEN',
+                    'type'    => 'NUMERIC',
+                ]
+            ]
+        ]);
+        if ( $same_price_query->have_posts() ) {
+            while ( $same_price_query->have_posts() ) {
+                $same_price_query->the_post();
+                $same_rank_buildings[] = [
+                    'ID'            => get_the_ID(),
+                    'post_title'    => get_the_title(),
+                    'permalink'     => get_permalink(),
+                    '_vi_tri'       => get_post_meta(get_the_ID(), '_vi_tri', true),
+                    '_gia_hien_thi' => get_post_meta(get_the_ID(), '_gia_hien_thi', true),
+                    'thumbnail'     => get_the_post_thumbnail_url(get_the_ID(), 'medium') ?: '',
+                ];
+            }
+            wp_reset_postdata();
+        }
     }
 }
 ?>
@@ -383,7 +424,7 @@ if ( ! empty( $rank_id ) ) {
 <section class="sp2-related-section">
   <div class="row">
     <div class="col large-12 pb-0">
-      <h2 class="sp2-related-title">Tòa nhà văn phòng cùng hạng</h2>
+      <h2 class="sp2-related-title"><?php echo esc_html( $same_rank_title ); ?></h2>
       <div class="row list-building" style="margin-top:20px;">
         <?php foreach ( $same_rank_buildings as $b ) : ?>
           <div class="col large-3 small-12 pb-0">
