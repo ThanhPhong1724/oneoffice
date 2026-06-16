@@ -136,10 +136,13 @@
     transition: opacity 0.18s ease, visibility 0.18s ease, transform 0.18s ease !important;
 }
 
-/* Right-align standard dropdown for TIN TỨC (menu-item-2441) to prevent overflow and shifting animation */
+/* Align standard dropdowns exactly with their text/hover pill boundaries (accounting for 15px li padding) */
+#masthead ul.header-nav > li.menu-item-5214 > .sub-menu {
+    left: 15px !important;
+}
 #masthead ul.header-nav > li.menu-item-2441 > .sub-menu {
     left: auto !important;
-    right: 0 !important;
+    right: 15px !important;
 }
 
 /* Divider between items */
