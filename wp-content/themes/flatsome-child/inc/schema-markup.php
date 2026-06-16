@@ -74,10 +74,10 @@ function oo_schema_organization() {
         'logo'        => $logo_url,
         'image'       => $logo_url,
         'telephone'   => '+84966681616',
-        'email'       => 'info@wonderlandvietnam.com.vn',
+        'email'       => 'info@wonderlandvietnam.vn',
         'address'     => array(
             '@type'           => 'PostalAddress',
-            'streetAddress'   => 'Tòa nhà Lotte Center, 54 Liễu Giai, Ba Đình',
+            'streetAddress'   => 'số 74, ngõ 310 Nghi Tàm, phường Hồng Hà',
             'addressLocality' => 'Hà Nội',
             'addressCountry'  => 'VN',
         ),

@@ -138,11 +138,11 @@
 
 /* Align standard dropdowns exactly with their text/hover pill boundaries (accounting for 15px li padding) */
 #masthead ul.header-nav > li.menu-item-5214 > .sub-menu {
-    left: 15px !important;
+    left: -30px !important;
 }
 #masthead ul.header-nav > li.menu-item-2441 > .sub-menu {
     left: auto !important;
-    right: 15px !important;
+    right: -95px !important;
 }
 
 /* Divider between items */

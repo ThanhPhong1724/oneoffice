@@ -17,8 +17,8 @@ $oo_hero_bg   = wp_get_attachment_url( 883 ); // shared banner
 $oo_hotline_a = '0966681616';                  // chính
 $oo_hotline_d = '0966 68 1616';
 $oo_hotline_k = '0988902468';                  // hotline ký gửi (giữ từ nội dung gốc)
-$oo_email     = 'info@wonderlandvietnam.com.vn';
-$oo_address   = 'Tòa nhà Lotte Center, 54 Liễu Giai, Ba Đình, Hà Nội';
+$oo_email     = 'info@wonderlandvietnam.vn';
+$oo_address   = 'số 74, ngõ 310 Nghi Tàm, phường Hồng Hà, Hà Nội';
 
 /* ICON helper — SVG inline cho gọn + nhẹ */
 function oo_cv3_icon( $name ) {
