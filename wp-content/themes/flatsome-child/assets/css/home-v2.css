@@ -996,8 +996,8 @@ body.page-template-template-home-v2 #header .header-wrapper:not(.stuck) .logo im
 
 .hv2-buildings__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 26px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
     margin-bottom: 40px;
 }
 
@@ -1060,7 +1060,7 @@ body.page-template-template-home-v2 #header .header-wrapper:not(.stuck) .logo im
 }
 
 .hv2-buildings__body {
-    padding: 22px 22px 24px;
+    padding: 16px 16px 18px;
     display: flex;
     flex-direction: column;
     gap: 10px;

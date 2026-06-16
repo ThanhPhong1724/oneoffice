@@ -145,8 +145,8 @@ $oo_hero_is_slider = count( $oo_hero_slides ) > 1;
 
 // Tòa nhà nổi bật — ưu tiên sản phẩm gắn cờ "Sản phẩm nổi bật" (★) của WooCommerce.
 // Admin bật/tắt bằng ngôi sao trong danh sách sản phẩm (hoặc Dữ liệu sản phẩm → Hiển thị → Nổi bật).
-$oo_buildings_limit = 12;  // tối đa số tòa nạp vào slider (nhiều nhóm để tự chuyển)
-$oo_buildings_min   = 6;   // nếu chưa đủ tòa nổi bật → bù thêm tòa mới nhất cho đủ slider
+$oo_buildings_limit = 15;  // tối đa số tòa nạp vào slider (nhiều nhóm để tự chuyển)
+$oo_buildings_min   = 10;  // nếu chưa đủ tòa nổi bật → bù thêm tòa mới nhất cho đủ slider
 
 $oo_featured_ids = function_exists( 'wc_get_featured_product_ids' ) ? wc_get_featured_product_ids() : array();
 

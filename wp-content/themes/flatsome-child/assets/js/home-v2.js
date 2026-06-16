@@ -92,7 +92,7 @@
 
         function perView() {
             var w = window.innerWidth;
-            return w <= 640 ? 1 : (w <= 1024 ? 4 : 6);
+            return w <= 640 ? 1 : (w <= 1024 ? 4 : 5);
         }
 
         function buildPages() {
