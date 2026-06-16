@@ -276,15 +276,16 @@ get_header(); ?>
                         </select>
                     </label>
                     <label class="hv2-field">
-                        <span>Diện tích (m²)</span>
-                        <select name="dien_tich">
-                            <option value="">Tất cả</option>
-                            <option value="0-100">Dưới 100</option>
-                            <option value="100-300">100 — 300</option>
-                            <option value="300-500">300 — 500</option>
-                            <option value="500-1000">500 — 1.000</option>
-                            <option value="1000+">Trên 1.000</option>
+                        <span>Giá thuê</span>
+                        <select class="oo-price-select-sync">
+                            <option value="0-100">Tất cả</option>
+                            <option value="0-15">Dưới 15$/m²</option>
+                            <option value="15-20">15$ — 20$/m²</option>
+                            <option value="20-30">20$ — 30$/m²</option>
+                            <option value="30-100">Trên 30$/m²</option>
                         </select>
+                        <input type="hidden" name="min_price" class="oo-min-price-input" value="0">
+                        <input type="hidden" name="max_price" class="oo-max-price-input" value="100">
                     </label>
                     
                     <button type="submit" class="hv2-btn hv2-btn--primary hv2-quickform__submit">
@@ -292,6 +293,35 @@ get_header(); ?>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
                     </button>
                 </form>
+                <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var priceSelects = document.querySelectorAll('.oo-price-select-sync');
+                    priceSelects.forEach(function(select) {
+                        var form = select.closest('form');
+                        var minInput = form.querySelector('.oo-min-price-input');
+                        var maxInput = form.querySelector('.oo-max-price-input');
+                        
+                        select.addEventListener('change', function() {
+                            var val = this.value;
+                            if (val) {
+                                var parts = val.split('-');
+                                minInput.value = parts[0];
+                                maxInput.value = parts[1];
+                            } else {
+                                minInput.value = '0';
+                                maxInput.value = '100';
+                            }
+                        });
+                        
+                        // Set initial state
+                        if (select.value) {
+                            var parts = select.value.split('-');
+                            minInput.value = parts[0];
+                            maxInput.value = parts[1];
+                        }
+                    });
+                });
+                </script>
                 <p class="hv2-quickform__note">
                     <!-- [NEEDS CLIENT CONTENT] Backend form chuyên dụng cho homepage chưa có — tạm thời chuyển sang /lien-he/. Cần khách cấu hình form xử lý + thông báo Telegram/Email. -->
                     Gọi hotline 24/7 với số điện thoại: <a href="tel:0966681616"><strong>0966 68 1616</strong></a> để nhận tư vấn chuyên sâu ngay hoặc <a href="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" target="_blank"><strong>vui lòng điền form</strong></a> để team Wonderland liên hệ lại.
