@@ -126,18 +126,33 @@ $oo_final_cta = array(
     ),
 );
 
-// Hero slider — bộ ảnh banner gốc (1584×550) trong uploads/2020/12. Dùng URL trực tiếp
-// kèm file_exists guard để không bao giờ render slide hỏng. Có thể thêm/bớt file ở đây.
-$oo_hero_slide_files = array( '01.jpg', '02.jpg', '03.jpg' );
-$oo_upload_dir       = wp_upload_dir();
+// Hero slider — các ảnh slide mới cực kỳ sang trọng, chuyên nghiệp được lưu trong assets/images/hero.
+// Kèm cơ chế kiểm tra file_exists và fallback về ảnh cũ / ảnh mặc định để đảm bảo không bị lỗi giao diện.
+$oo_hero_slide_names = array( 'slide1.png', 'slide2.png', 'slide3.png', 'slide4.png', 'slide5.png' );
+$oo_theme_dir        = get_stylesheet_directory();
+$oo_theme_uri        = get_stylesheet_directory_uri();
 $oo_hero_slides      = array();
-foreach ( $oo_hero_slide_files as $oo_f ) {
-    $oo_path = trailingslashit( $oo_upload_dir['basedir'] ) . '2020/12/' . $oo_f;
+
+foreach ( $oo_hero_slide_names as $oo_slide ) {
+    $oo_path = $oo_theme_dir . '/assets/images/hero/' . $oo_slide;
     if ( file_exists( $oo_path ) ) {
-        $oo_hero_slides[] = trailingslashit( $oo_upload_dir['baseurl'] ) . '2020/12/' . $oo_f;
+        $oo_hero_slides[] = $oo_theme_uri . '/assets/images/hero/' . $oo_slide;
     }
 }
-// Fallback: nếu không tìm thấy slide nào, dùng 1 ảnh tòa nhà có sẵn.
+
+// Fallback: nếu thiếu ảnh trong theme, kiểm tra lại thư mục upload cũ
+if ( empty( $oo_hero_slides ) ) {
+    $oo_hero_slide_files = array( '01.jpg', '02.jpg', '03.jpg' );
+    $oo_upload_dir       = wp_upload_dir();
+    foreach ( $oo_hero_slide_files as $oo_f ) {
+        $oo_path = trailingslashit( $oo_upload_dir['basedir'] ) . '2020/12/' . $oo_f;
+        if ( file_exists( $oo_path ) ) {
+            $oo_hero_slides[] = trailingslashit( $oo_upload_dir['baseurl'] ) . '2020/12/' . $oo_f;
+        }
+    }
+}
+
+// Fallback 2: nếu vẫn rỗng, dùng 1 ảnh tòa nhà có sẵn
 if ( empty( $oo_hero_slides ) ) {
     $oo_hero_slides[] = home_url( '/wp-content/uploads/2020/11/leadvisors-tower-36-pham-van-dong-bac-tu-liem-ha-noi.jpg' );
 }
