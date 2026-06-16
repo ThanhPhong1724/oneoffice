@@ -132,6 +132,14 @@
     width: 240px !important;
     padding: 2px 0 6px !important;
     margin-top: 0 !important;
+    /* Prevent shifting animations by only transitioning opacity, visibility, and transform, leaving left/right instantaneous */
+    transition: opacity 0.18s ease, visibility 0.18s ease, transform 0.18s ease !important;
+}
+
+/* Right-align standard dropdown for TIN TỨC (menu-item-2441) to prevent overflow and shifting animation */
+#masthead ul.header-nav > li.menu-item-2441 > .sub-menu {
+    left: auto !important;
+    right: 0 !important;
 }
 
 /* Divider between items */
@@ -164,11 +172,17 @@
     padding-left: 24px !important;
 }
 
-/* Dropdown open animation */
+/* Dropdown open animation (Standard) */
 @keyframes ooDropFade {
     from { opacity: 0; transform: translateY(-6px); }
     to   { opacity: 1; transform: translateY(0); }
 }
+/* Dropdown open animation (Centered megamenu - preserves horizontal translation) */
+@keyframes ooDropFadeCentred {
+    from { opacity: 0; transform: translateX(-50%) translateY(-6px); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
 #masthead ul.header-nav > li.menu-item:hover > .sub-menu {
     animation: ooDropFade 0.18s ease forwards;
 }
@@ -195,12 +209,51 @@
     padding: 0 !important;
 }
 
-/* DtSubmenu inner padding */
+#masthead ul.header-nav > li.menu-item:hover > .sub-menu:has(.DtSubmenu) {
+    animation: ooDropFadeCentred 0.18s ease forwards !important;
+}
+
+/* DtSubmenu styles - force consistent branding hover colors across all pages */
 .DtSubmenu {
     padding: 24px 28px !important;
     width: 100% !important;
     max-width: 1010px;
     box-sizing: border-box;
+}
+
+.DtSubmenu a.DtSubmenuLink,
+.DtSubmenu a.DtToggleContent-Link,
+.DtSubmenu a.DtSubmenuTitle-Link,
+.DtSubmenu a.DtSubmenuTitle-LinkSeparate,
+.DtSubmenu a.DtToggleButton,
+.DtSubmenu .DtToggleMenu-Item {
+    transition: color 0.18s ease, font-weight 0.18s ease !important;
+}
+
+/* High-specificity overrides to beat homepage styles from home-v2.css */
+body #header .nav-dropdown .DtSubmenu a.DtSubmenuLink,
+body #header .nav-dropdown .DtSubmenu a.DtToggleContent-Link,
+body #header .nav-dropdown .DtSubmenu a.DtSubmenuTitle-Link,
+body #header .nav-dropdown .DtSubmenu a.DtSubmenuTitle-LinkSeparate,
+body #header .nav-dropdown .DtSubmenu a.DtToggleButton,
+body #header .nav-dropdown .DtSubmenu .DtToggleMenu-Item {
+    color: #212b36 !important;
+}
+
+body #header .nav-dropdown .DtSubmenu a.DtSubmenuLink:hover,
+body #header .nav-dropdown .DtSubmenu a.DtToggleContent-Link:hover,
+body #header .nav-dropdown .DtSubmenu a.DtSubmenuTitle-Link:hover,
+body #header .nav-dropdown .DtSubmenu a.DtSubmenuTitle-LinkSeparate:hover,
+body #header .nav-dropdown .DtSubmenu a.DtToggleButton:hover,
+body #header .nav-dropdown .DtSubmenu .DtToggleMenu-Item:hover {
+    color: #129C94 !important;
+}
+
+body #header .nav-dropdown .DtSubmenu .DtToggleButton-Active,
+body #header .nav-dropdown .DtSubmenu a.DtToggleButton-Active,
+body #header .nav-dropdown .DtSubmenu .DtToggleMenu-Item.DtToggleMenu-Active {
+    color: #129C94 !important;
+    font-weight: 700 !important;
 }
 
 /* Ensure sub-menu:has(.DtSubmenu) is still interactive */
