@@ -198,7 +198,7 @@
 .vp2-quickform__head p { font-size: 15px; color: var(--vp2-muted); margin: 0; }
 .vp2-quickform__form,
 .vp2-quickform .wpcf7-form {
-    display: grid !important; grid-template-columns: repeat(4, 1fr) auto !important; gap: 14px !important; align-items: end !important;
+    display: grid !important; grid-template-columns: repeat(3, 1fr) auto !important; gap: 14px !important; align-items: end !important;
     max-width: none !important;
     margin: 0 0 20px 0 !important;
     background: transparent !important;
