@@ -964,11 +964,53 @@ body.single-product .product-small .name a {
 /* =====================================================
  * 12. PRINT/REDUCED-MOTION
  * ===================================================== */
-@media (prefers-reduced-motion: reduce) {
-    body.single-product *,
-    body.single-product *::before,
-    body.single-product *::after {
-        animation-duration: .01ms !important;
-        transition-duration: .01ms !important;
+    @media (prefers-reduced-motion: reduce) {
+        body.single-product *,
+        body.single-product *::before,
+        body.single-product *::after {
+            animation-duration: .01ms !important;
+            transition-duration: .01ms !important;
+        }
+    }
+}
+
+/* =====================================================
+ * 13. MAP & SUGGESTIONS SECTIONS
+ * ===================================================== */
+body.single-product .sp2-map-wrapper {
+    height: 350px;
+}
+body.single-product .sp2-related-section {
+    margin-top: 48px;
+    margin-bottom: 48px;
+}
+body.single-product .sp2-related-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--sp2-dark);
+    margin: 0 0 24px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--sp2-primary-l);
+    position: relative;
+    text-transform: uppercase;
+}
+body.single-product .sp2-related-title::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0;
+    width: 48px; height: 2px;
+    background: var(--sp2-primary);
+}
+@media (max-width: 767px) {
+    body.single-product .sp2-map-wrapper {
+        height: 280px !important;
+    }
+    body.single-product .sp2-related-section {
+        margin-top: 32px;
+        margin-bottom: 32px;
+    }
+    body.single-product .sp2-related-title {
+        font-size: 18px;
+        margin-bottom: 16px;
     }
 }

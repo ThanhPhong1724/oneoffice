@@ -41,12 +41,16 @@
           // Lấy hạng tòa nhà (như Hạng A, B, C) từ ACF
           $terms = get_the_terms( get_the_ID(), 'product_cat' );
           $rank_badge = '';
+          $district_id = null;
+          $rank_id = null;
           if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
               foreach ( $terms as $term ) {
                   $type = get_field('product_category_type', 'product_cat_' . $term->term_id);
                   if ( $type === 'rank' ) {
                       $rank_badge = $term->name;
-                      break;
+                      $rank_id = $term->term_id;
+                  } elseif ( $type === 'district' ) {
+                      $district_id = $term->term_id;
                   }
               }
           }
@@ -200,6 +204,17 @@
               ['label' => 'Đỗ ô tô', 'key' => '_do_o_to', 'icon' => 'fa-solid fa-car'],
               ['label' => 'Tiền điện văn phòng', 'key' => '_tien_dien_trong_van_phong', 'icon' => 'fa-solid fa-plug'],
           ]);
+
+          // Khối 3: Bản đồ vị trí
+          $address = get_post_meta( get_the_ID(), '_vi_tri', true );
+          if ( ! empty( $address ) ) {
+              echo '<div class="sp2-spec-card sp2-map-card">';
+              echo '  <div class="sp2-spec-card__title"><strong>Bản đồ vị trí</strong></div>';
+              echo '  <div class="sp2-map-wrapper" style="position: relative; width: 100%; overflow: hidden; margin-top: 15px; border: 1px solid var(--sp2-border); border-radius: 10px;">';
+              echo '    <iframe width="100%" height="100%" frameborder="0" style="border:0; display:block;" src="https://maps.google.com/maps?q=' . urlencode($address . ' Hà Nội') . '&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed" allowfullscreen></iframe>';
+              echo '  </div>';
+              echo '</div>';
+          }
         ?>
 
         <?php do_action( 'woocommerce_single_product_summary' ); ?>
@@ -257,5 +272,152 @@
     </aside>
   </div>
 </div>
+
+<?php
+$productID = get_the_ID();
+// Gợi ý tòa nhà xung quanh (cùng quận)
+$nearby_buildings = [];
+if ( ! empty( $district_id ) ) {
+    $nearby_query = new WP_Query([
+        'post_type'      => 'product',
+        'posts_per_page' => 4,
+        'post__not_in'   => [ $productID ],
+        'tax_query'      => [
+            [
+                'taxonomy' => 'product_cat',
+                'field'    => 'term_id',
+                'terms'    => $district_id,
+            ]
+        ]
+    ]);
+    if ( $nearby_query->have_posts() ) {
+        while ( $nearby_query->have_posts() ) {
+            $nearby_query->the_post();
+            $nearby_buildings[] = [
+                'ID'            => get_the_ID(),
+                'post_title'    => get_the_title(),
+                'permalink'     => get_permalink(),
+                '_vi_tri'       => get_post_meta(get_the_ID(), '_vi_tri', true),
+                '_gia_hien_thi' => get_post_meta(get_the_ID(), '_gia_hien_thi', true),
+                'thumbnail'     => get_the_post_thumbnail_url(get_the_ID(), 'medium') ?: '',
+            ];
+        }
+        wp_reset_postdata();
+    }
+}
+
+// Gợi ý tòa nhà đồng hạng (cùng hạng)
+$same_rank_buildings = [];
+if ( ! empty( $rank_id ) ) {
+    $same_rank_query = new WP_Query([
+        'post_type'      => 'product',
+        'posts_per_page' => 4,
+        'post__not_in'   => [ $productID ],
+        'tax_query'      => [
+            [
+                'taxonomy' => 'product_cat',
+                'field'    => 'term_id',
+                'terms'    => $rank_id,
+            ]
+        ]
+    ]);
+    if ( $same_rank_query->have_posts() ) {
+        while ( $same_rank_query->have_posts() ) {
+            $same_rank_query->the_post();
+            $same_rank_buildings[] = [
+                'ID'            => get_the_ID(),
+                'post_title'    => get_the_title(),
+                'permalink'     => get_permalink(),
+                '_vi_tri'       => get_post_meta(get_the_ID(), '_vi_tri', true),
+                '_gia_hien_thi' => get_post_meta(get_the_ID(), '_gia_hien_thi', true),
+                'thumbnail'     => get_the_post_thumbnail_url(get_the_ID(), 'medium') ?: '',
+            ];
+        }
+        wp_reset_postdata();
+    }
+}
+?>
+
+<?php if ( ! empty( $nearby_buildings ) ) : ?>
+<section class="sp2-related-section">
+  <div class="row">
+    <div class="col large-12 pb-0">
+      <h2 class="sp2-related-title">Tòa nhà văn phòng xung quanh</h2>
+      <div class="row list-building" style="margin-top:20px;">
+        <?php foreach ( $nearby_buildings as $b ) : ?>
+          <div class="col large-3 small-12 pb-0">
+            <div class="building-item">
+              <div class="thumb">
+                <a href="<?php echo esc_url( $b['permalink'] ); ?>" title="<?php echo esc_attr( $b['post_title'] ); ?>">
+                  <img src="<?php echo esc_url( $b['thumbnail'] ); ?>" class="img-responsive thumb-blog" alt="<?php echo esc_attr( $b['post_title'] ); ?>">
+                </a>
+              </div>
+              <div class="content BuildingItemContent">
+                <h3>
+                  <a class="BuildingItemName" href="<?php echo esc_url( $b['permalink'] ); ?>" title="<?php echo esc_attr( $b['post_title'] ); ?>">
+                    <?php echo esc_html( $b['post_title'] ); ?>
+                  </a>
+                </h3>
+                <span class="BuildingItemLocation"><?php echo esc_html( $b['_vi_tri'] ); ?></span>
+                <div class="meta">
+                  <span class="price"><?php echo $b['_gia_hien_thi']; ?></span>
+                  <span class="btn-care quan_tam js-btn-care BuildingItemCare" type="button" data-id="<?php echo $b['ID']; ?>">
+                    <span>
+                      <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                      <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                    </span>
+                    Quan tâm
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
+
+<?php if ( ! empty( $same_rank_buildings ) ) : ?>
+<section class="sp2-related-section">
+  <div class="row">
+    <div class="col large-12 pb-0">
+      <h2 class="sp2-related-title">Tòa nhà văn phòng cùng hạng</h2>
+      <div class="row list-building" style="margin-top:20px;">
+        <?php foreach ( $same_rank_buildings as $b ) : ?>
+          <div class="col large-3 small-12 pb-0">
+            <div class="building-item">
+              <div class="thumb">
+                <a href="<?php echo esc_url( $b['permalink'] ); ?>" title="<?php echo esc_attr( $b['post_title'] ); ?>">
+                  <img src="<?php echo esc_url( $b['thumbnail'] ); ?>" class="img-responsive thumb-blog" alt="<?php echo esc_attr( $b['post_title'] ); ?>">
+                </a>
+              </div>
+              <div class="content BuildingItemContent">
+                <h3>
+                  <a class="BuildingItemName" href="<?php echo esc_url( $b['permalink'] ); ?>" title="<?php echo esc_attr( $b['post_title'] ); ?>">
+                    <?php echo esc_html( $b['post_title'] ); ?>
+                  </a>
+                </h3>
+                <span class="BuildingItemLocation"><?php echo esc_html( $b['_vi_tri'] ); ?></span>
+                <div class="meta">
+                  <span class="price"><?php echo $b['_gia_hien_thi']; ?></span>
+                  <span class="btn-care quan_tam js-btn-care BuildingItemCare" type="button" data-id="<?php echo $b['ID']; ?>">
+                    <span>
+                      <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                      <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                    </span>
+                    Quan tâm
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
 
 <?php echo do_shortcode('[block id="tiet-kiem-95"]'); ?>
