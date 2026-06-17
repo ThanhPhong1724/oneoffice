@@ -128,7 +128,7 @@ $oo_final_cta = array(
 
 // Hero slider — các ảnh slide mới cực kỳ sang trọng, chuyên nghiệp được lưu trong assets/images/hero.
 // Kèm cơ chế kiểm tra file_exists và fallback về ảnh cũ / ảnh mặc định để đảm bảo không bị lỗi giao diện.
-$oo_hero_slide_names = array( 'slide1.png', 'slide2.png', 'slide3.png', 'slide4.png', 'slide5.png' );
+$oo_hero_slide_names = array( 'slide1.png', 'slide2.png', 'slide3.png', 'slide4.png' );
 $oo_theme_dir        = get_stylesheet_directory();
 $oo_theme_uri        = get_stylesheet_directory_uri();
 $oo_hero_slides      = array();
