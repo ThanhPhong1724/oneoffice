@@ -121,15 +121,39 @@
             if (btnNext) btnNext.style.visibility = multi ? '' : 'hidden';
         }
 
+        var transitioning = false;
+        var LEAVE_DURATION = 450;   // ms — khớp thời gian transition 0.45s trong CSS
+
         function show(p) {
-            if (pages.length < 2) return;
-            page = (p + pages.length) % pages.length;
-            pages.forEach(function (pg, i) { pg.classList.toggle('is-active', i === page); });
+            if (pages.length < 2 || transitioning) return;
+            var newPage = (p + pages.length) % pages.length;
+            if (newPage === page) return;
+
+            transitioning = true;
+
+            var oldPage = page;
+            page = newPage;
+
+            // 1) Nhóm cũ: ẩn dần (is-leaving) đồng thời
+            pages[oldPage].classList.remove('is-active');
+            pages[oldPage].classList.add('is-leaving');
+
+            // 2) Nhóm mới: hiện lên (is-active) đồng thời (tạo hiệu ứng crossfade)
+            pages[newPage].classList.add('is-active');
+
+            // 3) Dọn dẹp is-leaving sau khi transition xong
+            setTimeout(function () {
+                pages[oldPage].classList.remove('is-leaving');
+                transitioning = false;
+            }, LEAVE_DURATION);
+
+            updateArrows();
         }
         function next() { show(page + 1); }
         function prev() { show(page - 1); }
         function start() { stop(); if (pages.length > 1) timer = setInterval(next, INTERVAL); }
         function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
 
         if (btnPrev) btnPrev.addEventListener('click', function () { prev(); start(); });
         if (btnNext) btnNext.addEventListener('click', function () { next(); start(); });
