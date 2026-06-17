@@ -257,3 +257,58 @@
 .oo-prose br + br {
     display: none !important;
 }
+
+/* =============================================================================
+ * 5. RESPONSIVE MOBILE LAYOUT & OVERFLOW FIXES
+ * -----------------------------------------------------------------------------
+ * Fixes layout breaking on mobile screens due to hardcoded image caption widths,
+ * large tables, or long unbroken words.
+ * ========================================================================== */
+
+.oo-prose {
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Force captioned images to scale down on mobile (overriding hardcoded inline style="width: ...px") */
+.oo-prose .wp-caption {
+    max-width: 100% !important;
+    height: auto !important;
+    padding: var(--sp-2) !important;
+    background-color: var(--surface-alt) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--r-sm) !important;
+    box-sizing: border-box !important;
+}
+
+.oo-prose .wp-caption img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+}
+
+/* Allow tables to scroll horizontally on mobile instead of stretching the viewport */
+.oo-prose table {
+    display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+
+@media (max-width: 767px) {
+    .oo-single-post {
+        padding: var(--sp-4) var(--sp-3) !important;
+    }
+    
+    /* Ensure content headers have proper spacing and size on mobile */
+    .oo-prose h2 {
+        font-size: 1.35em !important;
+        padding-left: var(--sp-2) !important;
+    }
+    
+    .oo-prose h3 {
+        font-size: 1.15em !important;
+    }
+}
