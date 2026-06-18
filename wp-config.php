@@ -19,21 +19,37 @@
  * @package WordPress
  */
 
-// ** Thiết lập MySQL - Bạn có thể lấy các thông tin này từ host/server ** //
-/** Tên database MySQL */
-define('DB_NAME', "oneoffice_local");
+// ** Thiết lập MySQL - Tự động nhận diện Local (localhost/tunnel) và Production ** //
+$oo_is_local = false;
+if ( ! empty( $_SERVER['HTTP_HOST'] ) ) {
+    $oo_http_host = $_SERVER['HTTP_HOST'];
+    if ( in_array( $oo_http_host, array( 'localhost', '127.0.0.1' ) ) || strpos( $oo_http_host, '.trycloudflare.com' ) !== false ) {
+        $oo_is_local = true;
+    }
+} else {
+    // CLI hoặc môi trường cron local
+    $oo_is_local = true;
+}
 
-
-/** Username của database */
-define('DB_USER', "root");
-
-
-/** Mật khẩu của database */
-define('DB_PASSWORD', "");
-
-
-/** Hostname của database */
-define('DB_HOST', "localhost");
+if ( $oo_is_local ) {
+    /** Tên database MySQL local */
+    define('DB_NAME', "oneoffice_local");
+    /** Username của database local */
+    define('DB_USER', "root");
+    /** Mật khẩu của database local */
+    define('DB_PASSWORD', "");
+    /** Hostname của database local */
+    define('DB_HOST', "localhost");
+} else {
+    /** Tên database MySQL production */
+    define('DB_NAME', "muneerjohosting_onceoffice");
+    /** Username của database production */
+    define('DB_USER', "muneerjohosting_onceoffice");
+    /** Mật khẩu của database production */
+    define('DB_PASSWORD', "KM;kxx42onx{51&");
+    /** Hostname của database production */
+    define('DB_HOST', "localhost");
+}
 
 
 /** Database charset sử dụng để tạo bảng database. */
@@ -109,8 +125,15 @@ if ( ! empty( $_SERVER['HTTP_HOST'] ) ) {
 	         || ( ! empty( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https' );
 	if ( $oo_https ) { $_SERVER['HTTPS'] = 'on'; }
 	$oo_proto = $oo_https ? 'https' : 'http';
-	define( 'WP_HOME',    $oo_proto . '://' . $oo_host . '/oneoffice' );
-	define( 'WP_SITEURL', $oo_proto . '://' . $oo_host . '/oneoffice' );
+	
+	// Tự động phát hiện nếu chạy trong thư mục con /oneoffice (local) hay chạy ở thư mục gốc (production)
+	$oo_path = '';
+	if ( isset( $_SERVER['SCRIPT_NAME'] ) && strpos( $_SERVER['SCRIPT_NAME'], '/oneoffice' ) === 0 ) {
+		$oo_path = '/oneoffice';
+	}
+	
+	define( 'WP_HOME',    $oo_proto . '://' . $oo_host . $oo_path );
+	define( 'WP_SITEURL', $oo_proto . '://' . $oo_host . $oo_path );
 } else {
 	define( 'WP_HOME',    'http://localhost/oneoffice' );
 	define( 'WP_SITEURL', 'http://localhost/oneoffice' );
