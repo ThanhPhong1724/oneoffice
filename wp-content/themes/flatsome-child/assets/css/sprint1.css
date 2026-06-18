@@ -204,8 +204,8 @@
     border-radius: 0 0 8px 8px !important;
     /* Width: auto to accommodate DtSubmenu content */
     width: auto !important;
-    min-width: min(96vw, 960px) !important;
-    max-width: min(98vw, 1060px) !important;
+    min-width: min(96vw, 1080px) !important;
+    max-width: min(98vw, 1140px) !important;
     /* Center horizontally relative to the page */
     left: 50% !important;
     transform: translateX(-50%) !important;
@@ -220,8 +220,10 @@
 .DtSubmenu {
     padding: 24px 28px !important;
     width: 100% !important;
-    max-width: 1010px;
+    max-width: 1100px !important;
     box-sizing: border-box;
+    display: grid !important;
+    grid-template-columns: 5fr 2fr 1.5fr !important;
 }
 
 .DtSubmenu a.DtSubmenuLink,
