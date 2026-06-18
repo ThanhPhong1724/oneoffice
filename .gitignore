@@ -33,6 +33,7 @@ _inventory_*.txt
 *.oo-bak
 *_backup/
 *_backups/
+scratch/
 
 # 5) Cho phép và lưu trữ Database backup
 !database/
