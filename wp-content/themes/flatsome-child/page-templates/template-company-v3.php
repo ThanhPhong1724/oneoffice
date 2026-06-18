@@ -234,11 +234,11 @@ case 'quy-trinh-dich-vu':
 case 'khach-hang-du-an-tieu-bieu':
     $logo_ids = array(971,966,978,949,1085,1082,1081,955,970,977,958,1080,965,967,944,946,953,960,1084,974,1087,959,952,948,956,972,947,968,951,969,1090,976,1079,973,945);
     $testis = array(
-        array( 'Wonderland đồng hành rất cẩn thận, chu đáo, tỉ mỉ — giúp chúng tôi đạt được mức giá và ưu đãi tốt nhất tại Lotte Center Hanoi.', 'http://localhost/oneoffice/wp-content/uploads/2020/12/a-280x280.png', 'Mr. Masaaki Yamane', 'Tổng Giám Đốc — Panasonic R&D Vietnam' ),
-        array( 'FPT IS đã ký được hợp đồng thuê văn phòng tổng diện tích khoảng 10.000m² rất tốt đẹp tại Keangnam Landmark 72.', 'http://localhost/oneoffice/wp-content/uploads/2020/12/docaobao-280x278.png', 'Mr. Đỗ Cao Bảo', 'Chủ Tịch — Công ty hệ thống thông tin FPT IS' ),
-        array( 'Wonderland luôn là đại lý cung cấp thông tin đầy đủ, chính xác và kịp thời nhất — chính là lý do chúng tôi chọn làm đơn vị tư vấn chính thức.', 'http://localhost/oneoffice/wp-content/uploads/2020/12/vuthituyetminh-280x280.png', 'Ms. Vũ Thị Tuyết Minh', 'Giám Đốc Chi Nhánh — DKSH Hà Nội' ),
-        array( 'Wonderland là đại lý có lượng thông tin đầy đủ, rõ ràng và mức giá chào chính xác nhất. Quá trình thuê diễn ra rất thuận lợi.', 'http://localhost/oneoffice/wp-content/uploads/2020/12/nguyenthiminhngoc.png', 'Ms. Nguyễn Thị Minh Ngọc', 'Trưởng phòng Hành Chính — Omron Vietnam' ),
-        array( 'Wonderland đã rất chuyên nghiệp, thông thạo, hiệu quả — vượt qua kỳ vọng của tôi. Tôi tìm được tòa nhà ưng ý với vị trí đẹp nhất.', 'http://localhost/oneoffice/wp-content/uploads/2020/12/avc.png', 'Ms. Elodie Berthonneau', 'Giám Đốc Quốc Gia — Qatar Airways' ),
+        array( 'Wonderland đồng hành rất cẩn thận, chu đáo, tỉ mỉ — giúp chúng tôi đạt được mức giá và ưu đãi tốt nhất tại Lotte Center Hanoi.', content_url('/uploads/2020/12/a-280x280.png'), 'Mr. Masaaki Yamane', 'Tổng Giám Đốc — Panasonic R&D Vietnam' ),
+        array( 'FPT IS đã ký được hợp đồng thuê văn phòng tổng diện tích khoảng 10.000m² rất tốt đẹp tại Keangnam Landmark 72.', content_url('/uploads/2020/12/docaobao-280x278.png'), 'Mr. Đỗ Cao Bảo', 'Chủ Tịch — Công ty hệ thống thông tin FPT IS' ),
+        array( 'Wonderland luôn là đại lý cung cấp thông tin đầy đủ, chính xác và kịp thời nhất — chính là lý do chúng tôi chọn làm đơn vị tư vấn chính thức.', content_url('/uploads/2020/12/vuthituyetminh-280x280.png'), 'Ms. Vũ Thị Tuyết Minh', 'Giám Đốc Chi Nhánh — DKSH Hà Nội' ),
+        array( 'Wonderland là đại lý có lượng thông tin đầy đủ, rõ ràng và mức giá chào chính xác nhất. Quá trình thuê diễn ra rất thuận lợi.', content_url('/uploads/2020/12/nguyenthiminhngoc.png'), 'Ms. Nguyễn Thị Minh Ngọc', 'Trưởng phòng Hành Chính — Omron Vietnam' ),
+        array( 'Wonderland đã rất chuyên nghiệp, thông thạo, hiệu quả — vượt qua kỳ vọng của tôi. Tôi tìm được tòa nhà ưng ý với vị trí đẹp nhất.', content_url('/uploads/2020/12/avc.png'), 'Ms. Elodie Berthonneau', 'Giám Đốc Quốc Gia — Qatar Airways' ),
     );
 ?>
     <section class="cv3-section cv3-section--light">
