@@ -234,30 +234,52 @@
 }
 
 /* High-specificity overrides to beat homepage styles from home-v2.css */
-body #header .nav-dropdown .DtSubmenu a.DtSubmenuLink,
-body #header .nav-dropdown .DtSubmenu a.DtToggleContent-Link,
 body #header .nav-dropdown .DtSubmenu a.DtSubmenuTitle-Link,
 body #header .nav-dropdown .DtSubmenu a.DtSubmenuTitle-LinkSeparate,
-body #header .nav-dropdown .DtSubmenu a.DtToggleButton,
+body #header .nav-dropdown .DtSubmenu a.DtToggleButton {
+    color: #212b36 !important;
+}
+
+body #header .nav-dropdown .DtSubmenu a.DtSubmenuTitle-Link:hover,
+body #header .nav-dropdown .DtSubmenu a.DtSubmenuTitle-LinkSeparate:hover,
+body #header .nav-dropdown .DtSubmenu a.DtToggleButton:hover {
+    color: #129C94 !important;
+}
+
+/* Base styles for megamenu list links and items */
+body #header .nav-dropdown .DtSubmenu a.DtSubmenuLink,
+body #header .nav-dropdown .DtSubmenu a.DtToggleContent-Link,
 body #header .nav-dropdown .DtSubmenu .DtToggleMenu-Item {
     color: #212b36 !important;
+    padding: 6px 12px !important;
+    display: block !important;
+    border-radius: 6px !important;
+    margin: 2px 0 !important;
+    background-color: transparent !important;
+    transition: background-color 0.2s ease, color 0.2s ease, padding-left 0.2s ease !important;
 }
 
 body #header .nav-dropdown .DtSubmenu a.DtSubmenuLink:hover,
 body #header .nav-dropdown .DtSubmenu a.DtToggleContent-Link:hover,
-body #header .nav-dropdown .DtSubmenu a.DtSubmenuTitle-Link:hover,
-body #header .nav-dropdown .DtSubmenu a.DtSubmenuTitle-LinkSeparate:hover,
-body #header .nav-dropdown .DtSubmenu a.DtToggleButton:hover,
 body #header .nav-dropdown .DtSubmenu .DtToggleMenu-Item:hover {
     color: #129C94 !important;
+    background-color: #f0fafb !important;
+    padding-left: 18px !important;
 }
 
 body #header .nav-dropdown .DtSubmenu .DtToggleButton-Active,
-body #header .nav-dropdown .DtSubmenu a.DtToggleButton-Active,
-body #header .nav-dropdown .DtSubmenu .DtToggleMenu-Item.DtToggleMenu-Active {
+body #header .nav-dropdown .DtSubmenu a.DtToggleButton-Active {
     color: #129C94 !important;
     font-weight: 700 !important;
 }
+
+body #header .nav-dropdown .DtSubmenu .DtToggleMenu-Item.DtToggleMenu-Active {
+    color: #129C94 !important;
+    background-color: #f0fafb !important;
+    border-right: 3px solid #129C94 !important;
+    font-weight: 700 !important;
+}
+
 
 /* Ensure sub-menu:has(.DtSubmenu) is still interactive */
 #masthead ul.header-nav > li.menu-item:hover > .sub-menu:has(.DtSubmenu) {
