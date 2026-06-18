@@ -42,7 +42,7 @@ if ( $oo_is_local ) {
     define('DB_HOST', "localhost");
 } else {
     /** Tên database MySQL production */
-    define('DB_NAME', "muneerjohosting_onceoffice");
+    define('DB_NAME', "muneerjohosting_onceoffice_new");
     /** Username của database production */
     define('DB_USER', "muneerjohosting_onceoffice");
     /** Mật khẩu của database production */
