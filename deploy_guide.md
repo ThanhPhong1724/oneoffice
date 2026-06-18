@@ -94,36 +94,36 @@ git --version
 
 ### Bước 2: Clone repository lên hosting
 
-**Cách A — Fresh deploy (lần đầu, thư mục trống hoặc đã backup xong):**
-
-```bash
-cd /home/muneerjohosting
-
-# Xóa thư mục public_html cũ (đã backup ở Bước 1)
-rm -rf public_html
-
-# Clone repo vào đúng thư mục public_html
-git clone https://github.com/ThanhPhong1724/oneoffice.git public_html
-```
-
-**Cách B — Pull vào thư mục đang có sẵn (cập nhật):**
+**Cách A — Fresh deploy (lần đầu / deploy lại toàn bộ):**
 
 ```bash
 cd /home/muneerjohosting/public_html
 
-# Nếu chưa init git:
-git init
-git remote add origin https://github.com/ThanhPhong1724/oneoffice.git
-git fetch origin
-git checkout -f main
+# Xóa hết file cũ bên trong (giữ nguyên thư mục public_html)
+# ⚠️ Đảm bảo đã backup ở Bước 1 trước khi chạy lệnh này!
+rm -rf ./* ./.[!.]* 2>/dev/null
 
-# Nếu đã có git:
+# Clone repo vào thư mục hiện tại (dấu chấm "." ở cuối)
+git clone https://github.com/ThanhPhong1724/oneoffice.git .
+```
+
+> [!NOTE]
+> Lệnh `git clone ... .` (có dấu chấm) sẽ clone trực tiếp vào thư mục hiện tại thay vì tạo thư mục con.
+> Lệnh này **yêu cầu thư mục phải trống** — vì vậy cần `rm -rf` trước.
+> Dòng `./.[!.]*` xóa cả file ẩn (như `.htaccess` cũ) nhưng giữ nguyên `.` và `..`.
+
+**Cách B — Cập nhật code (lần sau, đã có git trong thư mục):**
+
+```bash
+cd /home/muneerjohosting/public_html
+
+# Pull code mới nhất từ GitHub
 git pull origin main
 ```
 
-> [!WARNING]
-> **Cách A** sẽ xóa toàn bộ thư mục `public_html` cũ. Hãy chắc chắn đã backup trước!
-> **Cách B** an toàn hơn — chỉ pull code mới về, giữ nguyên file không thuộc git (như `wp-content/uploads/` ảnh user upload trên hosting).
+> [!TIP]
+> **Cách B** rất tiện cho các lần cập nhật sau — chỉ pull thay đổi mới, giữ nguyên file không thuộc git (như ảnh trong `wp-content/uploads/` do user upload trên hosting).
+
 
 ### Bước 3: Đặt quyền file
 
