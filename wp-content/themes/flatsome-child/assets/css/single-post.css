@@ -9,13 +9,14 @@
     max-width: 800px;
     margin: 0 auto;
     padding: var(--sp-5) 0;
+    overflow: hidden;           /* Clip any child that exceeds the container width */
 }
 
 /* 1. POST HEADER & META */
 .oo-post-header {
     margin-bottom: var(--sp-6);
     border-bottom: 1px solid var(--border);
-    padding-bottom: var(--sp-5);
+    /* padding-bottom: var(--sp-5); */
 }
 
 .oo-post-title {
@@ -269,11 +270,14 @@
     word-wrap: break-word;
     word-break: break-word;
     overflow-wrap: break-word;
+    max-width: 100%;            /* Never wider than its parent container */
+    overflow-x: hidden;         /* Clip any inline-width children (e.g. wp-caption) */
 }
 
 /* Force captioned images to scale down on mobile (overriding hardcoded inline style="width: ...px") */
 .oo-prose .wp-caption {
     max-width: 100% !important;
+    width: auto !important;     /* Override hardcoded inline style="width: NNNpx" */
     height: auto !important;
     padding: var(--sp-2) !important;
     background-color: var(--surface-alt) !important;

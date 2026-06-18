@@ -1014,3 +1014,120 @@ body.single-product .sp2-related-title::after {
         margin-bottom: 16px;
     }
 }
+
+/* =====================================================
+ * 14. RELATED & SURROUNDING BUILDING CARDS REDESIGN
+ * Matches the style of category page building cards
+ * ===================================================== */
+body.single-product .sp2-related-section .building-item {
+    background: var(--sp2-white) !important;
+    border-radius: var(--sp2-radius) !important;
+    border: 1px solid var(--sp2-border) !important;
+    box-shadow: 0 4px 20px rgba(6, 52, 67, 0.025) !important;
+    margin-bottom: 30px !important;
+    overflow: hidden !important;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+body.single-product .sp2-related-section .building-item:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 12px 30px rgba(6, 52, 67, 0.07) !important;
+    border-color: rgba(18, 156, 148, 0.18) !important;
+}
+
+/* Image zoom transition */
+body.single-product .sp2-related-section .building-item .thumb {
+    height: 190px !important;
+    overflow: hidden !important;
+    border-radius: var(--sp2-radius) var(--sp2-radius) 0 0 !important;
+    position: relative !important;
+}
+body.single-product .sp2-related-section .building-item .thumb img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+}
+body.single-product .sp2-related-section .building-item:hover .thumb img {
+    transform: scale(1.05) !important;
+}
+
+/* Card Body Content */
+body.single-product .sp2-related-section .building-item .content {
+    padding: 20px !important;
+}
+body.single-product .sp2-related-section .BuildingItemName {
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.4 !important;
+    color: var(--sp2-dark) !important;
+    text-transform: none !important;
+    height: 42px !important;
+    overflow: hidden !important;
+    margin-bottom: 8px !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    transition: color 0.2s ease !important;
+}
+body.single-product .sp2-related-section .BuildingItemName:hover {
+    color: var(--sp2-primary) !important;
+}
+body.single-product .sp2-related-section .BuildingItemLocation {
+    font-size: 13px !important;
+    color: var(--sp2-muted) !important;
+    height: auto !important;
+    margin-bottom: 16px !important;
+    display: block !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* Card Footer Meta Row */
+body.single-product .sp2-related-section .building-item .meta {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    border-top: 1px solid #F0F4F6 !important;
+    padding-top: 14px !important;
+    margin-top: 14px !important;
+}
+body.single-product .sp2-related-section .building-item .meta .price {
+    font-size: 15px !important;
+    font-weight: 800 !important;
+    color: var(--sp2-primary) !important;
+    width: auto !important;
+}
+
+/* Interest Button ("Quan tâm") Redesign */
+body.single-product .sp2-related-section .BuildingItemContent .BuildingItemCare {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    background-color: rgba(18, 156, 148, 0.05) !important;
+    color: var(--sp2-primary) !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    padding: 6px 12px !important;
+    border-radius: 20px !important;
+    line-height: 1.2 !important;
+    height: auto !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.02em !important;
+    border: 1px solid transparent !important;
+    transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+}
+body.single-product .sp2-related-section .BuildingItemContent .BuildingItemCare:hover {
+    background-color: var(--sp2-primary) !important;
+    color: var(--sp2-white) !important;
+}
+body.single-product .sp2-related-section .BuildingItemContent .BuildingItemCare.active {
+    background-color: var(--sp2-primary) !important;
+    color: var(--sp2-white) !important;
+    box-shadow: 0 2px 8px rgba(18, 156, 148, 0.2) !important;
+}
+body.single-product .sp2-related-section .BuildingItemContent .BuildingItemCare i {
+    margin-right: 0 !important;
+    font-size: 12px !important;
+}
+

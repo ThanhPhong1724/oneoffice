@@ -169,7 +169,9 @@ get_header(); ?>
     <?php /* =========================================================
      * 2) QUICK CONSULT
      * NOTE: backend chưa có form chuyên cho VPTG → chuyển sang /lien-he/
+     * Tạm thời ẩn khối này theo yêu cầu của user
      * ========================================================= */ ?>
+    <?php if ( false ) : ?>
     <section class="vp2-quickform" aria-label="Tư vấn nhanh">
         <div class="vp2-container">
             <div class="vp2-quickform__card">
@@ -250,6 +252,7 @@ get_header(); ?>
             </div>
         </div>
     </section>
+    <?php endif; ?>
 
     <?php /* =========================================================
      * 3) 3 LOẠI VĂN PHÒNG

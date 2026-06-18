@@ -34,7 +34,7 @@
 		<?php endif; ?>
 	</header>
 
-	<div class="entry-content oo-prose"><?php echo apply_filters( 'the_content', get_the_content( null, false, $post ) ); ?></div>
+	<div style="margin-top: -20px !important; padding-top: 0px !important" class="entry-content oo-prose"><?php echo apply_filters( 'the_content', get_the_content( null, false, $post ) ); ?></div>
 </article>
 
 <section class="DtSection DtSection--Border">
