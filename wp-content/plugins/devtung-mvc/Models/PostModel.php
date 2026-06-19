@@ -9,7 +9,7 @@ class PostModel {
         return [];
     }
 
-    public static function category($limit = 10)
+    public static function category($limit = 12)
     {
         $category = get_queried_object();
 

@@ -16,7 +16,7 @@ class PostController extends BaseController {
     }
 
     public function category(){
-        $data = PostModel::category(); 
+        $data = PostModel::category(12); 
         return $this->render('post/category', $data);
     }
 
