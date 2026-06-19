@@ -1075,6 +1075,13 @@ add_shortcode( 'oo_link', function ( $atts, $content = '' ) {
 require_once __DIR__ . '/inc/seo-extras.php';
 
 /* =============================================================
+ * CATEGORY PAGINATION FIX — sửa 404 trang 2+ của category cha
+ * (Premmerce gỡ base). Cho phép menu "Tin tức" xem hết bài.
+ * Rollback: xoá dòng require_once dưới đây.
+ * ============================================================= */
+require_once __DIR__ . '/inc/category-pagination-fix.php';
+
+/* =============================================================
  * DYNAMIC DOMAIN TRANSLATION FILTER
  * Automatically replaces production domain links with current environment URL
  * ============================================================= */

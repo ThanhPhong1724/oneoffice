@@ -37,17 +37,33 @@ class PostModel {
             $category_data['thumbnail'] = ''; // fallback
         }
 
-        // Lấy các bài viết trong category đó
-        $posts = get_posts([
-            'cat'            => $category->term_id, // đúng key phải là 'cat'
-            'numberposts'    => $limit,
+        // Xác định trang hiện tại (hỗ trợ phân trang).
+        // Ưu tiên query var 'paged'/'page'; fallback đọc /page/N từ URL.
+        $paged = (int) get_query_var('paged');
+        if ($paged < 1) {
+            $paged = (int) get_query_var('page');
+        }
+        if ($paged < 1 && !empty($_SERVER['REQUEST_URI'])
+            && preg_match('#/page/([0-9]+)#', $_SERVER['REQUEST_URI'], $mm)) {
+            $paged = (int) $mm[1];
+        }
+        if ($paged < 1) {
+            $paged = 1;
+        }
+
+        // Lấy bài viết trong category theo đúng trang (limit/trang = $limit,
+        // trùng posts_per_page của site để khớp số trang với pagination Flatsome).
+        $query = new \WP_Query([
+            'cat'            => $category->term_id, // 'cat' tự gồm category con
+            'posts_per_page' => $limit,
+            'paged'          => $paged,
             'post_status'    => 'publish',
             'orderby'        => 'date',
             'order'          => 'DESC',
         ]);
 
         $post_data = [];
-        foreach ($posts as $p) {
+        foreach ($query->posts as $p) {
             $post_data[] = [
                 'id'        => $p->ID,
                 'title'     => get_the_title($p->ID),
@@ -57,11 +73,16 @@ class PostModel {
                 'date'      => get_the_date('d/m/Y', $p->ID),
             ];
         }
+        wp_reset_postdata();
 
-        // Gộp category + danh sách bài viết
+        // Gộp category + danh sách bài viết + thông tin phân trang.
         return [
-            'category' => $category_data,
-            'posts'    => $post_data,
+            'category'   => $category_data,
+            'posts'      => $post_data,
+            'pagination' => [
+                'current' => $paged,
+                'total'   => (int) $query->max_num_pages,
+            ],
         ];
     }
 
