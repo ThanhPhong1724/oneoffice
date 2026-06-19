@@ -1185,7 +1185,7 @@
     margin-top: 14px !important;
 }
 .category-page-row .building-item .meta .price {
-    font-size: 15px !important;
+    font-size: 12px !important;
     font-weight: 800 !important;
     color: #129C94 !important;
     width: auto !important;
@@ -1680,5 +1680,68 @@
     
     .wl-faq-q {
         font-size: 14.5px !important;
+    }
+}
+
+/* ============================================================
+ * Phân trang bài viết — trang category blog (devtung-mvc)
+ * Khớp palette teal #129C94 với pagination WooCommerce sẵn có.
+ * ============================================================ */
+.dt-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 40px 0 8px;
+}
+.dt-pagination__item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 42px;
+    height: 42px;
+    padding: 0 13px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #fff;
+    color: #063443;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1;
+    text-decoration: none;
+    transition: all .15s ease;
+}
+.dt-pagination__item:hover {
+    border-color: #129C94;
+    color: #129C94;
+}
+.dt-pagination__item.is-current {
+    background: #129C94;
+    border-color: #129C94;
+    color: #fff;
+    cursor: default;
+}
+.dt-pagination__nav {
+    font-size: 20px;
+    font-weight: 700;
+}
+.dt-pagination__dots {
+    display: inline-flex;
+    align-items: flex-end;
+    padding: 0 4px;
+    color: #999;
+    font-weight: 600;
+}
+@media (max-width: 768px) {
+    .dt-pagination { gap: 4px; }
+    .dt-pagination__item {
+        min-width: 38px;
+        height: 38px;
+        padding: 0 10px;
+        font-size: 14px;
+    }
+    .dt-pagination__item:active {
+        transform: scale(0.95);
     }
 }
